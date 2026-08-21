@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShiftPro - Professional Home Shifting & Packing Services Template</title>
+  <meta name="description"
+    content="Commercial multipurpose HTML template for household relocation, home shifting, office moves, vehicle transport, and packing services with live tracking and instant cost calculator.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Tailwind CSS CDN with custom config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              300: '#a5b4fc',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+              950: '#1e1b4b'
+            },
+            accent: {
+              400: '#fb923c',
+              500: '#f97316',
+              600: '#ea580c',
+              700: '#c2410c'
+            }
+          }
+        }
+      }
+    }
+
+  </script>
+
+  <!-- Custom Stylesheets -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/rtl.css">
+</head>
+
+<body class="bg-body text-main transition-colors duration-200">
+
+  <!-- Global Header (Clean Single-Bar Navigation) -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-custom transition-all duration-200">
+    <div class="custom-container flex items-center justify-between h-20">
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center gap-2 flex-shrink-0">
+        <img src="assets/images/logo.svg" alt="ShiftPro Logo" class="h-9 dark:hidden">
+        <img src="assets/images/logo-light.svg" alt="ShiftPro Logo" class="h-9 hidden dark:block">
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav
+        class="hidden lg:flex items-center gap-6 xl:gap-7 text-xs xl:text-sm font-bold text-slate-700 dark:text-slate-200">
+        <!-- Home Dropdown -->
+        <div class="relative group py-2">
+          <a href="index.html" class="text-brand-600 dark:text-brand-400 flex items-center gap-1">
+            Home <i class="fa-solid fa-chevron-down text-[10px]"></i>
+          </a>
+          <div class="absolute left-0 top-full pt-1 w-44 hidden group-hover:block transition-all z-50">
+            <div class="bg-surface border border-custom rounded-2xl shadow-xl p-2 space-y-1 text-xs">
+              <a href="index.html"
+                class="block px-3 py-2 rounded-xl bg-blue-50 dark:bg-slate-800 font-bold text-brand-600">Home 1
+                (Household)</a>
+              <a href="index-2.html"
+                class="block px-3 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 font-semibold text-main">Home
+                2 (Corporate)</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Services Dropdown with 6 distinct dedicated pages -->
+        <div class="relative group py-2">
+          <a href="services.html" class="hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-1">
+            Services <i class="fa-solid fa-chevron-down text-[10px]"></i>
+          </a>
+          <div class="absolute left-0 top-full pt-1 w-56 hidden group-hover:block transition-all z-50">
+            <div class="bg-surface border border-custom rounded-2xl shadow-xl p-2 space-y-1 text-xs">
+              <a href="services.html"
+                class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 font-semibold text-brand-600">
+                <i class="fa-solid fa-boxes-stacked"></i> All Services Catalog
+              </a>
+              <a href="service-local-shifting.html"
+                class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 font-semibold text-main">
+                <i class="fa-solid fa-house-chimney-window text-brand-600"></i> Local Household Move
+              </a>
+              <a href="service-intercity.html"
+                class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 font-semibold text-main">
+                <i class="fa-solid fa-route text-accent-500"></i> Inter-City Relocation
+              </a>
+              <a href="service-packing.html"
+                class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 font-semibold text-main">
+                <i class="fa-solid fa-box-open text-emerald-500"></i> Packing &amp; Crating Only
+              </a>
+              <a href="service-office.html"
+                class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 font-semibold text-main">
+                <i class="fa-solid fa-building text-indigo-500"></i> Office &amp; Corporate Move
+              </a>
+              <a href="service-vehicle.html"
+                class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 font-semibold text-main">
+                <i class="fa-solid fa-car-side text-purple-500"></i> Vehicle Transport
+              </a>
+              <a href="service-warehouse.html"
+                class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-slate-800 font-semibold text-main">
+                <i class="fa-solid fa-warehouse text-cyan-500"></i> Secure Storage Vaults
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <a href="how-it-works.html" class="hover:text-brand-600 dark:hover:text-brand-400">How It Works</a>
+        <a href="pricing.html" class="hover:text-brand-600 dark:hover:text-brand-400">Cost Calculator</a>
+        <a href="service-areas.html" class="hover:text-brand-600 dark:hover:text-brand-400">Service Areas</a>
+        <a href="about.html" class="hover:text-brand-600 dark:hover:text-brand-400">About Us</a>
+        <a href="blog.html" class="hover:text-brand-600 dark:hover:text-brand-400">Blog</a>
+        <a href="contact.html" class="hover:text-brand-600 dark:hover:text-brand-400">Contact</a>
+      </nav>
+
+      <!-- Right Action CTAs & Auth Controls -->
+      <div class="flex items-center gap-2.5 sm:gap-3">
+        <button
+          class="rtl-toggle-btn px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold hover:bg-slate-200 transition-colors"
+          title="Toggle RTL">RTL</button>
+        <button
+          class="theme-toggle-btn p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors">
+          <i class="fa-solid fa-moon"></i>
+          <i class="fa-solid fa-sun hidden text-amber-400"></i>
+        </button>
+
+        <!-- Dynamic Auth Container (Populated by main.js) -->
+        <div class="nav-auth-container flex items-center gap-2"></div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn"
+          class="lg:hidden p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg">
+          <i class="fa-solid fa-bars text-lg"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu"
+      class="hidden lg:hidden bg-surface border-b border-custom px-4 py-4 space-y-3 text-xs font-bold">
+      <a href="index.html" class="block py-2 text-brand-600">Home 1: Household Move</a>
+      <a href="index-2.html" class="block py-2 text-main hover:text-brand-600">Home 2: Corporate Agency</a>
+      <a href="services.html" class="block py-2 text-main hover:text-brand-600">All Services Catalog</a>
+      <a href="how-it-works.html" class="block py-2 text-main hover:text-brand-600">How It Works</a>
+      <a href="pricing.html" class="block py-2 text-main hover:text-brand-600">Shifting Cost Calculator</a>
+      <a href="service-areas.html" class="block py-2 text-main hover:text-brand-600">Service Areas</a>
+      <a href="about.html" class="block py-2 text-main hover:text-brand-600">About Us</a>
+      <a href="blog.html" class="block py-2 text-main hover:text-brand-600">Blog</a>
+      <a href="contact.html" class="block py-2 text-main hover:text-brand-600">Contact Us</a>
+      <div id="mobile-auth-container" class="pt-2 border-t border-custom space-y-2"></div>
+    </div>
+  </header>
+
+  <!-- Hero Section with Live Quote Estimator Box -->
+  <section class="hero-section relative pt-12 pb-20 md:pt-24 md:pb-32 overflow-hidden">
+    <!-- Ambient glowing light orbs and grid mesh -->
+    <div
+      class="absolute top-0 left-1/2 -translate-x-1/2 w-[850px] h-[450px] bg-gradient-to-tr from-brand-600/15 via-purple-500/10 to-accent-500/10 rounded-full blur-3xl pointer-events-none -z-10">
+    </div>
+    <div class="absolute -top-10 right-0 w-80 h-80 bg-accent-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="custom-container relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+
+        <!-- Left Hero Content -->
+        <div class="lg:col-span-7 space-y-7">
+          <h1 class="text-4xl sm:text-5xl xl:text-6xl font-extrabold tracking-tight leading-[1.15] text-main">
+            Stress-Free <span class="gradient-text-primary">Home Shifting</span> &amp; Safe Packing Experts.
+          </h1>
+
+          <p class="text-base sm:text-lg text-muted-custom max-w-2xl leading-relaxed">
+            From 5-ply multi-layer dish packaging and custom wooden crating to real-time satellite GPS tracking and
+            zero-damage guarantee — we make household relocation effortless, premium, and 100% reliable.
+          </p>
+
+          <!-- Key Feature Checklist with Aesthetic Badges -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+            <div
+              class="flex items-center gap-2.5 p-3 rounded-2xl bg-surface border border-custom shadow-xs text-xs font-bold text-main">
+              <div
+                class="w-6 h-6 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-shield-halved text-xs"></i>
+              </div>
+              <span>100% Transit Insured</span>
+            </div>
+            <div
+              class="flex items-center gap-2.5 p-3 rounded-2xl bg-surface border border-custom shadow-xs text-xs font-bold text-main">
+              <div
+                class="w-6 h-6 rounded-lg bg-brand-500/10 text-brand-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-receipt text-xs"></i>
+              </div>
+              <span>No Hidden Charges</span>
+            </div>
+            <div
+              class="flex items-center gap-2.5 p-3 rounded-2xl bg-surface border border-custom shadow-xs text-xs font-bold text-main">
+              <div
+                class="w-6 h-6 rounded-lg bg-accent-500/10 text-accent-500 flex items-center justify-center flex-shrink-0">
+                <i class="fa-solid fa-user-check text-xs"></i>
+              </div>
+              <span>Verified Pro Crew</span>
+            </div>
+          </div>
+
+          <!-- Hero Buttons -->
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a href="pricing.html"
+              class="btn-brand-primary px-8 py-4 rounded-2xl font-bold text-white shadow-xl shadow-brand-600/30 transition-all hover:-translate-y-0.5 flex items-center gap-2.5 text-sm">
+              <i class="fa-solid fa-calculator"></i> Calculate Shifting Cost
+            </a>
+            <a href="track-move.html"
+              class="px-8 py-4 rounded-2xl font-bold bg-surface hover:bg-surface-secondary text-main border border-custom shadow-sm transition-all hover:-translate-y-0.5 flex items-center gap-2.5 text-sm">
+              <i class="fa-solid fa-location-crosshairs text-accent-500"></i> Track Move Live
+            </a>
+          </div>
+
+          <!-- Customer Trust Rating Bar -->
+          <div class="flex items-center gap-4 pt-4 border-t border-custom">
+            <div class="flex -space-x-2.5 overflow-hidden">
+              <img class="inline-block h-10 w-10 rounded-full ring-2 ring-white dark:ring-slate-900 object-cover"
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"
+                alt="Avatar">
+              <img class="inline-block h-10 w-10 rounded-full ring-2 ring-white dark:ring-slate-900 object-cover"
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80"
+                alt="Avatar">
+              <img class="inline-block h-10 w-10 rounded-full ring-2 ring-white dark:ring-slate-900 object-cover"
+                src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=100&auto=format&fit=crop&q=80"
+                alt="Avatar">
+              <div
+                class="inline-flex items-center justify-center h-10 w-10 rounded-full ring-2 ring-white dark:ring-slate-900 bg-gradient-to-tr from-brand-600 to-indigo-700 text-white text-xs font-extrabold">
+                +18k</div>
+            </div>
+            <div>
+              <div class="flex text-amber-400 text-sm">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                  class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <span class="font-extrabold text-main ml-2 text-xs">4.95 / 5.0</span>
+              </div>
+              <p class="text-xs text-muted-custom font-medium">Trusted by 50,000+ happy families nationwide</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Hero Widget: Instant Quote Form Card -->
+        <div class="lg:col-span-5 relative">
+          <div
+            class="bg-surface/95 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-2xl border border-custom relative z-10">
+            <div class="flex items-center justify-between mb-5">
+              <div>
+                <h3 class="text-xl font-extrabold text-main tracking-tight">Get Quick Estimate</h3>
+                <p class="text-xs text-muted-custom">Get instant rates in under 30 seconds</p>
+              </div>
+              <span
+                class="px-3 py-1 bg-gradient-to-r from-amber-500/15 to-orange-500/15 border border-amber-500/30 text-accent-600 dark:text-amber-400 text-[11px] font-extrabold rounded-xl uppercase tracking-wider">Instant
+                Quote</span>
+            </div>
+
+            <form action="pricing.html" method="GET" class="space-y-4">
+              <!-- Moving From / To -->
+              <div class="space-y-3">
+                <div>
+                  <label class="block text-xs font-bold text-muted-custom mb-1 uppercase tracking-wider">Pickup
+                    Location</label>
+                  <div class="relative">
+                    <i class="fa-solid fa-location-dot absolute left-3.5 top-3.5 text-brand-600"></i>
+                    <input type="text" name="pickup" required placeholder="e.g. Indiranagar, Bengaluru"
+                      class="custom-input pl-10 text-xs font-medium">
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-muted-custom mb-1 uppercase tracking-wider">Drop
+                    Location</label>
+                  <div class="relative">
+                    <i class="fa-solid fa-flag-checkered absolute left-3.5 top-3.5 text-accent-500"></i>
+                    <input type="text" name="delivery" required placeholder="e.g. Bandra West, Mumbai"
+                      class="custom-input pl-10 text-xs font-medium">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Home Size & Date -->
+              <div class="grid grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-bold text-muted-custom mb-1 uppercase tracking-wider">Home
+                    Size</label>
+                  <select name="home_size" class="custom-input text-xs font-medium">
+                    <option value="1rk">Studio / 1 RK</option>
+                    <option value="1bhk">1 BHK Flat</option>
+                    <option value="2bhk" selected>2 BHK House</option>
+                    <option value="3bhk">3 BHK Family</option>
+                    <option value="4bhk">4+ BHK / Villa</option>
+                    <option value="office">Office / Corporate</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-muted-custom mb-1 uppercase tracking-wider">Moving
+                    Date</label>
+                  <input type="date" name="move_date" class="custom-input text-xs font-medium">
+                </div>
+              </div>
+
+              <button type="submit"
+                class="btn-brand-primary w-full py-3.5 text-white font-bold rounded-xl text-xs shadow-lg transition-all hover:scale-[1.01] flex items-center justify-center gap-2">
+                <span>View Exact Price Breakdown</span>
+                <i class="fa-solid fa-arrow-right text-xs"></i>
+              </button>
+
+              <div class="flex items-center justify-between text-[11px] text-muted-custom pt-1">
+                <span><i class="fa-solid fa-lock text-emerald-500 mr-1"></i> 100% Privacy Protected</span>
+                <span class="text-emerald-600 dark:text-emerald-400 font-semibold"><i
+                    class="fa-solid fa-bolt text-amber-500 mr-1"></i> Zero Advance Fee</span>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Counter Banner -->
+  <section class="py-10 bg-surface border-y border-custom">
+    <div class="custom-container">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <h3 class="text-3xl sm:text-4xl font-extrabold text-brand-600 dark:text-brand-400" data-counter="52000"
+            data-suffix="+">0</h3>
+          <p class="text-xs sm:text-sm font-semibold text-muted-custom mt-1">Household Moves Completed</p>
+        </div>
+        <div>
+          <h3 class="text-3xl sm:text-4xl font-extrabold text-accent-500" data-counter="99" data-suffix=".4%">0</h3>
+          <p class="text-xs sm:text-sm font-semibold text-muted-custom mt-1">On-Time Delivery Rate</p>
+        </div>
+        <div>
+          <h3 class="text-3xl sm:text-4xl font-extrabold text-brand-600 dark:text-brand-400" data-counter="140"
+            data-suffix="+">0</h3>
+          <p class="text-xs sm:text-sm font-semibold text-muted-custom mt-1">Operational City Hubs</p>
+        </div>
+        <div>
+          <h3 class="text-3xl sm:text-4xl font-extrabold text-emerald-500" data-counter="100" data-suffix="%">0</h3>
+          <p class="text-xs sm:text-sm font-semibold text-muted-custom mt-1">Damage Protection Coverage</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Services Grid Section -->
+  <section class="py-20 bg-surface-secondary/40">
+    <div class="custom-container">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span
+          class="px-3.5 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-brand-600 dark:text-blue-300 font-semibold text-xs uppercase tracking-wider">What
+          We Offer</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-main mt-3">Tailored Relocation Solutions For Every Need</h2>
+        <p class="text-muted-custom text-sm sm:text-base mt-2">Whether shifting across the street or across the country,
+          our certified moving professionals ensure safe handling of your valued belongings.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Service Card 1: Local Household Shifting -->
+        <div class="aesthetic-card group flex flex-col justify-between">
+          <div>
+            <div class="h-52 relative overflow-hidden bg-slate-100 dark:bg-slate-800">
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&auto=format&fit=crop&q=80"
+                alt="Local Shifting"
+                class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60">
+              </div>
+              <span
+                class="absolute top-3.5 left-3.5 bg-brand-600/90 backdrop-blur-md text-white text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">Most
+                Popular</span>
+              <span class="absolute bottom-3.5 right-3.5 price-badge-overlay">From ₹3,500</span>
+            </div>
+            <div class="p-6 sm:p-7 space-y-3.5">
+              <h3 class="text-xl font-extrabold text-main tracking-tight">
+                <a href="service-local-shifting.html" class="hover:text-brand-600 transition-colors">Local Household
+                  Shifting</a>
+              </h3>
+              <p class="text-xs sm:text-sm text-muted-custom leading-relaxed">Same-day seamless shifting for apartments,
+                duplexes, and villas with dedicated furniture disassembling and reassembling.</p>
+              <ul class="text-xs font-semibold text-muted-custom space-y-2 pt-3 border-t border-custom">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Same-day
+                  pickup &amp; guaranteed delivery</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Free
+                  wardrobe boxes &amp; mattress shields</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-6 sm:px-7 pb-6 pt-1">
+            <a href="service-local-shifting.html"
+              class="w-full py-3 rounded-xl bg-surface-secondary hover:bg-brand-600 text-main hover:text-white font-bold text-xs flex items-center justify-center gap-2 border border-custom transition-all duration-300 shadow-xs">
+              <span>Explore Shifting Details</span>
+              <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Service Card 2: Inter-City Relocation -->
+        <div class="aesthetic-card group flex flex-col justify-between">
+          <div>
+            <div class="h-52 relative overflow-hidden bg-slate-100 dark:bg-slate-800">
+              <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=600&auto=format&fit=crop&q=80"
+                alt="Inter-City Relocation"
+                class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60">
+              </div>
+              <span
+                class="absolute top-3.5 left-3.5 bg-accent-500/90 backdrop-blur-md text-white text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">Long
+                Distance</span>
+              <span class="absolute bottom-3.5 right-3.5 price-badge-overlay">From ₹12,500</span>
+            </div>
+            <div class="p-6 sm:p-7 space-y-3.5">
+              <h3 class="text-xl font-extrabold text-main tracking-tight">
+                <a href="service-intercity.html" class="hover:text-brand-600 transition-colors">Inter-City
+                  Relocation</a>
+              </h3>
+              <p class="text-xs sm:text-sm text-muted-custom leading-relaxed">Long-distance relocations using dedicated
+                sealed container trucks with active live GPS route tracking and insured safety.</p>
+              <ul class="text-xs font-semibold text-muted-custom space-y-2 pt-3 border-t border-custom">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Guaranteed
+                  delivery timeline SLA</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Digital
+                  tamper seal verification</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-6 sm:px-7 pb-6 pt-1">
+            <a href="service-intercity.html"
+              class="w-full py-3 rounded-xl bg-surface-secondary hover:bg-brand-600 text-main hover:text-white font-bold text-xs flex items-center justify-center gap-2 border border-custom transition-all duration-300 shadow-xs">
+              <span>Explore Inter-City Details</span>
+              <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Service Card 3: Packing & Unpacking Only -->
+        <div class="aesthetic-card group flex flex-col justify-between">
+          <div>
+            <div class="h-52 relative overflow-hidden bg-slate-100 dark:bg-slate-800">
+              <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&auto=format&fit=crop&q=80"
+                alt="Packing Services"
+                class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60">
+              </div>
+              <span
+                class="absolute top-3.5 left-3.5 bg-emerald-600/90 backdrop-blur-md text-white text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">Materials
+                &amp; Labor</span>
+              <span class="absolute bottom-3.5 right-3.5 price-badge-overlay">From ₹2,800</span>
+            </div>
+            <div class="p-6 sm:p-7 space-y-3.5">
+              <h3 class="text-xl font-extrabold text-main tracking-tight">
+                <a href="service-packing.html" class="hover:text-brand-600 transition-colors">Packing &amp; Unpacking
+                  Only</a>
+              </h3>
+              <p class="text-xs sm:text-sm text-muted-custom leading-relaxed">Already have a truck? Hire our certified
+                packing crew with heavy-duty 5-ply cartons, bubble wrap, and foam rolls.</p>
+              <ul class="text-xs font-semibold text-muted-custom space-y-2 pt-3 border-t border-custom">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Fragile
+                  glassware &amp; china specialist</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Complete
+                  post-move box unboxing</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-6 sm:px-7 pb-6 pt-1">
+            <a href="service-packing.html"
+              class="w-full py-3 rounded-xl bg-surface-secondary hover:bg-brand-600 text-main hover:text-white font-bold text-xs flex items-center justify-center gap-2 border border-custom transition-all duration-300 shadow-xs">
+              <span>Explore Packing Details</span>
+              <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Service Card 4: Office & Corporate Move -->
+        <div class="aesthetic-card group flex flex-col justify-between">
+          <div>
+            <div class="h-52 relative overflow-hidden bg-slate-100 dark:bg-slate-800">
+              <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&auto=format&fit=crop&q=80"
+                alt="Office Moving"
+                class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60">
+              </div>
+              <span
+                class="absolute top-3.5 left-3.5 bg-indigo-600/90 backdrop-blur-md text-white text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">Corporate
+                B2B</span>
+              <span class="absolute bottom-3.5 right-3.5 price-badge-overlay">Custom RFQ</span>
+            </div>
+            <div class="p-6 sm:p-7 space-y-3.5">
+              <h3 class="text-xl font-extrabold text-main tracking-tight">
+                <a href="service-office.html" class="hover:text-brand-600 transition-colors">Office &amp; Corporate
+                  Move</a>
+              </h3>
+              <p class="text-xs sm:text-sm text-muted-custom leading-relaxed">Zero-downtime weekend relocations for
+                corporate workstations, server racks, conference rooms, and file archives.</p>
+              <ul class="text-xs font-semibold text-muted-custom space-y-2 pt-3 border-t border-custom">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Dedicated
+                  corporate move director</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> ESD
+                  anti-static server handling</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-6 sm:px-7 pb-6 pt-1">
+            <a href="service-office.html"
+              class="w-full py-3 rounded-xl bg-surface-secondary hover:bg-brand-600 text-main hover:text-white font-bold text-xs flex items-center justify-center gap-2 border border-custom transition-all duration-300 shadow-xs">
+              <span>Explore Office Moving</span>
+              <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Service Card 5: Vehicle & Auto Transport -->
+        <div class="aesthetic-card group flex flex-col justify-between">
+          <div>
+            <div class="h-52 relative overflow-hidden bg-slate-100 dark:bg-slate-800">
+              <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?w=600&auto=format&fit=crop&q=80"
+                alt="Vehicle Transport"
+                class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60">
+              </div>
+              <span
+                class="absolute top-3.5 left-3.5 bg-purple-600/90 backdrop-blur-md text-white text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">Auto
+                Logistics</span>
+              <span class="absolute bottom-3.5 right-3.5 price-badge-overlay">From ₹3,500</span>
+            </div>
+            <div class="p-6 sm:p-7 space-y-3.5">
+              <h3 class="text-xl font-extrabold text-main tracking-tight">
+                <a href="service-vehicle.html" class="hover:text-brand-600 transition-colors">Vehicle &amp; Auto
+                  Transport</a>
+              </h3>
+              <p class="text-xs sm:text-sm text-muted-custom leading-relaxed">Door-to-door safe transport for cars,
+                luxury sedans, SUVs, and motorbikes in specialized enclosed carriers.</p>
+              <ul class="text-xs font-semibold text-muted-custom space-y-2 pt-3 border-t border-custom">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Hydraulic
+                  ramp loading &amp; wheel locks</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Pre &amp;
+                  post condition digital audit</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-6 sm:px-7 pb-6 pt-1">
+            <a href="service-vehicle.html"
+              class="w-full py-3 rounded-xl bg-surface-secondary hover:bg-brand-600 text-main hover:text-white font-bold text-xs flex items-center justify-center gap-2 border border-custom transition-all duration-300 shadow-xs">
+              <span>Explore Auto Transport</span>
+              <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Service Card 6: Secure Warehouse Storage -->
+        <div class="aesthetic-card group flex flex-col justify-between">
+          <div>
+            <div class="h-52 relative overflow-hidden bg-slate-100 dark:bg-slate-800">
+              <img src="https://images.unsplash.com/photo-1586528116493-a029325540fa?w=600&auto=format&fit=crop&q=80"
+                alt="Warehouse Storage"
+                class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700 ease-out">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60">
+              </div>
+              <span
+                class="absolute top-3.5 left-3.5 bg-cyan-600/90 backdrop-blur-md text-white text-[11px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">Safe
+                Storage</span>
+              <span class="absolute bottom-3.5 right-3.5 price-badge-overlay">From ₹450/day</span>
+            </div>
+            <div class="p-6 sm:p-7 space-y-3.5">
+              <h3 class="text-xl font-extrabold text-main tracking-tight">
+                <a href="service-warehouse.html" class="hover:text-brand-600 transition-colors">Secure Warehouse
+                  Storage</a>
+              </h3>
+              <p class="text-xs sm:text-sm text-muted-custom leading-relaxed">24/7 CCTV-monitored, climate-controlled
+                storage units for short-term renovation holds or long-term storage.</p>
+              <ul class="text-xs font-semibold text-muted-custom space-y-2 pt-3 border-t border-custom">
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i>
+                  Pest-controlled &amp; fire-safe facilities</li>
+                <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Flexible
+                  daily &amp; monthly billing plans</li>
+              </ul>
+            </div>
+          </div>
+          <div class="px-6 sm:px-7 pb-6 pt-1">
+            <a href="service-warehouse.html"
+              class="w-full py-3 rounded-xl bg-surface-secondary hover:bg-brand-600 text-main hover:text-white font-bold text-xs flex items-center justify-center gap-2 border border-custom transition-all duration-300 shadow-xs">
+              <span>Explore Storage Vaults</span>
+              <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section (Step Wizard) -->
+  <section class="py-20 bg-surface">
+    <div class="custom-container">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span
+          class="px-3.5 py-1 rounded-full bg-amber-100 dark:bg-amber-900/40 text-accent-600 dark:text-accent-500 font-semibold text-xs uppercase tracking-wider">Smooth
+          4-Step Process</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-main mt-3">How We Make Your Move Effortless</h2>
+        <p class="text-muted-custom text-sm sm:text-base mt-2">From first estimate to final unpacking, here is how our
+          moving workflow ensures seamless zero-stress relocation.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+
+        <!-- Step 1 -->
+        <div class="relative text-center p-6 rounded-2xl bg-surface-secondary/40 border border-custom">
+          <div
+            class="w-16 h-16 rounded-2xl step-badge-1 text-2xl font-black flex items-center justify-center mx-auto mb-5">
+            01
+          </div>
+          <h3 class="text-lg font-bold text-main mb-2">Book Online &amp; Estimate</h3>
+          <p class="text-xs sm:text-sm text-muted-custom leading-relaxed">Select pickup/delivery dates, choose your home
+            size, and receive an upfront fixed quote with no hidden surprises.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="relative text-center p-6 rounded-2xl bg-surface-secondary/40 border border-custom">
+          <div
+            class="w-16 h-16 rounded-2xl step-badge-2 text-2xl font-black flex items-center justify-center mx-auto mb-5">
+            02
+          </div>
+          <h3 class="text-lg font-bold text-main mb-2">Multi-Layer Packing</h3>
+          <p class="text-xs sm:text-sm text-muted-custom leading-relaxed">Our uniformed crew arrives with high-grade
+            bubble wrap, corrugated sheets, and custom crates for fragile items.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="relative text-center p-6 rounded-2xl bg-surface-secondary/40 border border-custom">
+          <div
+            class="w-16 h-16 rounded-2xl step-badge-3 text-2xl font-black flex items-center justify-center mx-auto mb-5">
+            03
+          </div>
+          <h3 class="text-lg font-bold text-main mb-2">GPS-Tracked Transit</h3>
+          <p class="text-xs sm:text-sm text-muted-custom leading-relaxed">Goods travel in sanitized, shock-absorbent
+            container trucks. Follow live progress anytime via your tracking portal.</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="relative text-center p-6 rounded-2xl bg-surface-secondary/40 border border-custom">
+          <div
+            class="w-16 h-16 rounded-2xl step-badge-4 text-2xl font-black flex items-center justify-center mx-auto mb-5">
+            04
+          </div>
+          <h3 class="text-lg font-bold text-main mb-2">Unloading &amp; Placement</h3>
+          <p class="text-xs sm:text-sm text-muted-custom leading-relaxed">We unload, assemble heavy furniture in
+            designated rooms, audit the inventory checklist, and haul away packaging debris.</p>
+        </div>
+
+      </div>
+
+      <div class="mt-12 text-center">
+        <a href="how-it-works.html"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm bg-surface-secondary hover:bg-slate-200 dark:hover:bg-slate-700 text-main transition-colors">
+          View Complete Moving Guide &amp; Checklist <i class="fa-solid fa-arrow-right text-xs"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Move Tracking Preview Widget -->
+  <section class="py-16 bg-slate-950 text-white relative overflow-hidden">
+    <div class="custom-container relative z-10">
+      <div class="max-w-3xl mx-auto text-center space-y-4 mb-8">
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 font-semibold text-xs">
+          <i class="fa-solid fa-satellite-dish animate-pulse"></i> Live Move Tracking
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-extrabold">Track Your Relocation in Real-Time</h2>
+        <p class="text-slate-400 text-sm sm:text-base">Enter your Tracking ID to view the live GPS status, assigned
+          driver details, and estimated delivery timeline.</p>
+      </div>
+
+      <!-- Search Input Box -->
+      <div class="max-w-xl mx-auto bg-slate-900/90 p-2.5 rounded-2xl border border-slate-800 shadow-2xl">
+        <form action="track-move.html" method="GET" class="flex flex-col sm:flex-row gap-2">
+          <div class="relative flex-grow">
+            <i class="fa-solid fa-barcode absolute left-3.5 top-3.5 text-slate-500"></i>
+            <input type="text" name="id" placeholder="Enter Move Tracking ID (e.g. MOVE-8492)" required
+              class="w-full pl-10 pr-4 py-3 bg-slate-800 border border-slate-700 rounded-xl text-white placeholder-slate-500 text-sm focus:outline-none focus:border-blue-500">
+          </div>
+          <button type="submit"
+            class="px-6 py-3 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded-xl text-sm transition-all flex items-center justify-center gap-2 flex-shrink-0">
+            <i class="fa-solid fa-magnifying-glass"></i> Track Now
+          </button>
+        </form>
+      </div>
+
+      <!-- Demo IDs Shortcut -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mt-4 text-xs text-slate-400">
+        <span>Try Demo IDs:</span>
+        <a href="track-move.html?id=MOVE-8492"
+          class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-blue-400 font-mono">MOVE-8492 (In Transit)</a>
+        <a href="track-move.html?id=MOVE-1024"
+          class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-amber-400 font-mono">MOVE-1024 (Packing)</a>
+        <a href="track-move.html?id=MOVE-3350"
+          class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-emerald-400 font-mono">MOVE-3350
+          (Delivered)</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Calculator Preview Section -->
+  <section class="py-20 bg-surface-secondary/40">
+    <div class="custom-container">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+
+        <div class="lg:col-span-5 space-y-5">
+          <span
+            class="px-3.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-400 font-semibold text-xs uppercase tracking-wider">Transparent
+            Rates</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-main">Accurate Cost Estimator Without Surprises</h2>
+          <p class="text-sm sm:text-base text-muted-custom leading-relaxed">
+            Our dynamic relocation pricing engine calculates true estimated costs based on your inventory volume,
+            distance, elevator accessibility, and packing specifications.
+          </p>
+
+          <div class="space-y-3 pt-2">
+            <div class="flex items-start gap-3">
+              <div
+                class="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-900/40 text-brand-600 flex items-center justify-center text-sm flex-shrink-0 mt-0.5">
+                <i class="fa-solid fa-tags"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-sm text-main">Fixed Price Guarantee</h4>
+                <p class="text-xs text-muted-custom">The price you see upon survey lock is the final price you pay.</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <div
+                class="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-900/40 text-accent-500 flex items-center justify-center text-sm flex-shrink-0 mt-0.5">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-sm text-main">Itemized Invoices</h4>
+                <p class="text-xs text-muted-custom">Clear breakdown of base freight, packing material, labor, and
+                  GST/Tax.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-3">
+            <a href="pricing.html"
+              class="px-6 py-3.5 rounded-xl font-bold text-white bg-brand-600 hover:bg-brand-700 inline-flex items-center gap-2 text-sm shadow-lg shadow-blue-500/20">
+              Open Full-Screen Calculator <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Quick Calculator Box -->
+        <div class="lg:col-span-7">
+          <div class="bg-surface rounded-3xl p-6 sm:p-8 border border-custom shadow-xl">
+            <form id="shifting-calculator-form" class="space-y-6">
+
+              <!-- Move Type Switch -->
+              <div class="flex gap-3">
+                <label class="flex-1 text-center cursor-pointer">
+                  <input type="radio" name="move_type" value="local" checked class="peer hidden">
+                  <div
+                    class="py-2.5 px-4 rounded-xl border border-custom peer-checked:border-brand-600 peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900/30 peer-checked:text-brand-600 font-bold text-xs transition-all">
+                    <i class="fa-solid fa-city mr-1.5"></i> Within City (Local)
+                  </div>
+                </label>
+                <label class="flex-1 text-center cursor-pointer">
+                  <input type="radio" name="move_type" value="intercity" class="peer hidden">
+                  <div
+                    class="py-2.5 px-4 rounded-xl border border-custom peer-checked:border-brand-600 peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900/30 peer-checked:text-brand-600 font-bold text-xs transition-all">
+                    <i class="fa-solid fa-plane-departure mr-1.5"></i> Inter-City / Interstate
+                  </div>
+                </label>
+              </div>
+
+              <!-- Distance Range Slider -->
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <label class="text-xs font-bold text-muted-custom uppercase">Approx Distance</label>
+                  <span id="calc-distance-val" class="text-sm font-extrabold text-brand-600 dark:text-brand-400">25
+                    km</span>
+                </div>
+                <input type="range" id="calc-distance" min="5" max="500" value="25" step="5"
+                  class="custom-range-slider">
+              </div>
+
+              <!-- Home Size & Packing Tier Grid -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold text-muted-custom mb-1 uppercase">Home Size</label>
+                  <select id="calc-home-size" class="custom-input">
+                    <option value="studio">Studio / 1 RK</option>
+                    <option value="1bhk">1 BHK Apartment</option>
+                    <option value="2bhk" selected>2 BHK House</option>
+                    <option value="3bhk">3 BHK Family Flat</option>
+                    <option value="4bhk">4+ BHK / Villa</option>
+                    <option value="office">Office Space</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-muted-custom mb-1 uppercase">Elevator / Floor</label>
+                  <select id="calc-floor-elevator" class="custom-input">
+                    <option value="ground">Ground Floor</option>
+                    <option value="lift_low" selected>Floors 1-3 (Elevator Available)</option>
+                    <option value="lift_high">Floors 4+ (Elevator Available)</option>
+                    <option value="nolift_low">Floors 1-3 (Stairs Only)</option>
+                    <option value="nolift_high">Floors 4+ (Stairs Only)</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Packing Quality Radio Cards -->
+              <div>
+                <label class="block text-xs font-bold text-muted-custom mb-2 uppercase">Packing Quality Tier</label>
+                <div class="grid grid-cols-3 gap-2 text-center text-xs">
+                  <label class="cursor-pointer">
+                    <input type="radio" name="calc_packing_tier" value="standard" class="peer hidden">
+                    <div
+                      class="p-3 rounded-xl border border-custom peer-checked:border-brand-600 peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900/30 peer-checked:text-brand-600 font-semibold transition-all">
+                      Standard
+                    </div>
+                  </label>
+                  <label class="cursor-pointer">
+                    <input type="radio" name="calc_packing_tier" value="premium" checked class="peer hidden">
+                    <div
+                      class="p-3 rounded-xl border border-custom peer-checked:border-brand-600 peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900/30 peer-checked:text-brand-600 font-semibold transition-all">
+                      Premium (3-Layer)
+                    </div>
+                  </label>
+                  <label class="cursor-pointer">
+                    <input type="radio" name="calc_packing_tier" value="whiteglove" class="peer hidden">
+                    <div
+                      class="p-3 rounded-xl border border-custom peer-checked:border-brand-600 peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900/30 peer-checked:text-brand-600 font-semibold transition-all">
+                      VIP White Glove
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Output Breakdown Banner -->
+              <div
+                class="p-5 rounded-2xl bg-surface-secondary/70 border border-custom flex flex-wrap items-center justify-between gap-4">
+                <div>
+                  <p class="text-xs font-semibold text-muted-custom">Estimated Shifting Total</p>
+                  <h3 id="calc-res-total" class="text-3xl font-extrabold text-main">₹8,500</h3>
+                  <span id="calc-res-range" class="text-xs text-muted-custom font-medium">₹7,800 - ₹9,200</span>
+                </div>
+                <button type="button" id="calc-book-btn"
+                  class="px-6 py-3 bg-accent-500 hover:bg-accent-600 text-white font-bold rounded-xl text-sm shadow-md shadow-orange-500/20 transition-all">
+                  Book With This Rate <i class="fa-solid fa-arrow-right ml-1"></i>
+                </button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Customer Reviews / Testimonials Section -->
+  <section class="py-20 bg-surface">
+    <div class="custom-container">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span
+          class="px-3.5 py-1 rounded-full bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-300 font-semibold text-xs uppercase tracking-wider">Client
+          Stories</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-main mt-3">What Homeowners Say About Us</h2>
+        <p class="text-muted-custom text-sm sm:text-base mt-2">Read genuine reviews from families and businesses who
+          relocated with ShiftPro.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <!-- Review 1 -->
+        <div class="bg-surface p-7 rounded-2xl border border-custom shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex text-amber-400 text-sm mb-4">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-sm text-main italic leading-relaxed mb-6">
+              "ShiftPro moved our 3 BHK apartment from Manhattan to Boston without a single scratch! The live GPS
+              tracking and dedicated move manager gave us complete peace of mind."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-custom">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"
+              alt="Sarah J." class="w-11 h-11 rounded-full object-cover">
+            <div>
+              <h4 class="font-bold text-sm text-main">Sarah &amp; David Jenkins</h4>
+              <p class="text-xs text-muted-custom">Relocated to Boston • 3 BHK</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="bg-surface p-7 rounded-2xl border border-custom shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex text-amber-400 text-sm mb-4">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-sm text-main italic leading-relaxed mb-6">
+              "The packing crew was polite, on-time, and extremely careful with our glass dining set and antique clocks.
+              Their 3-layer bubble wrapping is definitely worth it!"
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-custom">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80"
+              alt="Michael R." class="w-11 h-11 rounded-full object-cover">
+            <div>
+              <h4 class="font-bold text-sm text-main">Michael Rodriguez</h4>
+              <p class="text-xs text-muted-custom">Local Shifting • Los Angeles</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="bg-surface p-7 rounded-2xl border border-custom shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex text-amber-400 text-sm mb-4">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="text-sm text-main italic leading-relaxed mb-6">
+              "Relocated our 40-person tech office over a single weekend. By Monday 8 AM, all workstations and server
+              racks were operational. Superb project coordination."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-4 border-t border-custom">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=80"
+              alt="Thomas W." class="w-11 h-11 rounded-full object-cover">
+            <div>
+              <h4 class="font-bold text-sm text-main">Thomas Wayne</h4>
+              <p class="text-xs text-muted-custom">COO, Apex Digital Logistics</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Accordion Section -->
+  <section class="py-20 bg-surface-secondary/40">
+    <div class="custom-container">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span
+          class="px-3.5 py-1 rounded-full bg-blue-100 dark:bg-blue-900/40 text-brand-600 dark:text-blue-300 font-semibold text-xs uppercase tracking-wider">Help
+          &amp; FAQs</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-main mt-3">Frequently Asked Questions</h2>
+        <p class="text-muted-custom text-sm sm:text-base mt-2">Find quick answers to common questions about our packing
+          materials, timelines, and insurance.</p>
+      </div>
+
+      <div class="max-w-3xl mx-auto space-y-4 faq-accordion-group">
+
+        <!-- FAQ 1 -->
+        <div class="faq-accordion-item bg-surface rounded-2xl border border-custom overflow-hidden">
+          <button
+            class="faq-accordion-header w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-main">
+            <span>How far in advance should I book my household relocation?</span>
+            <i class="fa-solid fa-chevron-down faq-icon transition-transform text-slate-400"></i>
+          </button>
+          <div class="faq-accordion-body p-5 pt-0 text-sm text-muted-custom leading-relaxed">
+            We recommend scheduling your move 3 to 7 days in advance for local household shifting and 1 to 2 weeks ahead
+            for interstate or inter-city moves. However, we also support urgent same-day moves depending on fleet
+            availability.
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-accordion-item bg-surface rounded-2xl border border-custom overflow-hidden">
+          <button
+            class="faq-accordion-header w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-main">
+            <span>What packing materials are used for fragile glass and electronics?</span>
+            <i class="fa-solid fa-chevron-down faq-icon transition-transform text-slate-400"></i>
+          </button>
+          <div class="faq-accordion-body hidden p-5 pt-0 text-sm text-muted-custom leading-relaxed">
+            We utilize 5-ply heavy duty corrugated cartons, virgin air bubble wrap rolls, EPE foam sheets, edge corner
+            protectors, stretch film, and custom wooden crating for expensive glassware, chandeliers, smart TVs, and
+            delicate artworks.
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-accordion-item bg-surface rounded-2xl border border-custom overflow-hidden">
+          <button
+            class="faq-accordion-header w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-main">
+            <span>Is transit insurance included with my moving package?</span>
+            <i class="fa-solid fa-chevron-down faq-icon transition-transform text-slate-400"></i>
+          </button>
+          <div class="faq-accordion-body hidden p-5 pt-0 text-sm text-muted-custom leading-relaxed">
+            Yes, our comprehensive Transit Insurance policy protects against unexpected accidents, fire, theft, or
+            structural damage during road transit. A certified item manifest is signed by you before vehicle departure.
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-accordion-item bg-surface rounded-2xl border border-custom overflow-hidden">
+          <button
+            class="faq-accordion-header w-full p-5 text-left flex items-center justify-between gap-4 font-bold text-main">
+            <span>Can I track my moving vehicle live while on the road?</span>
+            <i class="fa-solid fa-chevron-down faq-icon transition-transform text-slate-400"></i>
+          </button>
+          <div class="faq-accordion-body hidden p-5 pt-0 text-sm text-muted-custom leading-relaxed">
+            Absolutely! Every ShiftPro transport truck is fitted with dual-GPS telematics. You can track exact highway
+            coordinates, driver checkpoints, and estimated delivery hour via our <a href="track-move.html"
+              class="text-brand-600 font-bold underline">Track Move Portal</a>.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- Footer Component -->
+  <footer class="bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-800">
+    <div class="custom-container">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+        <!-- Col 1: Brand Info -->
+        <div class="lg:col-span-2 space-y-4">
+          <img src="assets/images/logo-light.svg" alt="ShiftPro Logo" class="h-10">
+          <p class="text-sm text-slate-400 leading-relaxed max-w-sm">
+            ShiftPro is a premier household relocation and commercial packing service platform providing damage-free
+            moving, live GPS tracking, and guaranteed on-time delivery across 140+ cities.
+          </p>
+          <div class="flex items-center gap-3 pt-2">
+            <a href="https://www.facebook.com/login/" target="_blank" rel="noopener noreferrer" title="Facebook Login" class="w-9 h-9 rounded-lg bg-slate-900 hover:bg-blue-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-facebook-f text-sm"></i></a>
+            <a href="https://x.com/i/flow/login" target="_blank" rel="noopener noreferrer" title="X (Twitter) Login" class="w-9 h-9 rounded-lg bg-slate-900 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-x-twitter text-sm"></i></a>
+            <a href="https://www.instagram.com/accounts/login/" target="_blank" rel="noopener noreferrer" title="Instagram Login" class="w-9 h-9 rounded-lg bg-slate-900 hover:bg-pink-600 text-slate-300 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-instagram text-sm"></i></a>
+            <a href="https://www.linkedin.com/login" target="_blank" rel="noopener noreferrer" title="LinkedIn Login" class="w-9 h-9 rounded-lg bg-slate-900 hover:bg-blue-700 text-slate-300 hover:text-white flex items-center justify-center transition-colors"><i class="fa-brands fa-linkedin-in text-sm"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2: Services -->
+        <div class="space-y-3">
+          <h4 class="text-white font-bold text-sm tracking-wider uppercase">Relocation Services</h4>
+          <ul class="text-sm text-slate-400 space-y-2.5">
+            <li><a href="service-local-shifting.html" class="hover:text-amber-400 transition-colors">Local Home
+                Shifting</a></li>
+            <li><a href="service-intercity.html" class="hover:text-amber-400 transition-colors">Inter-City
+                Relocation</a></li>
+            <li><a href="service-packing.html" class="hover:text-amber-400 transition-colors">Packing &amp; Crating
+                Only</a></li>
+            <li><a href="service-office.html" class="hover:text-amber-400 transition-colors">Office &amp; Commercial
+                Moves</a></li>
+            <li><a href="service-vehicle.html" class="hover:text-amber-400 transition-colors">Vehicle &amp; Auto
+                Transport</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Quick Links -->
+        <div class="space-y-3">
+          <h4 class="text-white font-bold text-sm tracking-wider uppercase">Quick Links</h4>
+          <ul class="text-sm text-slate-400 space-y-2.5">
+            <li><a href="how-it-works.html" class="hover:text-amber-400 transition-colors">How It Works</a></li>
+            <li><a href="pricing.html" class="hover:text-amber-400 transition-colors">Cost Calculator</a></li>
+            <li><a href="track-move.html" class="hover:text-amber-400 transition-colors">Track Your Move</a></li>
+            <li><a href="service-areas.html" class="hover:text-amber-400 transition-colors">Service Areas</a></li>
+            <li><a href="blog.html" class="hover:text-amber-400 transition-colors">Moving Guides &amp; Blog</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Newsletter -->
+        <div class="space-y-3">
+          <h4 class="text-white font-bold text-sm tracking-wider uppercase">Moving Tips &amp; Offers</h4>
+          <p class="text-xs text-slate-400">Subscribe for packing checklists, seasonal relocation discounts, and mover
+            tips.</p>
+          <form data-ajax-form data-success-msg="Subscribed to Moving Guide updates!" class="space-y-2">
+            <input type="email" required placeholder="Your email address"
+              class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-white text-xs placeholder-slate-500 focus:outline-none focus:border-brand-500">
+            <button type="submit"
+              class="w-full py-2.5 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded-xl text-xs transition-colors">
+              Subscribe Now
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+      <div class="pt-8 border-t border-slate-900 text-center text-xs text-slate-500">
+        <p>© 2026 ShiftPro Relocation Services Inc. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Back to Top Button -->
+  <button id="back-to-top"
+    class="fixed bottom-6 left-6 z-40 p-3 rounded-full bg-brand-600 hover:bg-brand-700 text-white shadow-xl opacity-0 invisible transition-all duration-200">
+    <i class="fa-solid fa-arrow-up"></i>
+  </button>
+
+  <!-- Core Scripts -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/calculator.js"></script>
+</body>
+
+</html>

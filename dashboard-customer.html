@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Relocation Portal - ShiftPro</title>
+  <meta name="description" content="Manage your household move bookings, track live truck GPS, specify room inventories, and download official invoices.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+        tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              300: '#a5b4fc',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+              950: '#1e1b4b'
+            },
+            accent: {
+              400: '#fb923c',
+              500: '#f97316',
+              600: '#ea580c',
+              700: '#c2410c'
+            }
+          }
+        }
+      }
+    }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/rtl.css">
+</head>
+<body id="customer-dashboard-root" class="bg-body text-main min-h-screen flex flex-col transition-colors duration-200">
+
+  <!-- Dashboard Top Navbar -->
+  <header class="sticky top-0 z-40 bg-surface border-b border-custom">
+    <div class="px-4 sm:px-8 flex items-center justify-between h-16">
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="flex items-center gap-2">
+          <img src="assets/images/logo.svg" alt="ShiftPro Logo" class="h-8 dark:hidden">
+          <img src="assets/images/logo-light.svg" alt="ShiftPro Logo" class="h-8 hidden dark:block">
+        </a>
+        <span class="hidden md:inline text-xs font-bold px-2.5 py-1 rounded-lg bg-blue-100 dark:bg-blue-900/40 text-brand-600 dark:text-blue-300">
+          <i class="fa-solid fa-user-check mr-1"></i> Customer Relocation Portal
+        </span>
+      </div>
+
+      <!-- Navigation & User Info -->
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="text-xs font-semibold text-muted-custom hover:text-main hidden sm:inline">
+          <i class="fa-solid fa-globe mr-1"></i> Public Website
+        </a>
+        <button class="rtl-toggle-btn px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-xs font-bold" title="Toggle RTL">RTL</button>
+        <button class="theme-toggle-btn p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300">
+          <i class="fa-solid fa-moon"></i>
+          <i class="fa-solid fa-sun hidden text-amber-400"></i>
+        </button>
+
+        <div class="flex items-center gap-3 pl-3 border-l border-custom">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Sarah J." class="w-8 h-8 rounded-full object-cover ring-2 ring-brand-600">
+          <div class="hidden sm:block text-left">
+            <h4 class="text-xs font-bold text-main leading-tight">Sarah Jenkins</h4>
+            <p class="text-[10px] text-muted-custom">Verified Customer</p>
+          </div>
+          <a href="#" onclick="logoutUser(); return false;" title="Sign out" class="text-slate-400 hover:text-rose-500 text-sm ml-1"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Layout -->
+  <main class="custom-container py-8 flex-grow space-y-8">
+    
+    <!-- Welcome Greeting & Quick Actions -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-main">Hello, Sarah! 👋</h1>
+        <p class="text-xs sm:text-sm text-muted-custom mt-0.5">Welcome to your moving dashboard. Track your active shipment, book a new date, or download invoices.</p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3">
+        <button type="button" onclick="openModal('coord-chat-modal')" class="px-4 py-2.5 bg-surface-secondary hover:bg-slate-200 dark:hover:bg-slate-700 text-main font-bold rounded-xl text-xs transition-colors border border-custom flex items-center gap-1.5">
+          <i class="fa-solid fa-headset text-brand-600"></i> Move Coordinator
+        </button>
+        <a href="#booking-wizard-section" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-xs flex items-center gap-2 shadow-lg shadow-blue-500/25 transition-all">
+          <i class="fa-solid fa-plus"></i> Book a New Move
+        </a>
+      </div>
+    </div>
+
+    <!-- Active Move Live Tracking Card with Stage Switcher -->
+    <div class="bg-surface rounded-3xl border border-custom p-6 sm:p-8 shadow-xl space-y-6">
+      
+      <!-- Top header with Demo Stage Switcher -->
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-custom pb-5">
+        <div class="space-y-1">
+          <div class="flex items-center gap-2">
+            <span class="status-badge status-badge-transit" id="cust-active-status">In Transit on Route</span>
+            <span class="text-xs font-mono font-bold text-muted-custom">ID: <span id="cust-active-id">MOVE-8492</span></span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-main" id="cust-active-route">New York, NY → Boston, MA</h2>
+          <p class="text-xs text-muted-custom" id="cust-active-date">Aug 21, 2026 • Morning Slot (09:00 AM)</p>
+          <p class="text-xs text-brand-600 dark:text-blue-400 font-medium" id="cust-active-subtext">Container truck passed Hartford checkpoint. Live satellite GPS telemetry active.</p>
+        </div>
+
+        <!-- Action CTAs -->
+        <div class="flex flex-wrap items-center gap-3">
+          <button type="button" data-view-invoice="MOVE-8492" class="px-4 py-2.5 bg-surface-secondary hover:bg-slate-200 dark:hover:bg-slate-700 text-main font-bold rounded-xl text-xs border border-custom transition-colors flex items-center gap-2">
+            <i class="fa-solid fa-file-invoice text-brand-600"></i> View Invoice (<span id="cust-active-total">₹28,400</span>)
+          </button>
+          <a href="track-move.html?id=MOVE-8492" class="px-4 py-2.5 bg-accent-500 hover:bg-accent-600 text-white font-bold rounded-xl text-xs transition-colors flex items-center gap-1.5 shadow-md shadow-orange-500/20">
+            <i class="fa-solid fa-map-location-dot"></i> Live Highway GPS
+          </a>
+        </div>
+      </div>
+
+      <!-- Demo State Switcher Tabs -->
+      <div class="p-3 bg-surface-secondary/50 rounded-2xl border border-custom flex flex-wrap items-center justify-between gap-2 text-xs">
+        <span class="font-bold text-muted-custom uppercase text-[11px]"><i class="fa-solid fa-sliders mr-1"></i> Interactive Stage Preview:</span>
+        <div class="flex flex-wrap gap-1.5">
+          <button type="button" data-set-status="confirmed" class="px-3 py-1.5 rounded-lg bg-surface hover:bg-slate-200 dark:hover:bg-slate-700 border border-custom font-bold text-brand-600 transition-colors">1. Booking Confirmed</button>
+          <button type="button" data-set-status="packing" class="px-3 py-1.5 rounded-lg bg-surface hover:bg-slate-200 dark:hover:bg-slate-700 border border-custom font-bold text-accent-600 transition-colors">2. Packing Assigned</button>
+          <button type="button" data-set-status="transit" class="px-3 py-1.5 rounded-lg bg-surface hover:bg-slate-200 dark:hover:bg-slate-700 border border-custom font-bold text-indigo-600 transition-colors">3. In Transit</button>
+          <button type="button" data-set-status="delivered" class="px-3 py-1.5 rounded-lg bg-surface hover:bg-slate-200 dark:hover:bg-slate-700 border border-custom font-bold text-emerald-600 transition-colors">4. Delivered</button>
+        </div>
+      </div>
+
+      <!-- 4-Stage Horizontal Progress Tracker -->
+      <div class="pt-2">
+        <h4 class="text-xs font-bold text-muted-custom uppercase tracking-wider mb-6">Relocation Status Progression</h4>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-xs">
+          
+          <div class="cust-step-node completed space-y-2 p-3 rounded-xl border border-custom bg-surface-secondary/20">
+            <div class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold mx-auto shadow-md">
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <p class="font-bold text-main">1. Booking Confirmed</p>
+            <span class="text-[10px] text-muted-custom block">Survey &amp; Date Locked</span>
+          </div>
+
+          <div class="cust-step-node completed space-y-2 p-3 rounded-xl border border-custom bg-surface-secondary/20">
+            <div class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold mx-auto shadow-md">
+              <i class="fa-solid fa-check"></i>
+            </div>
+            <p class="font-bold text-main">2. Packing Assigned</p>
+            <span class="text-[10px] text-muted-custom block">Crew Dispatched</span>
+          </div>
+
+          <div class="cust-step-node active space-y-2 p-3 rounded-xl border border-custom bg-surface-secondary/20">
+            <div class="w-10 h-10 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold mx-auto shadow-lg shadow-blue-500/40 animate-pulse">
+              <i class="fa-solid fa-truck-fast"></i>
+            </div>
+            <p class="font-bold text-brand-600 dark:text-blue-400">3. In Transit</p>
+            <span class="text-[10px] text-brand-600 dark:text-blue-400 font-semibold block">Live Highway Telematics</span>
+          </div>
+
+          <div class="cust-step-node opacity-40 space-y-2 p-3 rounded-xl border border-custom bg-surface-secondary/20">
+            <div class="w-10 h-10 rounded-full bg-surface-secondary text-muted-custom border border-custom flex items-center justify-center font-bold mx-auto">
+              <i class="fa-solid fa-house-circle-check"></i>
+            </div>
+            <p class="font-bold text-muted-custom">4. Delivered &amp; Done</p>
+            <span class="text-[10px] text-muted-custom block">Unpack &amp; Final Audit</span>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Multi-Step Move Booking Wizard -->
+    <div id="booking-wizard-section" class="bg-surface rounded-3xl border border-custom p-6 sm:p-8 shadow-xl space-y-8">
+      <div>
+        <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/40 text-brand-600 dark:text-blue-300 rounded-full text-xs font-bold uppercase tracking-wider">Book a Move</span>
+        <h2 class="text-2xl font-extrabold text-main mt-2">Interactive Household Relocation Wizard</h2>
+        <p class="text-xs text-muted-custom mt-1">Specify your pickup &amp; delivery addresses, select home size, customize appliances &amp; fragile items, and confirm your moving date.</p>
+      </div>
+
+      <!-- Stepper Nodes Header -->
+      <div class="stepper-progress-bar max-w-xl mx-auto">
+        <div id="wizard-progress-fill" class="stepper-progress-fill" style="width: 0%;"></div>
+        <div id="wizard-node-1" class="step-node active">1</div>
+        <div id="wizard-node-2" class="step-node">2</div>
+        <div id="wizard-node-3" class="step-node">3</div>
+        <div id="wizard-node-4" class="step-node">4</div>
+      </div>
+
+      <!-- Wizard Step 1: Locations & Date -->
+      <div id="wizard-step-content-1" class="space-y-6 max-w-2xl mx-auto">
+        <h3 class="text-base font-bold text-main border-b border-custom pb-2">Step 1: Addresses &amp; Moving Date</h3>
+        
+        <div class="space-y-4 text-xs">
+          
+          <!-- Move Type -->
+          <div class="flex gap-3">
+            <label class="flex-1 cursor-pointer">
+              <input type="radio" name="wiz_movetype" value="local" checked class="peer hidden">
+              <div class="p-3 text-center rounded-xl border border-custom peer-checked:border-brand-600 peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900/30 peer-checked:text-brand-600 font-bold">
+                <i class="fa-solid fa-city mr-1"></i> Local City Shifting
+              </div>
+            </label>
+            <label class="flex-1 cursor-pointer">
+              <input type="radio" name="wiz_movetype" value="intercity" class="peer hidden">
+              <div class="p-3 text-center rounded-xl border border-custom peer-checked:border-brand-600 peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900/30 peer-checked:text-brand-600 font-bold">
+                <i class="fa-solid fa-route mr-1"></i> Inter-City / Interstate
+              </div>
+            </label>
+          </div>
+
+          <!-- Pickup Address -->
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="font-bold text-muted-custom uppercase">Pickup Full Address</label>
+              <button type="button" onclick="document.getElementById('wiz-pickup-addr').value='742 Evergreen Terrace, Brooklyn, NY'" class="text-brand-600 hover:underline text-[11px] font-semibold">Use Saved Home</button>
+            </div>
+            <div class="relative">
+              <i class="fa-solid fa-location-dot absolute left-3.5 top-3.5 text-slate-400"></i>
+              <input type="text" id="wiz-pickup-addr" required value="452 Maple Ave, Brooklyn, NY" class="custom-input pl-10">
+            </div>
+          </div>
+
+          <!-- Delivery Address -->
+          <div>
+            <div class="flex justify-between items-center mb-1">
+              <label class="font-bold text-muted-custom uppercase">Delivery Destination Address</label>
+              <button type="button" onclick="document.getElementById('wiz-delivery-addr').value='128 Beacon St, Boston, MA'" class="text-brand-600 hover:underline text-[11px] font-semibold">Use Boston Condo</button>
+            </div>
+            <div class="relative">
+              <i class="fa-solid fa-flag-checkered absolute left-3.5 top-3.5 text-slate-400"></i>
+              <input type="text" id="wiz-delivery-addr" required value="710 Commonwealth Ave, Boston, MA" class="custom-input pl-10">
+            </div>
+          </div>
+
+          <!-- Date & Slot -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block font-bold text-muted-custom mb-1 uppercase">Preferred Move Date</label>
+              <input type="date" id="wiz-move-date" required class="custom-input">
+            </div>
+            <div>
+              <label class="block font-bold text-muted-custom mb-1 uppercase">Time Slot</label>
+              <div class="grid grid-cols-2 gap-2">
+                <label class="cursor-pointer">
+                  <input type="radio" name="wiz_slot" value="morning" checked class="peer hidden">
+                  <div class="p-2.5 text-center rounded-xl border border-custom peer-checked:border-brand-600 peer-checked:bg-brand-600 peer-checked:text-white font-bold">
+                    Morning (09:00 AM)
+                  </div>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="wiz_slot" value="afternoon" class="peer hidden">
+                  <div class="p-2.5 text-center rounded-xl border border-custom peer-checked:border-brand-600 peer-checked:bg-brand-600 peer-checked:text-white font-bold">
+                    Afternoon (02:00 PM)
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wizard Step 2: Home Size & Interactive Inventory + Fragile Goods -->
+      <div id="wizard-step-content-2" class="space-y-6 max-w-3xl mx-auto hidden">
+        <h3 class="text-base font-bold text-main border-b border-custom pb-2">Step 2: Home Size, Appliances &amp; Fragile Items</h3>
+
+        <!-- Home Size Selector -->
+        <div>
+          <label class="block text-xs font-bold text-muted-custom mb-2 uppercase">1. Select Home Size</label>
+          <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-center text-xs">
+            <label class="cursor-pointer">
+              <input type="radio" name="wiz_homesize" value="1rk" class="peer hidden">
+              <div class="p-3 rounded-xl border border-custom peer-checked:border-brand-600 peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900/30 peer-checked:text-brand-600 font-bold">
+                1 RK / Studio
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="wiz_homesize" value="1bhk" class="peer hidden">
+              <div class="p-3 rounded-xl border border-custom peer-checked:border-brand-600 peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900/30 peer-checked:text-brand-600 font-bold">
+                1 BHK
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="wiz_homesize" value="2bhk" checked class="peer hidden">
+              <div class="p-3 rounded-xl border border-custom peer-checked:border-brand-600 peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900/30 peer-checked:text-brand-600 font-bold">
+                2 BHK
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="wiz_homesize" value="3bhk" class="peer hidden">
+              <div class="p-3 rounded-xl border border-custom peer-checked:border-brand-600 peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900/30 peer-checked:text-brand-600 font-bold">
+                3 BHK
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input type="radio" name="wiz_homesize" value="4bhk" class="peer hidden">
+              <div class="p-3 rounded-xl border border-custom peer-checked:border-brand-600 peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900/30 peer-checked:text-brand-600 font-bold">
+                4+ BHK / Villa
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Inventory Item Counter Controls -->
+        <div class="space-y-3 pt-2">
+          <p class="text-xs font-bold text-muted-custom uppercase">2. Room Furniture &amp; Heavy Appliances Count</p>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+            
+            <div class="p-3.5 rounded-xl border border-custom bg-surface-secondary/40 flex items-center justify-between" data-inventory-item="beds">
+              <div>
+                <span class="font-bold text-main">Beds &amp; Mattresses</span>
+                <p class="text-[10px] text-muted-custom">King / Queen</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" class="inventory-counter-btn inv-minus">-</button>
+                <span class="font-bold inv-val">2</span>
+                <button type="button" class="inventory-counter-btn inv-plus">+</button>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl border border-custom bg-surface-secondary/40 flex items-center justify-between" data-inventory-item="sofas">
+              <div>
+                <span class="font-bold text-main">Sofa Sets</span>
+                <p class="text-[10px] text-muted-custom">3+2 / Sectionals</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" class="inventory-counter-btn inv-minus">-</button>
+                <span class="font-bold inv-val">1</span>
+                <button type="button" class="inventory-counter-btn inv-plus">+</button>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl border border-custom bg-surface-secondary/40 flex items-center justify-between" data-inventory-item="dining">
+              <div>
+                <span class="font-bold text-main">Dining Tables</span>
+                <p class="text-[10px] text-muted-custom">With chairs</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" class="inventory-counter-btn inv-minus">-</button>
+                <span class="font-bold inv-val">1</span>
+                <button type="button" class="inventory-counter-btn inv-plus">+</button>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl border border-custom bg-surface-secondary/40 flex items-center justify-between" data-inventory-item="wardrobes">
+              <div>
+                <span class="font-bold text-main">Wardrobes</span>
+                <p class="text-[10px] text-muted-custom">2-4 Door units</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" class="inventory-counter-btn inv-minus">-</button>
+                <span class="font-bold inv-val">2</span>
+                <button type="button" class="inventory-counter-btn inv-plus">+</button>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl border border-custom bg-surface-secondary/40 flex items-center justify-between" data-inventory-item="appliances">
+              <div>
+                <span class="font-bold text-main">Refrigerators &amp; Washers</span>
+                <p class="text-[10px] text-muted-custom">Heavy appliances</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" class="inventory-counter-btn inv-minus">-</button>
+                <span class="font-bold inv-val">3</span>
+                <button type="button" class="inventory-counter-btn inv-plus">+</button>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl border border-custom bg-surface-secondary/40 flex items-center justify-between" data-inventory-item="tv">
+              <div>
+                <span class="font-bold text-main">Smart OLED/LCD TVs</span>
+                <p class="text-[10px] text-muted-custom">Custom foam cased</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" class="inventory-counter-btn inv-minus">-</button>
+                <span class="font-bold inv-val">1</span>
+                <button type="button" class="inventory-counter-btn inv-plus">+</button>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl border border-custom bg-surface-secondary/40 flex items-center justify-between" data-inventory-item="fragileBoxes">
+              <div>
+                <span class="font-bold text-main">Fragile Crockery Boxes</span>
+                <p class="text-[10px] text-muted-custom">China &amp; Crystal</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" class="inventory-counter-btn inv-minus">-</button>
+                <span class="font-bold inv-val">4</span>
+                <button type="button" class="inventory-counter-btn inv-plus">+</button>
+              </div>
+            </div>
+
+            <div class="p-3.5 rounded-xl border border-custom bg-surface-secondary/40 flex items-center justify-between" data-inventory-item="standardBoxes">
+              <div>
+                <span class="font-bold text-main">Standard Cartons</span>
+                <p class="text-[10px] text-muted-custom">Clothes &amp; Books</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <button type="button" class="inventory-counter-btn inv-minus">-</button>
+                <span class="font-bold inv-val">12</span>
+                <button type="button" class="inventory-counter-btn inv-plus">+</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Special Fragile & High-Value Items Checklist -->
+        <div class="p-4 rounded-2xl bg-amber-50/50 dark:bg-slate-800/60 border border-amber-200 dark:border-slate-700 space-y-2 text-xs">
+          <span class="font-bold text-accent-600 dark:text-accent-400 uppercase tracking-wider block">
+            <i class="fa-solid fa-gem mr-1"></i> Special &amp; High-Value Items (Custom Wooden Crating Included):
+          </span>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-[11px] font-semibold text-main">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" checked class="rounded text-brand-600"> Upright / Grand Piano
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" checked class="rounded text-brand-600"> Glass Dining Table Top
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" checked class="rounded text-brand-600"> 65"+ OLED Flat TV
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" class="rounded text-brand-600"> Crystal Chandelier
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" class="rounded text-brand-600"> Fireproof Heavy Safe
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" class="rounded text-brand-600"> Antique Paintings / Art
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Wizard Step 3: Packing & Extra Services -->
+      <div id="wizard-step-content-3" class="space-y-6 max-w-2xl mx-auto hidden">
+        <h3 class="text-base font-bold text-main border-b border-custom pb-2">Step 3: Packing Quality, Elevators &amp; Addons</h3>
+
+        <div class="space-y-4 text-xs">
+          <div>
+            <label class="block font-bold text-muted-custom mb-2 uppercase">Select Packing Tier</label>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <label class="cursor-pointer">
+                <input type="radio" name="wiz_packing" value="standard" class="peer hidden">
+                <div class="p-4 rounded-xl border border-custom peer-checked:border-brand-600 peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900/30 peer-checked:text-brand-600 font-bold text-center">
+                  Standard Boxes
+                </div>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="wiz_packing" value="premium" checked class="peer hidden">
+                <div class="p-4 rounded-xl border border-custom peer-checked:border-brand-600 peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900/30 peer-checked:text-brand-600 font-bold text-center">
+                  Premium 3-Layer (+₹2,800)
+                </div>
+              </label>
+              <label class="cursor-pointer">
+                <input type="radio" name="wiz_packing" value="whiteglove" class="peer hidden">
+                <div class="p-4 rounded-xl border border-custom peer-checked:border-brand-600 peer-checked:bg-blue-50 dark:peer-checked:bg-blue-900/30 peer-checked:text-brand-600 font-bold text-center">
+                  VIP White Glove (+₹6,500)
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            <label class="flex items-center gap-2 p-3 rounded-xl border border-custom cursor-pointer">
+              <input type="checkbox" id="wiz-pickup-lift" checked class="w-4 h-4 rounded text-brand-600">
+              <span class="font-semibold text-main">Service Elevator at Pickup</span>
+            </label>
+            <label class="flex items-center gap-2 p-3 rounded-xl border border-custom cursor-pointer">
+              <input type="checkbox" id="wiz-delivery-lift" checked class="w-4 h-4 rounded text-brand-600">
+              <span class="font-semibold text-main">Service Elevator at Delivery</span>
+            </label>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div>
+              <label class="block font-bold text-muted-custom mb-1 uppercase">Vehicle Shifting Addon</label>
+              <select id="wiz-vehicle-shift" class="custom-input">
+                <option value="none" selected>No Vehicle</option>
+                <option value="bike">Motorbike / Scooter (+₹3,500)</option>
+                <option value="car">Sedan / SUV Car (+₹8,500)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-bold text-muted-custom mb-1 uppercase">Transit Insurance Protection</label>
+              <div class="p-2.5 rounded-xl border border-custom flex items-center gap-2">
+                <input type="checkbox" id="wiz-transit-ins" checked class="w-4 h-4 rounded text-brand-600">
+                <span class="font-bold text-emerald-600">100% Comprehensive Coverage (+₹1,200)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Wizard Step 4: Summary & Confirm Booking -->
+      <div id="wizard-step-content-4" class="space-y-6 max-w-2xl mx-auto hidden">
+        <h3 class="text-base font-bold text-main border-b border-custom pb-2">Step 4: Review &amp; Confirm Booking</h3>
+
+        <div class="p-6 rounded-2xl bg-surface-secondary/60 border border-custom space-y-4 text-xs">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <span class="text-muted-custom uppercase font-semibold">From (Pickup):</span>
+              <p id="wiz-sum-from" class="font-bold text-main mt-0.5">-</p>
+            </div>
+            <div>
+              <span class="text-muted-custom uppercase font-semibold">To (Delivery):</span>
+              <p id="wiz-sum-to" class="font-bold text-main mt-0.5">-</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-3 gap-4 border-t border-custom pt-3">
+            <div>
+              <span class="text-muted-custom uppercase font-semibold">Move Date:</span>
+              <p id="wiz-sum-date" class="font-bold text-main mt-0.5">-</p>
+            </div>
+            <div>
+              <span class="text-muted-custom uppercase font-semibold">Home Size:</span>
+              <p id="wiz-sum-size" class="font-bold text-main mt-0.5">-</p>
+            </div>
+            <div>
+              <span class="text-muted-custom uppercase font-semibold">Packing Tier:</span>
+              <p id="wiz-sum-tier" class="font-bold text-main mt-0.5">-</p>
+            </div>
+          </div>
+
+          <div class="border-t border-custom pt-3">
+            <span class="text-muted-custom uppercase font-semibold block mb-1">Declared Inventory Items:</span>
+            <div id="wiz-sum-inventory-pills" class="flex flex-wrap gap-1.5"></div>
+          </div>
+
+          <div class="border-t border-custom pt-4 flex items-center justify-between">
+            <span class="text-sm font-bold text-main">Guaranteed Fixed Total:</span>
+            <span id="wiz-sum-price" class="text-2xl font-extrabold text-brand-600 dark:text-brand-400">₹18,500</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Buttons -->
+      <div class="flex justify-between items-center max-w-2xl mx-auto pt-4 border-t border-custom">
+        <button type="button" id="wizard-prev-btn" class="px-5 py-2.5 rounded-xl border border-custom text-xs font-bold text-main hover:bg-surface-secondary invisible">
+          <i class="fa-solid fa-arrow-left mr-1.5"></i> Back
+        </button>
+        
+        <button type="button" id="wizard-next-btn" class="px-7 py-3 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold rounded-xl shadow-lg shadow-blue-500/25 transition-all">
+          Continue <i class="fa-solid fa-arrow-right ml-1.5"></i>
+        </button>
+
+        <button type="button" id="wizard-submit-btn" class="px-8 py-3 bg-accent-500 hover:bg-accent-600 text-white text-xs font-bold rounded-xl shadow-lg shadow-orange-500/25 transition-all hidden">
+          <i class="fa-solid fa-check mr-1.5"></i> Confirm &amp; Lock Moving Date
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Move History Table & Support Row -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Left 8 Cols: Move History -->
+      <div class="lg:col-span-8 bg-surface rounded-3xl border border-custom p-6 sm:p-8 shadow-xl space-y-5">
+        <div class="flex items-center justify-between">
+          <h3 class="text-xl font-bold text-main">Your Relocation Bookings</h3>
+          <span class="text-xs text-muted-custom">All past and current shipments</span>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-surface-secondary text-muted-custom uppercase font-semibold">
+              <tr>
+                <th class="p-3.5 rounded-l-xl">Move ID</th>
+                <th class="p-3.5">Route</th>
+                <th class="p-3.5">Date</th>
+                <th class="p-3.5">Status</th>
+                <th class="p-3.5">Total</th>
+                <th class="p-3.5 rounded-r-xl text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-custom">
+              
+              <tr>
+                <td class="p-3.5 font-bold font-mono text-brand-600">MOVE-8492</td>
+                <td class="p-3.5 font-semibold text-main">South Extension, New Delhi → Noida, UP</td>
+                <td class="p-3.5 text-muted-custom">Aug 21, 2026</td>
+                <td class="p-3.5"><span class="status-badge status-badge-transit">In Transit</span></td>
+                <td class="p-3.5 font-bold text-main">₹28,400</td>
+                <td class="p-3.5 text-right space-x-2">
+                  <a href="track-move.html?id=MOVE-8492" class="px-2.5 py-1.5 bg-blue-50 dark:bg-slate-800 text-brand-600 rounded-lg font-bold hover:underline">Track</a>
+                  <button type="button" data-view-invoice="MOVE-8492" class="px-2.5 py-1.5 bg-surface-secondary text-main rounded-lg font-bold border border-custom">Invoice</button>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="p-3.5 font-bold font-mono text-accent-500">MOVE-1024</td>
+                <td class="p-3.5 font-semibold text-main">Indiranagar, Bengaluru → Hitec City, Hyderabad</td>
+                <td class="p-3.5 text-muted-custom">Aug 22, 2026</td>
+                <td class="p-3.5"><span class="status-badge status-badge-packing">Packing</span></td>
+                <td class="p-3.5 font-bold text-main">₹22,800</td>
+                <td class="p-3.5 text-right space-x-2">
+                  <a href="track-move.html?id=MOVE-1024" class="px-2.5 py-1.5 bg-blue-50 dark:bg-slate-800 text-brand-600 rounded-lg font-bold hover:underline">Track</a>
+                  <button type="button" data-view-invoice="MOVE-1024" class="px-2.5 py-1.5 bg-surface-secondary text-main rounded-lg font-bold border border-custom">Invoice</button>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="p-3.5 font-bold font-mono text-muted-custom">MOVE-3350</td>
+                <td class="p-3.5 font-semibold text-main">Anna Nagar, Chennai → Whitefield, Bengaluru</td>
+                <td class="p-3.5 text-muted-custom">May 14, 2025</td>
+                <td class="p-3.5"><span class="status-badge status-badge-delivered">Delivered</span></td>
+                <td class="p-3.5 font-bold text-main">₹42,000</td>
+                <td class="p-3.5 text-right space-x-2">
+                  <button type="button" data-view-invoice="MOVE-3350" class="px-2.5 py-1.5 bg-surface-secondary text-main rounded-lg font-bold border border-custom">Invoice</button>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Right 4 Cols: Dedicated Move Coordinator Card -->
+      <div class="lg:col-span-4 bg-surface rounded-3xl border border-custom p-6 sm:p-7 shadow-xl space-y-5">
+        <span class="text-[11px] font-bold text-brand-600 dark:text-blue-400 uppercase tracking-wider block">Assigned Support Lead</span>
+        
+        <div class="flex items-center gap-4">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&auto=format&fit=crop&q=80" alt="Coordinator" class="w-14 h-14 rounded-2xl object-cover ring-2 ring-brand-600">
+          <div class="space-y-0.5">
+            <h4 class="font-extrabold text-sm text-main" id="cust-coord-name">Elena Rostova</h4>
+            <p class="text-xs text-muted-custom">Senior Move Coordinator</p>
+            <span class="text-[10px] text-emerald-600 font-bold"><i class="fa-solid fa-circle text-[7px] mr-1"></i> Available Online</span>
+          </div>
+        </div>
+
+        <p class="text-xs text-muted-custom leading-relaxed">
+          Elena coordinates your packing team, container dispatch, and delivery keys handover.
+        </p>
+
+        <div class="space-y-2 pt-1">
+          <button type="button" onclick="openModal('coord-chat-modal')" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 transition-all shadow-md shadow-blue-500/25">
+            <i class="fa-regular fa-comment-dots"></i> Message Coordinator
+          </button>
+          <a href="tel:+18005556683" class="w-full py-2.5 bg-surface-secondary hover:bg-slate-200 dark:hover:bg-slate-700 text-main font-bold rounded-xl text-xs flex items-center justify-center gap-2 transition-colors border border-custom">
+            <i class="fa-solid fa-phone text-accent-500"></i> Direct Phone Call
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Printable Invoice Modal with Promo Code Engine -->
+  <div id="invoice-modal" class="modal-backdrop">
+    <div class="modal-dialog p-6 sm:p-8 space-y-6 printable-invoice">
+      
+      <div class="flex justify-between items-start border-b border-custom pb-5">
+        <div>
+          <img src="assets/images/logo.svg" alt="ShiftPro Logo" class="h-8 mb-2">
+          <p class="text-[11px] text-muted-custom">ShiftPro Relocation Services Inc. (ISO 9001:2026)</p>
+          <p class="text-[11px] text-muted-custom">500 Logistics Blvd, New York, NY 10001</p>
+          <p class="text-[11px] text-muted-custom">GST / Tax ID: US-9948201-REL</p>
+        </div>
+        <div class="text-right">
+          <h2 class="text-xl font-extrabold text-main uppercase tracking-wider">OFFICIAL INVOICE</h2>
+          <p class="text-xs font-mono font-bold text-brand-600" id="inv-number">INV-8492-2026</p>
+          <p class="text-[11px] text-muted-custom" id="inv-date">Aug 21, 2026</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 text-xs">
+        <div>
+          <span class="text-muted-custom font-semibold uppercase text-[10px]">Billed To:</span>
+          <p class="font-bold text-main">Sarah Jenkins</p>
+          <p class="text-muted-custom">Pickup: <span id="inv-pickup">742 Evergreen Terrace, New York, NY</span></p>
+          <p class="text-muted-custom">Drop: <span id="inv-delivery">128 Beacon St, Boston, MA</span></p>
+        </div>
+        <div class="text-right">
+          <span class="text-muted-custom font-semibold uppercase text-[10px]">Move Reference:</span>
+          <p class="font-bold text-brand-600" id="inv-move-id">MOVE-8492</p>
+          <p class="text-muted-custom">Payment Mode: <span class="font-bold text-emerald-600">Credit Card (Paid)</span></p>
+        </div>
+      </div>
+
+      <!-- Itemized Table -->
+      <table class="w-full text-left text-xs border border-custom rounded-xl overflow-hidden">
+        <thead class="bg-surface-secondary text-muted-custom uppercase font-semibold">
+          <tr>
+            <th class="p-2.5">Item Description</th>
+            <th class="p-2.5 text-right">Amount</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-custom">
+          <tr>
+            <td class="p-2.5">Base Freight &amp; Vehicle Transport Fare</td>
+            <td class="p-2.5 text-right font-bold" id="inv-base-fare">₹15,620.00</td>
+          </tr>
+          <tr>
+            <td class="p-2.5">Premium 3-Layer Packing &amp; Materials</td>
+            <td class="p-2.5 text-right font-bold" id="inv-packing-fare">₹7,100.00</td>
+          </tr>
+          <tr>
+            <td class="p-2.5">Crew Handling, Loading &amp; Elevator Service</td>
+            <td class="p-2.5 text-right font-bold" id="inv-handling-fare">₹4,260.00</td>
+          </tr>
+          <tr>
+            <td class="p-2.5">State Transit Tax &amp; Regulatory Tolls (5%)</td>
+            <td class="p-2.5 text-right font-bold" id="inv-tax-fare">₹1,420.00</td>
+          </tr>
+          <tr>
+            <td class="p-2.5 text-emerald-600 font-semibold">Promo Discount / Credit Applied</td>
+            <td class="p-2.5 text-right font-bold text-emerald-600" id="inv-discount-fare">₹0.00</td>
+          </tr>
+          <tr class="bg-surface-secondary/60">
+            <td class="p-3 font-extrabold text-sm text-main">Final Payable Total:</td>
+            <td class="p-3 text-right font-extrabold text-sm text-brand-600" id="inv-grand-total">₹28,400.00</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Coupon Form in Modal -->
+      <div class="p-3.5 rounded-2xl bg-surface-secondary/50 border border-custom no-print">
+        <form id="inv-coupon-form" class="flex gap-2 text-xs">
+          <input type="text" id="inv-coupon-input" placeholder="Enter coupon (e.g. MOVE500 or SHIFT10)" class="custom-input uppercase font-mono text-xs">
+          <button type="submit" class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl whitespace-nowrap">
+            Apply Code
+          </button>
+        </form>
+      </div>
+
+      <div class="flex justify-between items-center pt-2 no-print">
+        <button type="button" onclick="closeModal('invoice-modal')" class="px-5 py-2.5 rounded-xl border border-custom text-xs font-bold text-main hover:bg-surface-secondary">
+          Close
+        </button>
+        <button type="button" onclick="window.print()" class="px-6 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-xs flex items-center gap-2">
+          <i class="fa-solid fa-print"></i> Print Official Invoice
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Live Coordinator Chat Modal -->
+  <div id="coord-chat-modal" class="modal-backdrop">
+    <div class="modal-dialog p-6 space-y-4 max-w-md">
+      
+      <div class="flex items-center justify-between border-b border-custom pb-3">
+        <div class="flex items-center gap-3">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop&q=80" alt="Coordinator" class="w-10 h-10 rounded-full object-cover ring-2 ring-brand-600">
+          <div>
+            <h4 class="font-bold text-sm text-main">Elena Rostova</h4>
+            <p class="text-[10px] text-emerald-600 font-semibold"><i class="fa-solid fa-circle text-[6px] mr-1"></i> Online Coordinator</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeModal('coord-chat-modal')" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-sm"></i></button>
+      </div>
+
+      <!-- Messages Stream -->
+      <div id="coord-chat-messages" class="h-64 overflow-y-auto space-y-3 p-2 text-xs">
+        <div class="flex justify-start">
+          <div class="bg-surface-secondary p-3 rounded-2xl rounded-tl-none border border-custom text-main max-w-xs">
+            <p class="font-bold text-[10px] text-brand-600 mb-0.5">Elena Rostova</p>
+            <p>Hello Sarah! I am tracking your shipment <span class="font-mono font-bold">MOVE-8492</span>. How can I assist with your relocation today?</p>
+            <span class="text-[9px] text-muted-custom block text-left mt-1">10:00 AM</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Send Input Form -->
+      <form id="coord-chat-form" class="flex gap-2">
+        <input type="text" id="coord-chat-input" placeholder="Type a message..." class="custom-input text-xs">
+        <button type="submit" class="px-4 py-2.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-xs font-bold">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- Booking Success Modal -->
+  <div id="booking-success-modal" class="modal-backdrop">
+    <div class="modal-dialog p-8 text-center space-y-5 max-w-md">
+      <div class="w-16 h-16 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 flex items-center justify-center text-3xl mx-auto">
+        <i class="fa-solid fa-check"></i>
+      </div>
+      <h3 class="text-2xl font-extrabold text-main">Relocation Confirmed!</h3>
+      <p class="text-xs text-muted-custom">Your move booking is locked under Tracking ID <span class="font-bold text-brand-600 font-mono" id="success-modal-move-id">MOVE-9941</span>. Your assigned move coordinator will call you to confirm final parking details.</p>
+      <div class="pt-2">
+        <a href="track-move.html" class="px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-xs inline-block shadow-md shadow-blue-500/25">
+          Go to Live GPS Tracker
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/booking-wizard.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>

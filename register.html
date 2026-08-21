@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account - ShiftPro Moving Portal</title>
+  <meta name="description" content="Register for ShiftPro customer account to book home shifting, track moving crew in real-time, and get exclusive relocation discounts.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+        tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              300: '#a5b4fc',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+              950: '#1e1b4b'
+            },
+            accent: {
+              400: '#fb923c',
+              500: '#f97316',
+              600: '#ea580c',
+              700: '#c2410c'
+            }
+          }
+        }
+      }
+    }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/rtl.css">
+</head>
+<body class="bg-body text-main min-h-screen flex flex-col justify-between transition-colors duration-200">
+
+  <!-- Top bar -->
+  <div class="p-4 flex items-center justify-between custom-container">
+    <a href="index.html" class="flex items-center gap-2">
+      <img src="assets/images/logo.svg" alt="ShiftPro" class="h-8 dark:hidden">
+      <img src="assets/images/logo-light.svg" alt="ShiftPro" class="h-8 hidden dark:block">
+    </a>
+
+    <div class="flex items-center gap-3">
+      <button class="rtl-toggle-btn px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-xs font-bold" title="Toggle RTL">RTL</button>
+      <button class="theme-toggle-btn p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300">
+        <i class="fa-solid fa-moon"></i>
+        <i class="fa-solid fa-sun hidden text-amber-400"></i>
+      </button>
+      <a href="index.html" class="text-xs font-bold text-muted-custom hover:text-brand-600">
+        <i class="fa-solid fa-arrow-left mr-1"></i> Back to Website
+      </a>
+    </div>
+  </div>
+
+  <!-- Register Card Container with Ambient Background Glow -->
+  <div class="relative py-12 px-4 flex items-center justify-center flex-grow overflow-hidden">
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-brand-600/15 via-purple-500/10 to-accent-500/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+    <div class="w-full max-w-lg bg-surface/90 backdrop-blur-xl p-8 sm:p-9 rounded-3xl border border-custom shadow-2xl space-y-6 relative z-10">
+      
+      <div class="text-center space-y-2">
+        <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-brand-500/10 text-brand-600 dark:text-indigo-400 text-xl font-bold mb-1">
+          <i class="fa-solid fa-user-plus"></i>
+        </div>
+        <h1 class="text-2xl sm:text-3xl font-extrabold text-main tracking-tight">Create Your Move Account</h1>
+        <p class="text-xs text-muted-custom">Get instant access to custom move plans, live GPS tracking, and digital invoices</p>
+      </div>
+
+      <form id="register-form" class="space-y-4 text-xs">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-muted-custom mb-1 uppercase tracking-wider text-[11px]">Full Name</label>
+            <input type="text" required placeholder="John Doe" class="custom-input text-xs font-medium">
+          </div>
+          <div>
+            <label class="block font-bold text-muted-custom mb-1 uppercase tracking-wider text-[11px]">Phone Number</label>
+            <input type="tel" required placeholder="+91 98765 43210" class="custom-input text-xs font-medium">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-muted-custom mb-1 uppercase tracking-wider text-[11px]">Email Address</label>
+          <input type="email" required placeholder="john@example.com" class="custom-input text-xs font-medium">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-muted-custom mb-1 uppercase tracking-wider text-[11px]">Password</label>
+            <input type="password" required placeholder="Create strong password" class="custom-input text-xs font-medium">
+          </div>
+          <div>
+            <label class="block font-bold text-muted-custom mb-1 uppercase tracking-wider text-[11px]">Current City</label>
+            <input type="text" placeholder="e.g. Bengaluru, Mumbai" class="custom-input text-xs font-medium">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-muted-custom mb-1 uppercase tracking-wider text-[11px]">Primary Relocation Type</label>
+          <select class="custom-input text-xs font-medium">
+            <option>Household Apartment / Villa Move</option>
+            <option>Inter-City / Long-Distance Relocation</option>
+            <option>Commercial / Office Relocation</option>
+            <option>Vehicle Transport Only</option>
+            <option>Secure Warehouse Storage Only</option>
+          </select>
+        </div>
+
+        <div class="flex items-center gap-2 pt-1">
+          <input type="checkbox" id="terms-agree" required checked class="w-4 h-4 rounded text-brand-600 accent-brand-600">
+          <label for="terms-agree" class="text-xs text-muted-custom font-medium cursor-pointer">I agree to ShiftPro Terms of Service &amp; Zero-Damage Guarantee Policy</label>
+        </div>
+
+        <button type="submit" class="btn-brand-primary w-full py-3.5 text-white font-bold rounded-xl text-sm transition-all shadow-lg hover:scale-[1.01] flex items-center justify-center gap-2">
+          <span>Create Account &amp; Proceed to Dashboard</span>
+          <i class="fa-solid fa-arrow-right text-xs"></i>
+        </button>
+      </form>
+
+      <div class="text-center text-xs text-muted-custom pt-3 border-t border-custom font-medium">
+        Already have an account? <a href="login.html" class="font-bold text-brand-600 dark:text-indigo-400 hover:underline">Sign In</a>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="p-4 text-center text-xs text-slate-500 border-t border-custom font-medium">
+    © 2026 ShiftPro Relocation Services Inc. All rights reserved.
+  </div>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById('register-form')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (window.loginUser) window.loginUser('customer@shiftpro.com');
+      showToast('Account created successfully! Redirecting to home...', 'success');
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 500);
+    });
+  </script>
+</body>
+</html>

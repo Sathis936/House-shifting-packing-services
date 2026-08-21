@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coming Soon - ShiftPro NextGen Relocations</title>
+  <meta name="description" content="We are launching our AI-powered instant moving quotes and automated box inventory management system. Stay tuned!">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+        tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              300: '#a5b4fc',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+              950: '#1e1b4b'
+            },
+            accent: {
+              400: '#fb923c',
+              500: '#f97316',
+              600: '#ea580c',
+              700: '#c2410c'
+            }
+          }
+        }
+      }
+    }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/rtl.css">
+</head>
+<body class="bg-body text-main min-h-screen flex flex-col justify-between transition-colors duration-200">
+
+  <!-- Top bar -->
+  <div class="p-6 flex items-center justify-between custom-container">
+    <a href="index.html" class="flex items-center gap-2">
+      <img src="assets/images/logo.svg" alt="ShiftPro" class="h-8 dark:hidden">
+      <img src="assets/images/logo-light.svg" alt="ShiftPro" class="h-8 hidden dark:block">
+    </a>
+
+    <div class="flex items-center gap-3">
+      <button class="rtl-toggle-btn px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-xs font-bold" title="Toggle RTL">RTL</button>
+      <button class="theme-toggle-btn p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300">
+        <i class="fa-solid fa-moon"></i>
+        <i class="fa-solid fa-sun hidden text-amber-400"></i>
+      </button>
+      <a href="index.html" class="text-xs font-bold text-brand-600">Homepage</a>
+    </div>
+  </div>
+
+  <!-- Countdown Main Content -->
+  <div class="custom-container py-12 flex-grow flex items-center justify-center text-center">
+    <div class="max-w-2xl space-y-8">
+      
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100 dark:bg-blue-900/40 text-brand-600 dark:text-blue-300 font-semibold text-xs">
+        <i class="fa-solid fa-rocket animate-pulse"></i> Next Generation Moving Platform Launching Soon
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl font-extrabold text-main tracking-tight">
+        Something <span class="gradient-text-primary">Revolutionary</span> is Packing Up!
+      </h1>
+
+      <p class="text-sm sm:text-base text-muted-custom leading-relaxed max-w-lg mx-auto">
+        We are putting the final touches on our AI-powered 3D room inventory scanner and automated fleet dispatch app.
+      </p>
+
+      <!-- Live Countdown Blocks -->
+      <div class="grid grid-cols-4 gap-3 sm:gap-6 max-w-lg mx-auto">
+        <div class="p-4 sm:p-5 rounded-2xl bg-surface border border-custom shadow-lg">
+          <span id="count-days" class="text-2xl sm:text-4xl font-extrabold text-brand-600 dark:text-brand-400">18</span>
+          <p class="text-[10px] sm:text-xs font-bold text-muted-custom uppercase mt-1">Days</p>
+        </div>
+        <div class="p-4 sm:p-5 rounded-2xl bg-surface border border-custom shadow-lg">
+          <span id="count-hours" class="text-2xl sm:text-4xl font-extrabold text-brand-600 dark:text-brand-400">08</span>
+          <p class="text-[10px] sm:text-xs font-bold text-muted-custom uppercase mt-1">Hours</p>
+        </div>
+        <div class="p-4 sm:p-5 rounded-2xl bg-surface border border-custom shadow-lg">
+          <span id="count-mins" class="text-2xl sm:text-4xl font-extrabold text-brand-600 dark:text-brand-400">42</span>
+          <p class="text-[10px] sm:text-xs font-bold text-muted-custom uppercase mt-1">Mins</p>
+        </div>
+        <div class="p-4 sm:p-5 rounded-2xl bg-surface border border-custom shadow-lg">
+          <span id="count-secs" class="text-2xl sm:text-4xl font-extrabold text-accent-500">59</span>
+          <p class="text-[10px] sm:text-xs font-bold text-muted-custom uppercase mt-1">Secs</p>
+        </div>
+      </div>
+
+      <!-- Email Notification Form -->
+      <form data-ajax-form data-success-msg="Thanks! You're on the VIP early access list with ₹1,500 moving credit!" class="max-w-md mx-auto flex flex-col sm:flex-row gap-2">
+        <input type="email" required placeholder="Enter your email for VIP launch invite" class="custom-input text-xs flex-grow">
+        <button type="submit" class="px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-xs flex-shrink-0 shadow-lg shadow-blue-500/25 transition-all">
+          Notify Me
+        </button>
+      </form>
+
+    </div>
+  </div>
+
+  <div class="p-6 text-center text-xs text-slate-500 border-t border-custom">
+    © 2026 ShiftPro Relocation Services Inc.
+  </div>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Live ticking countdown simulation
+    setInterval(() => {
+      const secEl = document.getElementById('count-secs');
+      if (secEl) {
+        let sec = parseInt(secEl.textContent, 10) || 0;
+        sec = sec > 0 ? sec - 1 : 59;
+        secEl.textContent = sec < 10 ? '0' + sec : sec;
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
