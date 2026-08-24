@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" width="240" height="60" fill="none">
   <defs>
     <linearGradient id="shiftGradLight" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#3b82f6" />
-      <stop offset="100%" stop-color="#2563eb" />
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="100%" stop-color="#10b981" />
     </linearGradient>
     <linearGradient id="accentGradLight" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fb923c" />
-      <stop offset="100%" stop-color="#f97316" />
+      <stop offset="0%" stop-color="#22d3ee" />
+      <stop offset="100%" stop-color="#06b6d4" />
     </linearGradient>
   </defs>
   
@@ -16,20 +16,20 @@
     <!-- Truck Cab -->
     <path d="M30 16 H39 L46 26 V34 H30 V16 Z" fill="url(#shiftGradLight)" />
     <!-- Window -->
-    <path d="M32 19 H38 L42 26 H32 V19 Z" fill="#93c5fd" />
+    <path d="M32 19 H38 L42 26 H32 V19 Z" fill="#a5f3fc" />
     <!-- Moving Box Icon inside trailer -->
-    <rect x="7" y="14" width="16" height="14" rx="2" fill="#ffffff" fill-opacity="0.9" />
+    <rect x="7" y="14" width="16" height="14" rx="2" fill="#ffffff" fill-opacity="0.95" />
     <path d="M7 20 H23 M15 14 V28" stroke="url(#accentGradLight)" stroke-width="2" stroke-linecap="round" />
     <!-- Wheels -->
     <circle cx="10" cy="36" r="6" fill="#0f172a" stroke="#ffffff" stroke-width="2" />
-    <circle cx="10" cy="36" r="2.5" fill="#fb923c" />
+    <circle cx="10" cy="36" r="2.5" fill="#22d3ee" />
     <circle cx="38" cy="36" r="6" fill="#0f172a" stroke="#ffffff" stroke-width="2" />
-    <circle cx="38" cy="36" r="2.5" fill="#fb923c" />
+    <circle cx="38" cy="36" r="2.5" fill="#22d3ee" />
     <!-- Speed motion streaks -->
-    <path d="M-4 14 H-1 M-6 20 H-2 M-4 26 H-1" stroke="#fb923c" stroke-width="2" stroke-linecap="round" />
+    <path d="M-4 14 H-1 M-6 20 H-2 M-4 26 H-1" stroke="#22d3ee" stroke-width="2" stroke-linecap="round" />
   </g>
 
   <!-- Typography for Dark Backgrounds -->
-  <text x="66" y="32" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-weight="800" font-size="24" fill="#ffffff">Shift<tspan fill="#fb923c">Pro</tspan></text>
-  <text x="66" y="46" font-family="'Inter', system-ui, -apple-system, sans-serif" font-weight="600" font-size="10" fill="#94a3b8" letter-spacing="1.5">RELOCATION &amp; PACKING</text>
+  <text x="66" y="32" font-family="'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-weight="800" font-size="24" fill="#ffffff">Shift<tspan fill="#34d399">Pro</tspan></text>
+  <text x="66" y="46" font-family="'Inter', system-ui, -apple-system, sans-serif" font-weight="600" font-size="10" fill="#22d3ee" letter-spacing="1.5">RELOCATION &amp; PACKING</text>
 </svg>

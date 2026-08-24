@@ -277,18 +277,18 @@
             {
               label: 'Monthly Revenue (₹ Lakhs)',
               data: [3.4, 4.2, 5.1, 6.2, 7.5, 8.4, 9.2, 10.5],
-              borderColor: '#2563eb',
-              backgroundColor: 'rgba(37, 99, 235, 0.08)',
+              borderColor: '#10b981',
+              backgroundColor: 'rgba(16, 185, 129, 0.12)',
               borderWidth: 3,
               fill: true,
               tension: 0.4,
               pointRadius: 4,
-              pointBackgroundColor: '#2563eb'
+              pointBackgroundColor: '#10b981'
             },
             {
               label: 'Target (₹ Lakhs)',
               data: [3.0, 3.8, 4.8, 5.8, 7.0, 8.0, 8.8, 9.5],
-              borderColor: '#94a3b8',
+              borderColor: '#10b981',
               borderDash: [5, 5],
               borderWidth: 2,
               fill: false,
@@ -323,7 +323,7 @@
           labels: ['Household Shifting', 'Corporate / Office', 'Vehicle Transport', 'Secure Storage'],
           datasets: [{
             data: [54, 24, 14, 8],
-            backgroundColor: ['#2563eb', '#f97316', '#10b981', '#6366f1'],
+            backgroundColor: ['#10b981', '#06b6d4', '#8b5cf6', '#f59e0b'],
             borderWidth: 0
           }]
         },

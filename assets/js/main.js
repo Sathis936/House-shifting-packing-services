@@ -453,6 +453,79 @@
     }
   }
 
+  // --- 13. Services & Category Tab Filters ---
+  function initTabFilters() {
+    const tabButtons = document.querySelectorAll('.filter-tab-btn');
+    if (!tabButtons.length) return;
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabButtons.forEach(b => {
+          b.classList.remove('bg-brand-600', 'text-white', 'active');
+          b.classList.add('bg-surface-secondary', 'text-muted-custom');
+        });
+        btn.classList.add('bg-brand-600', 'text-white', 'active');
+        btn.classList.remove('bg-surface-secondary', 'text-muted-custom');
+
+        const filter = btn.getAttribute('data-filter') || 'all';
+        document.querySelectorAll('.service-item').forEach(item => {
+          if (filter === 'all' || item.getAttribute('data-category') === filter) {
+            item.style.display = 'flex';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  // --- 14. Password Visibility & Quick Fill Helpers ---
+  window.quickFillLogin = function (role) {
+    const emailInput = document.getElementById('login-email');
+    const passInput = document.getElementById('login-pass');
+    if (!emailInput || !passInput) return;
+
+    if (role === 'admin') {
+      emailInput.value = 'admin@shiftprologistics.com';
+      passInput.value = 'adminpass2026';
+      if (window.showToast) window.showToast('Filled Admin Credentials. Click Sign In.', 'info');
+    } else {
+      emailInput.value = 'customer@shiftpro.com';
+      passInput.value = 'customer2026';
+      if (window.showToast) window.showToast('Filled Customer Credentials. Click Sign In.', 'info');
+    }
+  };
+
+  window.togglePassVisibility = function () {
+    const passInput = document.getElementById('login-pass');
+    const eyeIcon = document.getElementById('pass-eye');
+    if (!passInput) return;
+    if (passInput.type === 'password') {
+      passInput.type = 'text';
+      if (eyeIcon) {
+        eyeIcon.classList.remove('fa-eye');
+        eyeIcon.classList.add('fa-eye-slash');
+      }
+    } else {
+      passInput.type = 'password';
+      if (eyeIcon) {
+        eyeIcon.classList.remove('fa-eye-slash');
+        eyeIcon.classList.add('fa-eye');
+      }
+    }
+  };
+
+  // --- 15. Live Countdown Timer Simulation ---
+  function initCountdownTimer() {
+    const secEl = document.getElementById('count-secs');
+    if (!secEl) return;
+    setInterval(() => {
+      let sec = parseInt(secEl.textContent, 10) || 0;
+      sec = sec > 0 ? sec - 1 : 59;
+      secEl.textContent = sec < 10 ? '0' + sec : sec;
+    }, 1000);
+  }
+
   // --- Active Page Navbar Highlighting ---
   function initActiveNav() {
     const rawPath = window.location.pathname.split('/').pop().split('?')[0].split('#')[0];
@@ -476,6 +549,38 @@
     });
   }
 
+  // --- 16. Authentication Forms (Login & Register Handlers) ---
+  function initAuthForms() {
+    const loginForm = document.getElementById('login-form');
+    if (loginForm) {
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const emailInput = document.getElementById('login-email');
+        const email = emailInput ? emailInput.value.toLowerCase() : 'customer@shiftpro.com';
+        if (window.loginUser) window.loginUser(email);
+        setTimeout(() => {
+          if (email.includes('admin')) {
+            window.location.href = 'dashboard-admin.html';
+          } else {
+            window.location.href = 'index.html';
+          }
+        }, 500);
+      });
+    }
+
+    const registerForm = document.getElementById('register-form');
+    if (registerForm) {
+      registerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (window.loginUser) window.loginUser('customer@shiftpro.com');
+        if (window.showToast) window.showToast('Account created successfully! Redirecting to home...', 'success');
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 500);
+      });
+    }
+  }
+
   // DOM Content Loaded Init
   document.addEventListener('DOMContentLoaded', () => {
     initTheme();
@@ -488,6 +593,9 @@
     initForms();
     initBlogSearch();
     initServiceAreasSearch();
+    initTabFilters();
+    initCountdownTimer();
+    initAuthForms();
     updateNavbarAuthState();
 
     // Attach theme toggle clicks

@@ -13,33 +13,42 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-        tailwind.config = {
+                    tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
           colors: {
             brand: {
-              50: '#eef2ff',
-              100: '#e0e7ff',
-              200: '#c7d2fe',
-              300: '#a5b4fc',
-              400: '#818cf8',
-              500: '#6366f1',
-              600: '#4f46e5',
-              700: '#4338ca',
-              800: '#3730a3',
-              900: '#312e81',
-              950: '#1e1b4b'
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              200: '#a7f3d0',
+              300: '#6ee7b7',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+              950: '#022c22'
             },
             accent: {
-              400: '#fb923c',
-              500: '#f97316',
-              600: '#ea580c',
-              700: '#c2410c'
+              50: '#ecfeff',
+              100: '#cffafe',
+              200: '#a5f3fc',
+              300: '#67e8f9',
+              400: '#22d3ee',
+              500: '#06b6d4',
+              600: '#0891b2',
+              700: '#0e7490',
+              800: '#155e75',
+              950: '#083344'
             }
           }
         }
       }
+    }
+    }
+    }
     }
         }
       }
@@ -59,7 +68,7 @@
           <img src="assets/images/logo.svg" alt="ShiftPro Logo" class="h-8 dark:hidden">
           <img src="assets/images/logo-light.svg" alt="ShiftPro Logo" class="h-8 hidden dark:block">
         </a>
-        <span class="hidden md:inline text-xs font-bold px-2.5 py-1 rounded-lg bg-blue-100 dark:bg-blue-900/40 text-brand-600 dark:text-blue-300">
+        <span class="hidden md:inline text-xs font-bold px-2.5 py-1 rounded-lg bg-brand-100 dark:bg-brand-900/40 text-brand-600 dark:text-brand-300">
           <i class="fa-solid fa-user-check mr-1"></i> Customer Relocation Portal
         </span>
       </div>
@@ -70,7 +79,7 @@
           <i class="fa-solid fa-globe mr-1"></i> Public Website
         </a>
         <button class="rtl-toggle-btn px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-800 text-xs font-bold" title="Toggle RTL">RTL</button>
-        <button class="theme-toggle-btn p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300">
+        <button class="theme-toggle-btn p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-surface-secondary text-slate-600 dark:text-slate-300">
           <i class="fa-solid fa-moon"></i>
           <i class="fa-solid fa-sun hidden text-amber-400"></i>
         </button>
@@ -101,7 +110,7 @@
         <button type="button" onclick="openModal('coord-chat-modal')" class="px-4 py-2.5 bg-surface-secondary hover:bg-slate-200 dark:hover:bg-slate-700 text-main font-bold rounded-xl text-xs transition-colors border border-custom flex items-center gap-1.5">
           <i class="fa-solid fa-headset text-brand-600"></i> Move Coordinator
         </button>
-        <a href="#booking-wizard-section" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-xs flex items-center gap-2 shadow-lg shadow-blue-500/25 transition-all">
+        <a href="#booking-wizard-section" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-xs flex items-center gap-2 shadow-lg shadow-brand-500/25 transition-all">
           <i class="fa-solid fa-plus"></i> Book a New Move
         </a>
       </div>
@@ -127,7 +136,7 @@
           <button type="button" data-view-invoice="MOVE-8492" class="px-4 py-2.5 bg-surface-secondary hover:bg-slate-200 dark:hover:bg-slate-700 text-main font-bold rounded-xl text-xs border border-custom transition-colors flex items-center gap-2">
             <i class="fa-solid fa-file-invoice text-brand-600"></i> View Invoice (<span id="cust-active-total">₹28,400</span>)
           </button>
-          <a href="track-move.html?id=MOVE-8492" class="px-4 py-2.5 bg-accent-500 hover:bg-accent-600 text-white font-bold rounded-xl text-xs transition-colors flex items-center gap-1.5 shadow-md shadow-orange-500/20">
+          <a href="track-move.html?id=MOVE-8492" class="px-4 py-2.5 bg-accent-500 hover:bg-accent-600 text-white font-bold rounded-xl text-xs transition-colors flex items-center gap-1.5 shadow-md shadow-accent-500/20">
             <i class="fa-solid fa-map-location-dot"></i> Live Highway GPS
           </a>
         </div>
@@ -190,7 +199,7 @@
     <!-- Multi-Step Move Booking Wizard -->
     <div id="booking-wizard-section" class="bg-surface rounded-3xl border border-custom p-6 sm:p-8 shadow-xl space-y-8">
       <div>
-        <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/40 text-brand-600 dark:text-blue-300 rounded-full text-xs font-bold uppercase tracking-wider">Book a Move</span>
+        <span class="px-3 py-1 bg-brand-100 dark:bg-brand-900/40 text-brand-600 dark:text-brand-300 rounded-full text-xs font-bold uppercase tracking-wider">Book a Move</span>
         <h2 class="text-2xl font-extrabold text-main mt-2">Interactive Household Relocation Wizard</h2>
         <p class="text-xs text-muted-custom mt-1">Specify your pickup &amp; delivery addresses, select home size, customize appliances &amp; fragile items, and confirm your moving date.</p>
       </div>
@@ -561,7 +570,7 @@
           <i class="fa-solid fa-arrow-left mr-1.5"></i> Back
         </button>
         
-        <button type="button" id="wizard-next-btn" class="px-7 py-3 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold rounded-xl shadow-lg shadow-blue-500/25 transition-all">
+        <button type="button" id="wizard-next-btn" class="px-7 py-3 bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold rounded-xl shadow-lg shadow-brand-500/25 transition-all">
           Continue <i class="fa-solid fa-arrow-right ml-1.5"></i>
         </button>
 
@@ -654,7 +663,7 @@
         </p>
 
         <div class="space-y-2 pt-1">
-          <button type="button" onclick="openModal('coord-chat-modal')" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 transition-all shadow-md shadow-blue-500/25">
+          <button type="button" onclick="openModal('coord-chat-modal')" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 transition-all shadow-md shadow-brand-500/25">
             <i class="fa-regular fa-comment-dots"></i> Message Coordinator
           </button>
           <a href="tel:+18005556683" class="w-full py-2.5 bg-surface-secondary hover:bg-slate-200 dark:hover:bg-slate-700 text-main font-bold rounded-xl text-xs flex items-center justify-center gap-2 transition-colors border border-custom">
@@ -803,7 +812,7 @@
       <h3 class="text-2xl font-extrabold text-main">Relocation Confirmed!</h3>
       <p class="text-xs text-muted-custom">Your move booking is locked under Tracking ID <span class="font-bold text-brand-600 font-mono" id="success-modal-move-id">MOVE-9941</span>. Your assigned move coordinator will call you to confirm final parking details.</p>
       <div class="pt-2">
-        <a href="track-move.html" class="px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-xs inline-block shadow-md shadow-blue-500/25">
+        <a href="track-move.html" class="px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-xl text-xs inline-block shadow-md shadow-brand-500/25">
           Go to Live GPS Tracker
         </a>
       </div>

@@ -305,8 +305,8 @@
         if (qData.grandTotal) {
           bookingState.estimatedTotal = qData.grandTotal;
         }
-      } catch (e) {
-        console.error(e);
+      } catch (_) {
+        // Ignored fallback
       }
     }
   }
