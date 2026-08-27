@@ -194,7 +194,7 @@
       Object.entries(bookingState.inventory).forEach(([item, qty]) => {
         if (qty > 0) {
           const pill = document.createElement('span');
-          pill.className = 'px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-xs font-semibold rounded-lg border border-custom';
+          pill.className = 'px-2.5 py-1 bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-100 text-xs font-bold rounded-lg border border-custom shadow-xs';
           pill.textContent = `${item}: ${qty}`;
           invContainer.appendChild(pill);
         }

@@ -54,7 +54,7 @@
   /* Text & Border */
   --text-main: #0f172a;
   --text-secondary: #334155;
-  --text-muted: #64748b;
+  --text-muted: #475569;
   --text-light: #94a3b8;
   --border-color: #e2e8f0;
   --border-color-light: #f1f5f9;
@@ -200,10 +200,27 @@ html.dark ::-webkit-scrollbar-thumb {
   color: var(--text-main) !important;
 }
 .text-muted-custom {
-  color: var(--text-muted) !important;
+  color: #475569 !important;
+}
+html.dark .text-muted-custom {
+  color: #94a3b8 !important;
 }
 .border-custom {
   border-color: var(--border-color) !important;
+}
+
+/* Surface Secondary Opacity Variants for Light & Dark Theme */
+.bg-surface-secondary\/40,
+.bg-surface-secondary\/50,
+.bg-surface-secondary\/60 {
+  background-color: rgba(236, 253, 245, 0.65) !important;
+  color: var(--text-main) !important;
+}
+html.dark .bg-surface-secondary\/40,
+html.dark .bg-surface-secondary\/50,
+html.dark .bg-surface-secondary\/60 {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
 }
 
 /* Hero Section Backgrounds */
@@ -219,11 +236,6 @@ html.dark .bg-surface\/95,
 html.dark .bg-surface\/90,
 html.dark .bg-surface\/80 {
   background-color: #0b1120 !important;
-  color: #ffffff !important;
-}
-html.dark .bg-surface-secondary\/40,
-html.dark .bg-surface-secondary\/60 {
-  background-color: #0f172a !important;
   color: #ffffff !important;
 }
 
@@ -327,7 +339,7 @@ html.dark .nav-logout-btn:hover {
 
 /* --- High-Contrast RTL Toggle Button (Light & Dark Theme) --- */
 .rtl-toggle-btn {
-  display: inline-flex !important;
+  display: inline-flex;
   align-items: center !important;
   justify-content: center !important;
   background-color: #f1f5f9 !important;
@@ -360,7 +372,7 @@ html.dark .rtl-toggle-btn:hover {
 
 /* --- High-Contrast Theme Toggle Button --- */
 .theme-toggle-btn {
-  display: inline-flex !important;
+  display: inline-flex;
   align-items: center !important;
   justify-content: center !important;
   background-color: #f1f5f9 !important;
@@ -403,6 +415,40 @@ label input[type="checkbox"]:checked ~ div {
   border-color: #059669 !important;
   box-shadow: 0 4px 18px rgba(16, 185, 129, 0.15) !important;
 }
+
+/* Checked Solid Button Tabs (Pricing Move Category, Dashboard Time Slots) */
+label input[type="radio"]:checked ~ div.peer-checked\:bg-brand-600,
+label input[type="checkbox"]:checked ~ div.peer-checked\:bg-brand-600,
+.peer:checked ~ .peer-checked\:bg-brand-600,
+.peer:checked + .peer-checked\:bg-brand-600 {
+  background-color: #059669 !important;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  border-color: #059669 !important;
+}
+label input[type="radio"]:checked ~ div.peer-checked\:bg-brand-600 *,
+label input[type="checkbox"]:checked ~ div.peer-checked\:bg-brand-600 *,
+.peer:checked ~ .peer-checked\:bg-brand-600 *,
+.peer:checked + .peer-checked\:bg-brand-600 * {
+  color: #ffffff !important;
+}
+
+/* Checked Light/Outline Button Tabs (Dashboard Local/Intercity Move Type) */
+label input[type="radio"]:checked ~ div.peer-checked\:text-brand-600,
+label input[type="checkbox"]:checked ~ div.peer-checked\:text-brand-600,
+.peer:checked ~ .peer-checked\:text-brand-600,
+.peer:checked + .peer-checked\:text-brand-600 {
+  background-color: #ecfdf5 !important;
+  color: #059669 !important;
+  border-color: #059669 !important;
+}
+label input[type="radio"]:checked ~ div.peer-checked\:text-brand-600 *,
+label input[type="checkbox"]:checked ~ div.peer-checked\:text-brand-600 *,
+.peer:checked ~ .peer-checked\:text-brand-600 *,
+.peer:checked + .peer-checked\:text-brand-600 * {
+  color: #059669 !important;
+}
+
 label input[type="radio"]:checked ~ div h4,
 label input[type="radio"]:checked ~ div .text-main,
 label input[type="checkbox"]:checked ~ div .text-main {
@@ -1358,4 +1404,191 @@ html.dark .price-badge-overlay {
   background-color: #f59e0b !important;
   color: #ffffff !important;
   box-shadow: 0 10px 20px -3px rgba(245, 158, 11, 0.45) !important;
+}
+
+/* --- High-Contrast Wizard & Page Enhancements (Light & Dark Theme) --- */
+
+/* Booking Wizard Step 2: Special High-Value Items Box */
+.special-items-box,
+div[class*="bg-amber-50"] {
+  background-color: #fffbeb !important;
+  border: 1px solid #fde68a !important;
+  color: #0f172a !important;
+}
+div[class*="bg-amber-50"] * {
+  color: #0f172a;
+}
+div[class*="bg-amber-50"] span.font-bold {
+  color: #b45309 !important; /* amber-700 */
+}
+html.dark .special-items-box,
+html.dark div[class*="bg-amber-50"] {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+  color: #f8fafc !important;
+}
+html.dark div[class*="bg-amber-50"] * {
+  color: #f8fafc;
+}
+html.dark div[class*="bg-amber-50"] span.font-bold {
+  color: #f59e0b !important; /* amber-500 */
+}
+
+/* Booking Wizard Step 4: Declared Inventory Items Badges */
+#wiz-sum-inventory-pills span {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+  font-weight: 700 !important;
+}
+html.dark #wiz-sum-inventory-pills span {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border-color: rgba(52, 211, 153, 0.25) !important;
+}
+
+/* Section Header Category Pills (About Us, Services, Blog) */
+span.bg-brand-100 {
+  background-color: #d1fae5 !important;
+  color: #065f46 !important; /* deep brand green for maximum contrast */
+}
+html.dark span.bg-brand-100 {
+  background-color: rgba(16, 185, 129, 0.25) !important;
+  color: #6ee7b7 !important;
+}
+
+span.bg-emerald-100 {
+  background-color: #d1fae5 !important;
+  color: #065f46 !important;
+}
+html.dark span.bg-emerald-100 {
+  background-color: rgba(16, 185, 129, 0.25) !important;
+  color: #6ee7b7 !important;
+}
+
+span.bg-amber-100 {
+  background-color: #fef3c7 !important;
+  color: #92400e !important;
+}
+html.dark span.bg-amber-100 {
+  background-color: rgba(245, 158, 11, 0.25) !important;
+  color: #fcd34d !important;
+}
+
+
+/* --- Stage Progression Nodes Visibility (Light & Dark Theme) --- */
+.cust-step-node {
+  transition: all 0.25s ease;
+}
+.cust-step-node.completed {
+  border-color: rgba(16, 185, 129, 0.4) !important;
+  background-color: rgba(16, 185, 129, 0.08) !important;
+}
+.cust-step-node.active {
+  border-color: #059669 !important;
+  background-color: rgba(5, 150, 105, 0.12) !important;
+  box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.25) !important;
+}
+.cust-step-node.pending {
+  border-color: var(--border-color) !important;
+  background-color: var(--bg-surface-secondary) !important;
+  opacity: 1 !important; /* Never wash out with low opacity */
+}
+html.dark .cust-step-node.pending {
+  border-color: #334155 !important;
+  background-color: rgba(30, 41, 59, 0.7) !important;
+  opacity: 1 !important;
+}
+.cust-step-node.pending .step-circle {
+  background-color: #e2e8f0 !important;
+  color: #334155 !important;
+  border: 1px solid #cbd5e1 !important;
+}
+html.dark .cust-step-node.pending .step-circle {
+  background-color: #1e293b !important;
+  color: #cbd5e1 !important;
+  border-color: #475569 !important;
+}
+.cust-step-node.pending .step-title {
+  color: #1e293b !important;
+  font-weight: 700 !important;
+}
+html.dark .cust-step-node.pending .step-title {
+  color: #f1f5f9 !important;
+  font-weight: 700 !important;
+}
+.cust-step-node.pending .step-sub {
+  color: #475569 !important;
+  font-weight: 500 !important;
+}
+html.dark .cust-step-node.pending .step-sub {
+  color: #94a3b8 !important;
+  font-weight: 500 !important;
+}
+
+/* High Contrast Accent Overrides for Dark Mode */
+html.dark .text-amber-600 {
+  color: #fbbf24 !important; /* amber-400 */
+}
+html.dark .text-emerald-600 {
+  color: #34d399 !important; /* emerald-400 */
+}
+html.dark .text-indigo-600 {
+  color: #a5b4fc !important; /* indigo-300 */
+}
+html.dark .text-accent-600 {
+  color: #38bdf8 !important; /* sky-400 */
+}
+html.dark .text-brand-600 {
+  color: #34d399 !important; /* emerald-400 */
+}
+
+/* Mobile Nav Drawer Enhancements */
+#mobile-menu {
+  animation: mobileMenuSlide 0.25s ease-out;
+}
+@keyframes mobileMenuSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hide RTL and Theme buttons in navbar on mobile view (covered in menu button drawer) */
+@media (max-width: 1023px) {
+  header > div:first-child .rtl-toggle-btn,
+  header > div:first-child .theme-toggle-btn {
+    display: none !important;
+  }
+}
+
+
+/* Mobile view: Hide top navbar auth buttons so only menubar alone is visible */
+@media (max-width: 1023px) {
+  header .nav-auth-container,
+  .nav-auth-container {
+    display: none !important;
+  }
+}
+@media (min-width: 1024px) {
+  header .nav-auth-container,
+  .nav-auth-container {
+    display: flex !important;
+  }
+}
+
+#mobile-menu {
+  max-height: calc(100vh - 4.5rem) !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Specialty Item Cards in Pricing (Removes white checkbox box, highlights card on check) */
+.specialty-item-card:has(input[type="checkbox"]:checked) {
+  border-color: #059669 !important;
+  background-color: rgba(16, 185, 129, 0.12) !important;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3) !important;
+}
+html.dark .specialty-item-card:has(input[type="checkbox"]:checked) {
+  border-color: #34d399 !important;
+  background-color: rgba(5, 150, 105, 0.22) !important;
+  box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.35) !important;
 }

@@ -46,13 +46,7 @@
           }
         }
       }
-    }
-    }
-    }
-    }
-        }
-      }
-    }
+    };
   </script>
 
   <link rel="stylesheet" href="assets/css/style.css">
@@ -63,8 +57,8 @@
   <!-- Top bar with Back Home & Switchers -->
   <div class="p-4 flex items-center justify-between custom-container">
     <a href="index.html" class="flex items-center gap-2">
-      <img src="assets/images/logo.svg" alt="ShiftPro" class="h-8 dark:hidden">
-      <img src="assets/images/logo-light.svg" alt="ShiftPro" class="h-8 hidden dark:block">
+      <img src="assets/images/logo.svg" alt="ShiftPro" class="h-9 dark:hidden">
+      <img src="assets/images/logo-light.svg" alt="ShiftPro" class="h-9 hidden dark:block">
     </a>
 
     <div class="flex items-center gap-3">
@@ -73,9 +67,6 @@
         <i class="fa-solid fa-moon"></i>
         <i class="fa-solid fa-sun hidden text-amber-400"></i>
       </button>
-      <a href="index.html" class="text-xs font-bold text-muted-custom hover:text-brand-600">
-        <i class="fa-solid fa-arrow-left mr-1"></i> Back to Website
-      </a>
     </div>
   </div>
 
@@ -86,9 +77,6 @@
     <div class="w-full max-w-md bg-surface/90 backdrop-blur-xl p-8 sm:p-9 rounded-3xl border border-custom shadow-2xl space-y-6 relative z-10">
       
       <div class="text-center space-y-2">
-        <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-brand-500/10 text-brand-600 dark:text-indigo-400 text-xl font-bold mb-1">
-          <i class="fa-solid fa-arrow-right-to-bracket"></i>
-        </div>
         <h1 class="text-2xl sm:text-3xl font-extrabold text-main tracking-tight">Welcome Back</h1>
         <p class="text-xs text-muted-custom">Sign in to manage your moves, invoices, and live tracking</p>
       </div>
@@ -157,5 +145,16 @@
   </div>
 
   <script src="assets/js/main.js"></script>
+  <script>
+    function socialLogin(provider) {
+      showToast(`Signing in with ${provider}...`, 'info');
+      setTimeout(() => {
+        localStorage.setItem('shiftpro_logged_in', 'true');
+        localStorage.setItem('shiftpro_user_email', `sarah.${provider.toLowerCase()}@example.com`);
+        showToast(`Successfully signed in via ${provider}!`, 'success');
+        setTimeout(() => { window.location.href = 'dashboard-customer.html'; }, 900);
+      }, 700);
+    }
+  </script>
 </body>
 </html>

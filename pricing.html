@@ -46,13 +46,7 @@
           }
         }
       }
-    }
-    }
-    }
-    }
-        }
-      }
-    }
+    };
   </script>
 
   <link rel="stylesheet" href="assets/css/style.css">
@@ -137,14 +131,14 @@
 
     <!-- Mobile Drawer Menu -->
     <div id="mobile-menu" class="lg:hidden hidden bg-surface border-b border-custom px-4 py-4 space-y-3 text-xs font-bold">
-      <a href="index.html" class="block py-2 text-main hover:text-brand-600">Home 1 (Household)</a>
-      <a href="index-2.html" class="block py-2 text-main hover:text-brand-600">Home 2 (Corporate)</a>
-      <a href="services.html" class="block py-2 text-main hover:text-brand-600">All Services Catalog</a>
-      <a href="how-it-works.html" class="block py-2 text-main hover:text-brand-600">How It Works</a>
-      <a href="pricing.html" class="block py-2 text-brand-600">Cost Calculator</a>
-      <a href="about.html" class="block py-2 text-main hover:text-brand-600">About Us</a>
-      <a href="blog.html" class="block py-2 text-main hover:text-brand-600">Blog</a>
-      <a href="contact.html" class="block py-2 text-main hover:text-brand-600">Contact Us</a>
+      <a href="index.html" class="block py-1.5 text-main hover:text-brand-600">Home 1 (Household)</a>
+      <a href="index-2.html" class="block py-1.5 text-main hover:text-brand-600">Home 2 (Corporate)</a>
+      <a href="services.html" class="block py-1.5 text-main hover:text-brand-600">All Services Catalog</a>
+      <a href="how-it-works.html" class="block py-1.5 text-main hover:text-brand-600">How It Works</a>
+      <a href="pricing.html" class="block py-1.5 text-brand-600">Cost Calculator</a>
+      <a href="about.html" class="block py-1.5 text-main hover:text-brand-600">About Us</a>
+      <a href="blog.html" class="block py-1.5 text-main hover:text-brand-600">Blog</a>
+      <a href="contact.html" class="block py-1.5 text-main hover:text-brand-600">Contact Us</a>
       <div id="mobile-auth-container" class="pt-2 border-t border-custom space-y-2"></div>
     </div>
   </header>
@@ -291,46 +285,58 @@
             <label class="block text-xs font-bold text-muted-custom mb-3 uppercase">7. Fragile &amp; Heavy Specialty Items</label>
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 text-xs">
               
-              <label class="flex flex-col items-center justify-center p-3.5 rounded-xl border border-custom cursor-pointer hover:bg-surface-secondary text-center space-y-1">
-                <input type="checkbox" name="calc_special_items" value="piano" data-name="Piano" class="rounded text-brand-600 mb-1">
-                <i class="fa-solid fa-music text-slate-400"></i>
-                <span class="font-semibold text-main">Piano / Organ</span>
-                <span class="text-[10px] text-muted-custom">+₹4,500</span>
+              <label class="specialty-item-card relative flex flex-col items-center justify-center p-3 rounded-2xl border-2 border-custom cursor-pointer hover:bg-surface-secondary text-center space-y-1.5 transition-all">
+                <input type="checkbox" name="calc_special_items" value="piano" data-name="Piano" class="hidden peer">
+                <div class="w-9 h-9 rounded-xl bg-surface-secondary text-brand-600 dark:text-brand-300 flex items-center justify-center text-base shadow-xs">
+                  <i class="fa-solid fa-music"></i>
+                </div>
+                <span class="font-bold text-main text-xs">Piano / Organ</span>
+                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">+₹4,500</span>
               </label>
 
-              <label class="flex flex-col items-center justify-center p-3.5 rounded-xl border border-custom cursor-pointer hover:bg-surface-secondary text-center space-y-1">
-                <input type="checkbox" name="calc_special_items" value="fridge" data-name="Double Door Fridge" class="rounded text-brand-600 mb-1">
-                <i class="fa-solid fa-snowflake text-slate-400"></i>
-                <span class="font-semibold text-main">Large Fridge</span>
-                <span class="text-[10px] text-muted-custom">+₹1,200</span>
+              <label class="specialty-item-card relative flex flex-col items-center justify-center p-3 rounded-2xl border-2 border-custom cursor-pointer hover:bg-surface-secondary text-center space-y-1.5 transition-all">
+                <input type="checkbox" name="calc_special_items" value="fridge" data-name="Double Door Fridge" class="hidden peer">
+                <div class="w-9 h-9 rounded-xl bg-surface-secondary text-accent-600 dark:text-cyan-300 flex items-center justify-center text-base shadow-xs">
+                  <i class="fa-solid fa-snowflake"></i>
+                </div>
+                <span class="font-bold text-main text-xs">Large Fridge</span>
+                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">+₹1,200</span>
               </label>
 
-              <label class="flex flex-col items-center justify-center p-3.5 rounded-xl border border-custom cursor-pointer hover:bg-surface-secondary text-center space-y-1">
-                <input type="checkbox" name="calc_special_items" value="tv" data-name="65+ Smart TV" class="rounded text-brand-600 mb-1">
-                <i class="fa-solid fa-tv text-slate-400"></i>
-                <span class="font-semibold text-main">65"+ Smart TV</span>
-                <span class="text-[10px] text-muted-custom">+₹1,000</span>
+              <label class="specialty-item-card relative flex flex-col items-center justify-center p-3 rounded-2xl border-2 border-custom cursor-pointer hover:bg-surface-secondary text-center space-y-1.5 transition-all">
+                <input type="checkbox" name="calc_special_items" value="tv" data-name="65+ Smart TV" class="hidden peer">
+                <div class="w-9 h-9 rounded-xl bg-surface-secondary text-indigo-600 dark:text-indigo-300 flex items-center justify-center text-base shadow-xs">
+                  <i class="fa-solid fa-tv"></i>
+                </div>
+                <span class="font-bold text-main text-xs">65"+ Smart TV</span>
+                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">+₹1,000</span>
               </label>
 
-              <label class="flex flex-col items-center justify-center p-3.5 rounded-xl border border-custom cursor-pointer hover:bg-surface-secondary text-center space-y-1">
-                <input type="checkbox" name="calc_special_items" value="glass" data-name="Glass Dining Table" class="rounded text-brand-600 mb-1">
-                <i class="fa-solid fa-gem text-slate-400"></i>
-                <span class="font-semibold text-main">Glass Dining</span>
-                <span class="text-[10px] text-muted-custom">+₹1,500</span>
+              <label class="specialty-item-card relative flex flex-col items-center justify-center p-3 rounded-2xl border-2 border-custom cursor-pointer hover:bg-surface-secondary text-center space-y-1.5 transition-all">
+                <input type="checkbox" name="calc_special_items" value="glass" data-name="Glass Dining Table" class="hidden peer">
+                <div class="w-9 h-9 rounded-xl bg-surface-secondary text-cyan-600 dark:text-cyan-300 flex items-center justify-center text-base shadow-xs">
+                  <i class="fa-solid fa-gem"></i>
+                </div>
+                <span class="font-bold text-main text-xs">Glass Dining</span>
+                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">+₹1,500</span>
               </label>
 
-              <label class="flex flex-col items-center justify-center p-3.5 rounded-xl border border-custom cursor-pointer hover:bg-surface-secondary text-center space-y-1">
-                <input type="checkbox" name="calc_special_items" value="safe" data-name="Heavy Safe" class="rounded text-brand-600 mb-1">
-                <i class="fa-solid fa-vault text-slate-400"></i>
-                <span class="font-semibold text-main">Fireproof Safe</span>
-                <span class="text-[10px] text-muted-custom">+₹2,500</span>
+              <label class="specialty-item-card relative flex flex-col items-center justify-center p-3 rounded-2xl border-2 border-custom cursor-pointer hover:bg-surface-secondary text-center space-y-1.5 transition-all">
+                <input type="checkbox" name="calc_special_items" value="safe" data-name="Heavy Safe" class="hidden peer">
+                <div class="w-9 h-9 rounded-xl bg-surface-secondary text-amber-600 dark:text-amber-300 flex items-center justify-center text-base shadow-xs">
+                  <i class="fa-solid fa-vault"></i>
+                </div>
+                <span class="font-bold text-main text-xs">Fireproof Safe</span>
+                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">+₹2,500</span>
               </label>
 
-              <label class="flex flex-col items-center justify-center p-3.5 rounded-xl border border-custom cursor-pointer hover:bg-surface-secondary text-center space-y-1">
-                <input type="checkbox" name="calc_special_items" value="antique" data-name="Antiques & Art" class="rounded text-brand-600 mb-1">
-                <i class="fa-solid fa-palette text-slate-400"></i>
-                <span class="font-semibold text-main">Antiques/Art</span>
-                <span class="text-[10px] text-muted-custom">+₹1,800</span>
+              <label class="specialty-item-card relative flex flex-col items-center justify-center p-3 rounded-2xl border-2 border-custom cursor-pointer hover:bg-surface-secondary text-center space-y-1.5 transition-all">
+                <input type="checkbox" name="calc_special_items" value="antique" data-name="Antiques & Art" class="hidden peer">
+                <div class="w-9 h-9 rounded-xl bg-surface-secondary text-rose-600 dark:text-rose-300 flex items-center justify-center text-base shadow-xs">
+                  <i class="fa-solid fa-palette"></i>
+                </div>
+                <span class="font-bold text-main text-xs">Antiques/Art</span>
+                <span class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">+₹1,800</span>
               </label>
 
             </div>

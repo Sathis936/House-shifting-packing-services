@@ -139,17 +139,60 @@
       badgeEl.textContent = moveData.statusLabel;
     }
 
+    const stageDefinitions = [
+      { step: 1, label: '1. Booking Confirmed', sub: 'Survey & Date Locked', icon: 'fa-calendar-check' },
+      { step: 2, label: '2. Packing Assigned', sub: 'Crew Dispatched', icon: 'fa-box-open' },
+      { step: 3, label: '3. In Transit', sub: 'Live Highway Telematics', icon: 'fa-truck-fast' },
+      { step: 4, label: '4. Delivered & Done', sub: 'Unpack & Final Audit', icon: 'fa-house-circle-check' }
+    ];
+
     const stepNodes = document.querySelectorAll('.cust-step-node');
     stepNodes.forEach((node, idx) => {
       const nodeStep = idx + 1;
-      node.classList.remove('active', 'completed', 'opacity-40');
-      
+      const def = stageDefinitions[idx];
+      node.classList.remove('active', 'completed', 'pending', 'opacity-40');
+
       if (nodeStep < moveData.stepIndex) {
         node.classList.add('completed');
+        node.innerHTML = `
+          <div class="step-circle w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold mx-auto shadow-md">
+            <i class="fa-solid fa-check"></i>
+          </div>
+          <p class="step-title font-bold text-main text-xs mt-2">${def.label}</p>
+          <span class="step-sub text-[10px] text-emerald-700 dark:text-emerald-400 font-semibold block">${def.sub}</span>
+        `;
       } else if (nodeStep === moveData.stepIndex) {
         node.classList.add('active');
+        node.innerHTML = `
+          <div class="step-circle w-10 h-10 rounded-full bg-brand-600 text-white flex items-center justify-center font-bold mx-auto shadow-lg shadow-brand-500/40 animate-pulse">
+            <i class="fa-solid ${def.icon}"></i>
+          </div>
+          <p class="step-title font-extrabold text-brand-600 dark:text-brand-300 text-xs mt-2">${def.label}</p>
+          <span class="step-sub text-[10px] text-brand-700 dark:text-cyan-300 font-bold block">${def.sub}</span>
+        `;
       } else {
-        node.classList.add('opacity-40');
+        node.classList.add('pending');
+        node.innerHTML = `
+          <div class="step-circle w-10 h-10 rounded-full flex items-center justify-center font-bold mx-auto">
+            <i class="fa-solid ${def.icon}"></i>
+          </div>
+          <p class="step-title text-xs mt-2">${def.label}</p>
+          <span class="step-sub text-[10px] block">${def.sub}</span>
+        `;
+      }
+    });
+
+    // Update demo stage switcher button active highlighting
+    document.querySelectorAll('[data-set-status]').forEach(btn => {
+      const key = btn.getAttribute('data-set-status');
+      const isCurrent = (key === 'confirmed' && moveData.stepIndex === 1) ||
+                        (key === 'packing' && moveData.stepIndex === 2) ||
+                        (key === 'transit' && moveData.stepIndex === 3) ||
+                        (key === 'delivered' && moveData.stepIndex === 4);
+      if (isCurrent) {
+        btn.className = 'px-3 py-1.5 rounded-lg bg-brand-600 text-white font-bold transition-all shadow-sm';
+      } else {
+        btn.className = 'px-3 py-1.5 rounded-lg bg-surface hover:bg-slate-200 dark:hover:bg-slate-700 border border-custom font-bold text-main transition-colors';
       }
     });
 

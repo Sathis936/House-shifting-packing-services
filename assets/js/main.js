@@ -143,20 +143,37 @@
     if (mobileAuth) {
       if (!isLoggedIn) {
         mobileAuth.innerHTML = `
-          <a href="login.html" class="block w-full py-2.5 text-center font-bold text-xs rounded-xl border border-custom bg-surface text-main">Login</a>
-          <a href="register.html" class="block w-full py-2.5 text-center font-bold text-xs rounded-xl bg-brand-600 text-white">Sign Up</a>
+          <div class="grid grid-cols-2 gap-2">
+            <a href="login.html" class="flex items-center justify-center gap-1.5 py-2.5 text-center font-bold text-xs rounded-xl border border-custom bg-surface text-main hover:bg-slate-100 dark:hover:bg-slate-800">
+              <i class="fa-solid fa-arrow-right-to-bracket text-brand-600"></i> Login
+            </a>
+            <a href="register.html" class="flex items-center justify-center gap-1.5 py-2.5 text-center font-bold text-xs rounded-xl bg-brand-600 text-white hover:bg-brand-700 shadow-sm">
+              Sign Up
+            </a>
+          </div>
         `;
       } else {
         mobileAuth.innerHTML = `
-          <a href="dashboard-customer.html" class="block w-full py-2.5 text-center font-bold text-xs rounded-xl bg-brand-600 text-white">Customer Portal</a>
-          <a href="dashboard-admin.html" class="block w-full py-2.5 text-center font-bold text-xs rounded-xl bg-slate-800 text-white">Admin Console</a>
-          <button type="button" onclick="window.logoutUser()" class="block w-full py-2.5 text-center font-bold text-xs rounded-xl bg-rose-50 dark:bg-rose-900/40 text-rose-600 border border-rose-200">Logout</button>
+          <!-- Portals and Logout directly below Contact Us -->
+          <div class="pt-2 border-t border-custom space-y-2">
+            <div class="grid grid-cols-2 gap-2">
+              <a href="dashboard-customer.html" class="flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl bg-brand-600 text-white font-bold text-xs shadow-xs hover:bg-brand-700">
+                <i class="fa-solid fa-table-columns text-xs"></i> Customer Portal
+              </a>
+              <a href="dashboard-admin.html" class="flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl bg-slate-800 dark:bg-slate-700 text-white font-bold text-xs shadow-xs hover:bg-slate-900">
+                <i class="fa-solid fa-shield-halved text-amber-400 text-xs"></i> Admin Portal
+              </a>
+            </div>
+            <button type="button" onclick="window.logoutUser()" class="flex items-center justify-center gap-1.5 w-full py-2 px-2 rounded-xl bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900 font-bold text-xs hover:bg-rose-100 transition-colors">
+              <i class="fa-solid fa-arrow-right-from-bracket text-xs"></i> Logout
+            </button>
+          </div>
         `;
       }
     }
   }
 
-  // --- 4. Sticky Navbar & Mobile Menu ---
+  // --- 4. Sticky Navbar & Mobile Menu with Close Controls ---
   function initNavbar() {
     const header = document.querySelector('header');
     if (header) {
@@ -171,9 +188,74 @@
 
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
+
+    function closeMobileMenu() {
+      if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+        if (mobileMenuBtn) {
+          const icon = mobileMenuBtn.querySelector('i');
+          if (icon) {
+            icon.className = 'fa-solid fa-bars text-lg';
+          }
+        }
+      }
+    }
+
+    function openMobileMenu() {
+      if (mobileMenu) {
+        mobileMenu.classList.remove('hidden');
+        if (mobileMenuBtn) {
+          const icon = mobileMenuBtn.querySelector('i');
+          if (icon) {
+            icon.className = 'fa-solid fa-xmark text-lg text-rose-500';
+          }
+        }
+      }
+    }
+
+    function toggleMobileMenu() {
+      if (mobileMenu) {
+        if (mobileMenu.classList.contains('hidden')) {
+          openMobileMenu();
+        } else {
+          closeMobileMenu();
+        }
+      }
+    }
+
     if (mobileMenuBtn && mobileMenu) {
-      mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
+      mobileMenuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMobileMenu();
+      });
+
+      // Close buttons inside mobile menu
+      document.querySelectorAll('.mobile-menu-close-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          closeMobileMenu();
+        });
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+          closeMobileMenu();
+        }
+      });
+
+      // Close menu on Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeMobileMenu();
+        }
+      });
+
+      // Close menu when any nav link inside menu is clicked
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          closeMobileMenu();
+        });
       });
     }
   }
