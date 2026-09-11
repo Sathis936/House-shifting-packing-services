@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Move Dashboard - ShiftPro Relocation Portal</title>
+  <meta name="description" content="Dedicated move dashboard to track active relocations, live GPS telematics, itemized room inventories, and download insurance documents.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              200: '#a7f3d0',
+              300: '#6ee7b7',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+              950: '#022c22'
+            },
+            accent: {
+              50: '#ecfeff',
+              100: '#cffafe',
+              200: '#a5f3fc',
+              300: '#67e8f9',
+              400: '#22d3ee',
+              500: '#06b6d4',
+              600: '#0891b2',
+              700: '#0e7490',
+              800: '#155e75',
+              950: '#083344'
+            }
+          }
+        }
+      }
+    };
+  </script>
+
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/rtl.css">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+</head>
+<body class="bg-body text-main min-h-screen flex flex-col transition-colors duration-200">
+
+  <!-- Dashboard Global Header -->
+  <header class="sticky top-0 z-50 glass-nav border-b border-custom">
+    <div class="custom-container flex items-center justify-between h-20 px-3 sm:px-6 lg:px-4 xl:px-8">
+      
+      <!-- Brand Logo & Portal Tag -->
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="flex items-center gap-2">
+          <img src="assets/images/logo.svg" alt="ShiftPro Logo" class="h-10 sm:h-11 w-auto dark:hidden">
+          <img src="assets/images/logo-light.svg" alt="ShiftPro Logo" class="h-10 sm:h-11 w-auto hidden dark:block">
+        </a>
+        <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-100 dark:bg-brand-900/40 text-brand-600 dark:text-brand-300 text-xs font-extrabold uppercase tracking-wider">
+          <i class="fa-solid fa-gauge-high"></i> Move Dashboard
+        </span>
+      </div>
+
+      <!-- Right Header Actions -->
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="hidden md:inline-flex items-center gap-1.5 text-xs font-bold text-muted-custom hover:text-brand-600 transition-colors px-3 py-2 rounded-xl hover:bg-surface-secondary">
+          <i class="fa-solid fa-house text-xs"></i>
+          <span>Website Home</span>
+        </a>
+
+        <button class="rtl-toggle-btn px-2.5 py-1.5 rounded-lg bg-surface-secondary border border-custom text-xs font-bold hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors" title="Toggle RTL">RTL</button>
+        
+        <button class="theme-toggle-btn p-2 rounded-lg bg-surface-secondary border border-custom hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 transition-colors">
+          <i class="fa-solid fa-moon"></i>
+          <i class="fa-solid fa-sun hidden text-amber-400"></i>
+        </button>
+
+        <!-- User Profile Pill -->
+        <div class="flex items-center gap-3 pl-2 sm:pl-3 sm:border-l border-custom">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Sarah Jenkins" class="w-9 h-9 rounded-full object-cover ring-2 ring-brand-500 shadow-xs">
+          <div class="hidden lg:block text-left">
+            <h4 class="text-xs font-extrabold text-main leading-tight">Sarah Jenkins</h4>
+            <p class="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-1">
+              <i class="fa-solid fa-circle-check text-[9px]"></i> Premium Move Pass
+            </p>
+          </div>
+          <button onclick="logoutDashboard()" title="Sign Out" class="p-2 rounded-xl text-muted-custom hover:text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors">
+            <i class="fa-solid fa-arrow-right-from-bracket text-sm"></i>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="lg:hidden p-2 text-slate-600 dark:text-slate-300 hover:bg-surface-secondary rounded-lg">
+          <i class="fa-solid fa-bars text-lg"></i>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 right-0 w-full bg-surface/98 dark:bg-slate-900/98 backdrop-blur-xl border-b border-custom shadow-2xl z-50 max-h-[85vh] overflow-y-auto bg-surface px-4 py-4 space-y-3 text-xs font-bold">
+      <a href="index.html" class="block py-1.5 text-main hover:text-brand-600">Public Home</a>
+      <a href="services.html" class="block py-1.5 text-main hover:text-brand-600">Services</a>
+      <a href="track-move.html" class="block py-1.5 text-main hover:text-brand-600">Public GPS Tracking</a>
+      <a href="pricing.html" class="block py-1.5 text-main hover:text-brand-600">Cost Calculator</a>
+      <div class="pt-2 border-t border-custom">
+        <button onclick="logoutDashboard()" class="w-full py-2 text-left text-rose-500 font-bold flex items-center gap-2">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign Out
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Dashboard Main Content Wrapper -->
+  <main class="flex-grow py-8 bg-surface-secondary/40">
+    <div class="custom-container space-y-8">
+
+      <!-- Active Move Hero Status Banner -->
+      <div class="aesthetic-card rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-slate-900 via-slate-900 to-brand-950 text-white border border-slate-800 shadow-2xl relative overflow-hidden">
+        <div class="absolute right-0 top-0 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+          <div class="space-y-3 max-w-2xl">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 text-brand-300 border border-brand-500/30 text-xs font-bold">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              <span>LIVE ACTIVE MOVE &bull; ID #MOV-8924-BLR</span>
+            </div>
+            <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight">Bengaluru &rarr; Hyderabad Express Transit</h1>
+            <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Consignment packed with 5-layer foam barrier, sealed in air-ride Container Truck <span class="text-brand-400 font-bold">KA-01-MJ-8812</span>. Currently traversing NH44 with zero recorded shocks.
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3">
+            <button onclick="switchTab('tracking')" class="px-5 py-3 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-900/40 transition-all">
+              <i class="fa-solid fa-satellite-dish"></i>
+              <span>Live Telematics</span>
+            </button>
+            <button onclick="switchTab('inventory')" class="px-5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs border border-slate-700 flex items-center gap-2 transition-all">
+              <i class="fa-solid fa-boxes-stacked"></i>
+              <span>Inventory (38 Items)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- KPI Summary 4-Grid Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        
+        <div class="aesthetic-card bg-surface p-5 sm:p-6 rounded-2xl border border-custom shadow-xs space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-muted-custom uppercase tracking-wider">Move Progress</span>
+            <div class="w-9 h-9 rounded-xl bg-brand-50 dark:bg-slate-800 text-brand-600 flex items-center justify-center text-sm shadow-xs">
+              <i class="fa-solid fa-route"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-2xl font-extrabold text-main">68% <span class="text-xs font-semibold text-emerald-500">In Transit</span></h3>
+            <p class="text-xs text-muted-custom mt-1">368 km completed of 570 km</p>
+          </div>
+          <div class="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2 overflow-hidden">
+            <div class="bg-brand-600 h-2 rounded-full transition-all duration-1000" style="width: 68%"></div>
+          </div>
+        </div>
+
+        <div class="aesthetic-card bg-surface p-5 sm:p-6 rounded-2xl border border-custom shadow-xs space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-muted-custom uppercase tracking-wider">Inventory Volume</span>
+            <div class="w-9 h-9 rounded-xl bg-cyan-50 dark:bg-slate-800 text-accent-600 flex items-center justify-center text-sm shadow-xs">
+              <i class="fa-solid fa-box-archive"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-2xl font-extrabold text-main">420 CFT</h3>
+            <p class="text-xs text-muted-custom mt-1">38 Sealed Crates &bull; 8 Fragile</p>
+          </div>
+          <span class="inline-block text-[11px] font-bold text-brand-600 dark:text-indigo-400 bg-brand-50 dark:bg-slate-800 px-2 py-0.5 rounded-md">
+            100% Barcoded &amp; Scanned
+          </span>
+        </div>
+
+        <div class="aesthetic-card bg-surface p-5 sm:p-6 rounded-2xl border border-custom shadow-xs space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-muted-custom uppercase tracking-wider">Est. Drop-Off</span>
+            <div class="w-9 h-9 rounded-xl bg-amber-50 dark:bg-slate-800 text-amber-500 flex items-center justify-center text-sm shadow-xs">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-2xl font-extrabold text-main">Tomorrow</h3>
+            <p class="text-xs text-muted-custom mt-1">11:30 AM &bull; Guaranteed SLA</p>
+          </div>
+          <span class="inline-block text-[11px] font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-md">
+            On-Schedule (+0 min variance)
+          </span>
+        </div>
+
+        <div class="aesthetic-card bg-surface p-5 sm:p-6 rounded-2xl border border-custom shadow-xs space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-muted-custom uppercase tracking-wider">Transit Insurance</span>
+            <div class="w-9 h-9 rounded-xl bg-emerald-50 dark:bg-slate-800 text-emerald-600 flex items-center justify-center text-sm shadow-xs">
+              <i class="fa-solid fa-shield-check"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-2xl font-extrabold text-main">₹15,00,000</h3>
+            <p class="text-xs text-muted-custom mt-1">Full Value Zero-Deductible</p>
+          </div>
+          <span class="inline-block text-[11px] font-bold text-cyan-600 dark:text-cyan-400 bg-cyan-50 dark:bg-slate-800 px-2 py-0.5 rounded-md">
+            Policy #POL-449102-SH
+          </span>
+        </div>
+
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="flex items-center gap-2 border-b border-custom pb-3 overflow-x-auto">
+        <button onclick="switchTab('tracking')" id="tab-btn-tracking" class="tab-btn px-4 py-2.5 rounded-xl font-extrabold text-xs transition-all flex items-center gap-2 bg-brand-600 text-white shadow-sm">
+          <i class="fa-solid fa-map-location-dot"></i> Live GPS Telematics
+        </button>
+        <button onclick="switchTab('inventory')" id="tab-btn-inventory" class="tab-btn px-4 py-2.5 rounded-xl font-bold text-xs transition-all flex items-center gap-2 bg-surface hover:bg-surface-secondary text-main border border-custom">
+          <i class="fa-solid fa-boxes-stacked"></i> Itemized Inventory (38)
+        </button>
+        <button onclick="switchTab('documents')" id="tab-btn-documents" class="tab-btn px-4 py-2.5 rounded-xl font-bold text-xs transition-all flex items-center gap-2 bg-surface hover:bg-surface-secondary text-main border border-custom">
+          <i class="fa-solid fa-file-invoice-dollar"></i> Documents &amp; Invoices
+        </button>
+        <button onclick="switchTab('support')" id="tab-btn-support" class="tab-btn px-4 py-2.5 rounded-xl font-bold text-xs transition-all flex items-center gap-2 bg-surface hover:bg-surface-secondary text-main border border-custom">
+          <i class="fa-solid fa-headset"></i> Move Coordinator
+        </button>
+      </div>
+
+      <!-- TAB 1: LIVE TRACKING & TELEMATICS -->
+      <div id="tab-content-tracking" class="tab-panel space-y-6">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          
+          <!-- Route Progress Milestones Card -->
+          <div class="lg:col-span-8 aesthetic-card bg-surface p-6 sm:p-8 rounded-3xl border border-custom shadow-sm space-y-6">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-lg font-extrabold text-main">Consignment Milestones</h3>
+                <p class="text-xs text-muted-custom">Multi-stage sensor and supervisor checkpoints</p>
+              </div>
+              <span class="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 font-extrabold text-xs">
+                Live Signal Active
+              </span>
+            </div>
+
+            <!-- Vertical Milestone Timeline -->
+            <div class="space-y-6 relative before:absolute before:left-5 before:top-3 before:bottom-3 before:w-0.5 before:bg-slate-200 dark:before:bg-slate-800 pl-2">
+              
+              <!-- Step 1 Done -->
+              <div class="flex items-start gap-4 relative">
+                <div class="w-7 h-7 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs flex-shrink-0 z-10 shadow-md">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <div class="space-y-1">
+                  <div class="flex items-center gap-2">
+                    <h4 class="font-extrabold text-sm text-main">Packing &amp; Inventory Barcode Manifest</h4>
+                    <span class="text-[10px] font-bold text-muted-custom">Yesterday 10:30 AM</span>
+                  </div>
+                  <p class="text-xs text-muted-custom">All 38 items wrapped in heavy-duty bubble wrap and loaded into shock-cushioned container at HSR Layout, Bengaluru.</p>
+                </div>
+              </div>
+
+              <!-- Step 2 Done -->
+              <div class="flex items-start gap-4 relative">
+                <div class="w-7 h-7 rounded-full bg-emerald-500 text-white flex items-center justify-center text-xs flex-shrink-0 z-10 shadow-md">
+                  <i class="fa-solid fa-check"></i>
+                </div>
+                <div class="space-y-1">
+                  <div class="flex items-center gap-2">
+                    <h4 class="font-extrabold text-sm text-main">Origin Hub Departure &amp; Weight Verification</h4>
+                    <span class="text-[10px] font-bold text-muted-custom">Yesterday 4:15 PM</span>
+                  </div>
+                  <p class="text-xs text-muted-custom">Electronic weighbridge cleared (4.2 Tons payload). Driver Ramesh Kumar logged departure via Bangalore North Toll.</p>
+                </div>
+              </div>
+
+              <!-- Step 3 Active -->
+              <div class="flex items-start gap-4 relative">
+                <div class="w-7 h-7 rounded-full bg-brand-600 text-white flex items-center justify-center text-xs flex-shrink-0 z-10 ring-4 ring-brand-500/20 animate-pulse">
+                  <i class="fa-solid fa-truck-fast"></i>
+                </div>
+                <div class="space-y-1">
+                  <div class="flex items-center gap-2">
+                    <h4 class="font-extrabold text-sm text-brand-600 dark:text-brand-400">Highway Transit Active &bull; NH44 Kurnool Bypass</h4>
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-brand-100 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300">In-Transit</span>
+                  </div>
+                  <p class="text-xs text-muted-custom">Speed: 62 km/h. Temperature controlled cargo bay: 24°C. Driver taking mandated 20-min safety rest stop.</p>
+                </div>
+              </div>
+
+              <!-- Step 4 Pending -->
+              <div class="flex items-start gap-4 relative opacity-60">
+                <div class="w-7 h-7 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 flex items-center justify-center text-xs flex-shrink-0 z-10">
+                  <i class="fa-solid fa-warehouse"></i>
+                </div>
+                <div class="space-y-1">
+                  <h4 class="font-extrabold text-sm text-main">Hyderabad Regional Terminal Gate Check</h4>
+                  <p class="text-xs text-muted-custom">Scheduled: Tomorrow 7:00 AM &bull; Outer Ring Road Shamshabad Hub.</p>
+                </div>
+              </div>
+
+              <!-- Step 5 Pending -->
+              <div class="flex items-start gap-4 relative opacity-60">
+                <div class="w-7 h-7 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-500 flex items-center justify-center text-xs flex-shrink-0 z-10">
+                  <i class="fa-solid fa-key"></i>
+                </div>
+                <div class="space-y-1">
+                  <h4 class="font-extrabold text-sm text-main">Destination Unpacking &amp; OTP Handover</h4>
+                  <p class="text-xs text-muted-custom">Scheduled: Tomorrow 11:30 AM &bull; Gachibowli, Hyderabad (Uncrating &amp; Furniture Reassembly included).</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Crew & Telematics Sensor Details -->
+          <div class="lg:col-span-4 space-y-6">
+            
+            <!-- Lead Crew Card -->
+            <div class="aesthetic-card bg-surface p-6 rounded-3xl border border-custom shadow-sm space-y-4">
+              <span class="text-[11px] font-extrabold text-brand-600 dark:text-brand-400 uppercase tracking-wider">Assigned Logistics Crew</span>
+              <div class="flex items-center gap-3.5">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&auto=format&fit=crop&q=80" alt="Ramesh Kumar" class="w-12 h-12 rounded-2xl object-cover ring-2 ring-brand-500">
+                <div>
+                  <h4 class="font-extrabold text-sm text-main">Ramesh Kumar</h4>
+                  <p class="text-xs text-muted-custom">Lead Captain &bull; 9+ Yrs Exp</p>
+                  <p class="text-[11px] font-bold text-emerald-600 dark:text-emerald-400">★ 4.95 Rating (340 Moves)</p>
+                </div>
+              </div>
+
+              <div class="pt-2 flex gap-2">
+                <a href="tel:+919800011223" class="flex-1 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-colors">
+                  <i class="fa-solid fa-phone"></i> Call Captain
+                </a>
+                <button onclick="showToast('Dispatch OTP sent to your phone: 8492', 'info')" class="px-3.5 py-2.5 rounded-xl bg-surface-secondary border border-custom text-xs font-bold text-main hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+                  View OTP
+                </button>
+              </div>
+            </div>
+
+            <!-- In-Transit Telematics Box -->
+            <div class="aesthetic-card bg-surface p-6 rounded-3xl border border-custom shadow-sm space-y-3">
+              <span class="text-[11px] font-extrabold text-accent-600 dark:text-cyan-400 uppercase tracking-wider">Cargo Health Telematics</span>
+              
+              <div class="grid grid-cols-2 gap-3 pt-1">
+                <div class="p-3 rounded-xl bg-surface-secondary/70 border border-custom text-center">
+                  <span class="text-[10px] font-bold text-muted-custom uppercase">Shock Sensor</span>
+                  <p class="text-sm font-black text-emerald-500 mt-0.5">0.12 G (Normal)</p>
+                </div>
+                <div class="p-3 rounded-xl bg-surface-secondary/70 border border-custom text-center">
+                  <span class="text-[10px] font-bold text-muted-custom uppercase">Cargo Temp</span>
+                  <p class="text-sm font-black text-main mt-0.5">24.2 °C</p>
+                </div>
+                <div class="p-3 rounded-xl bg-surface-secondary/70 border border-custom text-center">
+                  <span class="text-[10px] font-bold text-muted-custom uppercase">Tamper Seal</span>
+                  <p class="text-sm font-black text-emerald-500 mt-0.5">#SL-9821 Intact</p>
+                </div>
+                <div class="p-3 rounded-xl bg-surface-secondary/70 border border-custom text-center">
+                  <span class="text-[10px] font-bold text-muted-custom uppercase">Fleet Speed</span>
+                  <p class="text-sm font-black text-main mt-0.5">62 km/h</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- TAB 2: ITEMIZED INVENTORY MANIFEST -->
+      <div id="tab-content-inventory" class="tab-panel hidden space-y-6">
+        
+        <div class="aesthetic-card bg-surface p-6 sm:p-8 rounded-3xl border border-custom shadow-sm space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <h3 class="text-xl font-extrabold text-main">Room-by-Room Packing Manifest</h3>
+              <p class="text-xs text-muted-custom">Detailed registry of all 38 barcoded packages with damage insurance IDs</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="showToast('Inventory Manifest PDF downloaded!', 'success')" class="px-4 py-2 rounded-xl bg-surface-secondary border border-custom text-xs font-bold text-main hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors flex items-center gap-1.5">
+                <i class="fa-solid fa-download"></i> Export Manifest
+              </button>
+            </div>
+          </div>
+
+          <!-- Inventory Table -->
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="border-b border-custom bg-surface-secondary/50 text-muted-custom uppercase text-[11px] font-bold">
+                  <th class="p-3.5 rounded-l-xl">Barcode Tag</th>
+                  <th class="p-3.5">Item Description</th>
+                  <th class="p-3.5">Origin Room</th>
+                  <th class="p-3.5">Packing Protocol</th>
+                  <th class="p-3.5">Fragile</th>
+                  <th class="p-3.5 rounded-r-xl text-right">Insurance Value</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-custom font-medium">
+                <tr class="hover:bg-surface-secondary/40 transition-colors">
+                  <td class="p-3.5 font-mono text-brand-600 dark:text-brand-400 font-bold">#PKG-8821-A</td>
+                  <td class="p-3.5 font-bold text-main">65" OLED 4K Smart TV</td>
+                  <td class="p-3.5 text-muted-custom">Living Room</td>
+                  <td class="p-3.5 text-muted-custom">Custom Wooden Crate + Anti-Static Foam</td>
+                  <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-rose-100 dark:bg-rose-950 text-rose-600 dark:text-rose-400 font-bold text-[10px]">HIGH FRAGILE</span></td>
+                  <td class="p-3.5 text-right font-extrabold text-main">₹1,80,000</td>
+                </tr>
+                <tr class="hover:bg-surface-secondary/40 transition-colors">
+                  <td class="p-3.5 font-mono text-brand-600 dark:text-brand-400 font-bold">#PKG-8822-B</td>
+                  <td class="p-3.5 font-bold text-main">Solid Sheesham 6-Seater Dining Table</td>
+                  <td class="p-3.5 text-muted-custom">Dining Area</td>
+                  <td class="p-3.5 text-muted-custom">Legs Dismantled + Corrugated Edge Guards</td>
+                  <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-600 dark:text-amber-400 font-bold text-[10px]">HEAVY</span></td>
+                  <td class="p-3.5 text-right font-extrabold text-main">₹75,000</td>
+                </tr>
+                <tr class="hover:bg-surface-secondary/40 transition-colors">
+                  <td class="p-3.5 font-mono text-brand-600 dark:text-brand-400 font-bold">#PKG-8823-C</td>
+                  <td class="p-3.5 font-bold text-main">King Size Memory Foam Mattress &amp; Frame</td>
+                  <td class="p-3.5 text-muted-custom">Master Bed</td>
+                  <td class="p-3.5 text-muted-custom">Heavy-Gauge Waterproof Plastic Sheath</td>
+                  <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 font-bold text-[10px]">STANDARD</span></td>
+                  <td class="p-3.5 text-right font-extrabold text-main">₹90,000</td>
+                </tr>
+                <tr class="hover:bg-surface-secondary/40 transition-colors">
+                  <td class="p-3.5 font-mono text-brand-600 dark:text-brand-400 font-bold">#PKG-8824-D</td>
+                  <td class="p-3.5 font-bold text-main">Porcelain Dinnerware &amp; Crystal Glassware (4 Cartons)</td>
+                  <td class="p-3.5 text-muted-custom">Kitchen</td>
+                  <td class="p-3.5 text-muted-custom">Honeycomb Paper + Triple Wall Dish Cartons</td>
+                  <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-rose-100 dark:bg-rose-950 text-rose-600 dark:text-rose-400 font-bold text-[10px]">HIGH FRAGILE</span></td>
+                  <td class="p-3.5 text-right font-extrabold text-main">₹55,000</td>
+                </tr>
+                <tr class="hover:bg-surface-secondary/40 transition-colors">
+                  <td class="p-3.5 font-mono text-brand-600 dark:text-brand-400 font-bold">#PKG-8825-E</td>
+                  <td class="p-3.5 font-bold text-main">Dual Monitor Ergonomic Home Office Setup</td>
+                  <td class="p-3.5 text-muted-custom">Study Room</td>
+                  <td class="p-3.5 text-muted-custom">Anti-Shock IT Sleeves + Sealed Box</td>
+                  <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-rose-100 dark:bg-rose-950 text-rose-600 dark:text-rose-400 font-bold text-[10px]">HIGH FRAGILE</span></td>
+                  <td class="p-3.5 text-right font-extrabold text-main">₹1,20,000</td>
+                </tr>
+                <tr class="hover:bg-surface-secondary/40 transition-colors">
+                  <td class="p-3.5 font-mono text-brand-600 dark:text-brand-400 font-bold">#PKG-8826-F</td>
+                  <td class="p-3.5 font-bold text-main">Wardrobe Clothes &amp; Linens (8 Cartons)</td>
+                  <td class="p-3.5 text-muted-custom">Bedrooms</td>
+                  <td class="p-3.5 text-muted-custom">Upright Wardrobe Hanging Cartons</td>
+                  <td class="p-3.5"><span class="px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 font-bold text-[10px]">STANDARD</span></td>
+                  <td class="p-3.5 text-right font-extrabold text-main">₹1,50,000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TAB 3: DOCUMENTS & INVOICES -->
+      <div id="tab-content-documents" class="tab-panel hidden space-y-6">
+        
+        <div class="aesthetic-card bg-surface p-6 sm:p-8 rounded-3xl border border-custom shadow-sm space-y-6">
+          <div>
+            <h3 class="text-xl font-extrabold text-main">Move Documentation &amp; Billing</h3>
+            <p class="text-xs text-muted-custom">Official GST invoices, transit insurance policies, and digital bills of lading</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <div class="p-6 rounded-2xl bg-surface-secondary/60 border border-custom space-y-4 flex flex-col justify-between">
+              <div class="space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-brand-50 dark:bg-slate-800 text-brand-600 flex items-center justify-center text-lg">
+                  <i class="fa-solid fa-file-invoice"></i>
+                </div>
+                <div>
+                  <h4 class="font-extrabold text-base text-main">Official Move Tax Invoice</h4>
+                  <p class="text-xs text-muted-custom mt-1">Invoice #INV-2026-981 &bull; ₹28,500 Paid (GST Included)</p>
+                </div>
+              </div>
+              <button onclick="showToast('Downloading Official Tax Invoice PDF...', 'info')" class="w-full py-2.5 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+                <i class="fa-solid fa-download"></i> Download Invoice
+              </button>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-surface-secondary/60 border border-custom space-y-4 flex flex-col justify-between">
+              <div class="space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-slate-800 text-emerald-600 flex items-center justify-center text-lg">
+                  <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                  <h4 class="font-extrabold text-base text-main">Zero-Deductible Transit Policy</h4>
+                  <p class="text-xs text-muted-custom mt-1">Policy #POL-449102-SH &bull; ₹15 Lakhs Full Value Coverage</p>
+                </div>
+              </div>
+              <button onclick="showToast('Downloading Insurance Certificate...', 'info')" class="w-full py-2.5 rounded-xl bg-surface hover:bg-surface-secondary text-main border border-custom font-bold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+                <i class="fa-solid fa-download"></i> Download Certificate
+              </button>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-surface-secondary/60 border border-custom space-y-4 flex flex-col justify-between">
+              <div class="space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-cyan-50 dark:bg-slate-800 text-accent-600 flex items-center justify-center text-lg">
+                  <i class="fa-solid fa-file-contract"></i>
+                </div>
+                <div>
+                  <h4 class="font-extrabold text-base text-main">Digital Bill of Lading (BOL)</h4>
+                  <p class="text-xs text-muted-custom mt-1">Consignment #BOL-8821 &bull; Signed by Lead Supervisor</p>
+                </div>
+              </div>
+              <button onclick="showToast('Downloading Bill of Lading...', 'info')" class="w-full py-2.5 rounded-xl bg-surface hover:bg-surface-secondary text-main border border-custom font-bold text-xs transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+                <i class="fa-solid fa-download"></i> Download BOL
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TAB 4: MOVE COORDINATOR & SUPPORT -->
+      <div id="tab-content-support" class="tab-panel hidden space-y-6">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          
+          <div class="lg:col-span-6 aesthetic-card bg-surface p-6 sm:p-8 rounded-3xl border border-custom shadow-sm space-y-4">
+            <h3 class="text-xl font-extrabold text-main">Dedicated Move Coordinator</h3>
+            <p class="text-xs text-muted-custom">Your personal relocation concierge is monitoring your transit in real-time.</p>
+            
+            <div class="p-4 rounded-2xl bg-surface-secondary/70 border border-custom flex items-center gap-4">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&auto=format&fit=crop&q=80" alt="Ananya Sharma" class="w-14 h-14 rounded-2xl object-cover ring-2 ring-brand-500 shadow-sm">
+              <div>
+                <h4 class="font-extrabold text-base text-main">Ananya Sharma</h4>
+                <p class="text-xs text-brand-600 dark:text-brand-400 font-bold">Senior Relocation Manager</p>
+                <p class="text-xs text-muted-custom mt-0.5"><i class="fa-solid fa-clock text-[10px]"></i> On duty until 8:00 PM</p>
+              </div>
+            </div>
+
+            <div class="space-y-3 pt-2">
+              <div class="flex items-center justify-between p-3 rounded-xl bg-surface-secondary/40 border border-custom text-xs">
+                <span class="text-muted-custom font-semibold">Direct Phone</span>
+                <a href="tel:+918001122334" class="font-bold text-brand-600 hover:underline">+91 800-112-2334</a>
+              </div>
+              <div class="flex items-center justify-between p-3 rounded-xl bg-surface-secondary/40 border border-custom text-xs">
+                <span class="text-muted-custom font-semibold">Priority Email</span>
+                <span class="font-bold text-main">ananya.s@shiftpro.com</span>
+              </div>
+              <div class="flex items-center justify-between p-3 rounded-xl bg-surface-secondary/40 border border-custom text-xs">
+                <span class="text-muted-custom font-semibold">24/7 National Dispatch</span>
+                <span class="font-bold text-emerald-600">1800-SHIFT-PRO (Toll-Free)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 aesthetic-card bg-surface p-6 sm:p-8 rounded-3xl border border-custom shadow-sm space-y-4">
+            <h3 class="text-xl font-extrabold text-main">Send Instant Instructions</h3>
+            <p class="text-xs text-muted-custom">Need to modify elevator timings or provide gate security passes? Send a note directly to your truck crew.</p>
+
+            <form data-ajax-form data-success-msg="Message delivered to truck captain & coordinator!" class="space-y-3">
+              <div>
+                <label class="block text-xs font-bold text-muted-custom mb-1 uppercase tracking-wider text-[11px]">Subject / Category</label>
+                <select class="custom-input text-xs font-medium">
+                  <option>Gate Pass &amp; Community Entry Instructions</option>
+                  <option>Freight Elevator Booking Update</option>
+                  <option>Special Unpacking Priority Request</option>
+                  <option>General Question</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-muted-custom mb-1 uppercase tracking-wider text-[11px]">Message for Crew</label>
+                <textarea rows="3" required placeholder="e.g. Please inform security gate #2 that truck KA-01-MJ-8812 has pre-approved entry." class="custom-input text-xs font-medium resize-none"></textarea>
+              </div>
+              <button type="submit" class="btn-brand-primary w-full py-3 text-white font-bold rounded-xl text-xs transition-all shadow-md">
+                Transmit Note to Crew
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer Component -->
+  <footer class="bg-slate-950 text-slate-300 pt-10 pb-8 border-t border-slate-800">
+    <div class="custom-container flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <div class="flex items-center gap-2">
+        <img src="assets/images/logo-light.svg" alt="ShiftPro Logo" class="h-8">
+        <span>&bull; Authenticated Customer Portal</span>
+      </div>
+      <p>© 2026 ShiftPro Relocation Services Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-panel').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-brand-600', 'text-white');
+        btn.classList.add('bg-surface', 'text-main');
+      });
+
+      const selectedPanel = document.getElementById('tab-content-' + tabId);
+      const selectedBtn = document.getElementById('tab-btn-' + tabId);
+
+      if (selectedPanel) selectedPanel.classList.remove('hidden');
+      if (selectedBtn) {
+        selectedBtn.classList.remove('bg-surface', 'text-main');
+        selectedBtn.classList.add('bg-brand-600', 'text-white');
+      }
+    }
+
+    function logoutDashboard() {
+      if (typeof showToast === 'function') {
+        showToast('Signing out of ShiftPro Portal...', 'info');
+      }
+      localStorage.removeItem('shiftpro_logged_in');
+      setTimeout(() => {
+        window.location.href = 'login.html';
+      }, 600);
+    }
+  </script>
+</body>
+</html>

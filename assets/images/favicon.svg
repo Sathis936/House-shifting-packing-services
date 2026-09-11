@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="favBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+    <linearGradient id="favGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="favCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#0891b2" />
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded App Icon Background -->
+  <rect width="64" height="64" rx="16" fill="url(#favBg)" stroke="#334155" stroke-width="1.5" />
+
+  <!-- Truck Body -->
+  <g transform="translate(6, 12)">
+    <!-- Trailer Box -->
+    <rect x="2" y="6" width="30" height="24" rx="4" fill="url(#favGreen)" />
+    
+    <!-- Truck Cab -->
+    <path d="M32 14 H40 L47 22 V30 H32 V14 Z" fill="url(#favGreen)" />
+    
+    <!-- Windshield -->
+    <path d="M34 16 H39 L44 22 H34 V16 Z" fill="#67e8f9" />
+    
+    <!-- Moving Box Icon inside trailer -->
+    <rect x="9" y="11" width="16" height="14" rx="2" fill="#ffffff" />
+    <path d="M9 18 H25 M17 11 V25" stroke="url(#favCyan)" stroke-width="2" stroke-linecap="round" />
+    
+    <!-- Wheels -->
+    <circle cx="12" cy="31" r="5.5" fill="#0f172a" stroke="#ffffff" stroke-width="1.5" />
+    <circle cx="12" cy="31" r="2.5" fill="#06b6d4" />
+    
+    <circle cx="39" cy="31" r="5.5" fill="#0f172a" stroke="#ffffff" stroke-width="1.5" />
+    <circle cx="39" cy="31" r="2.5" fill="#06b6d4" />
+    
+    <!-- Speed Motion Streaks -->
+    <path d="M-2 11 H0 M-4 17 H0 M-2 23 H0" stroke="#06b6d4" stroke-width="2" stroke-linecap="round" />
+  </g>
+</svg>

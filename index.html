@@ -60,28 +60,29 @@
   <!-- Custom Stylesheets -->
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/rtl.css">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 </head>
 
 <body class="bg-body text-main transition-colors duration-200">
 
   <!-- Global Header (Clean Single-Bar Navigation) -->
   <header class="sticky top-0 z-50 glass-nav border-b border-custom transition-all duration-200">
-    <div class="custom-container flex items-center justify-between h-20">
+    <div class="custom-container flex items-center justify-between h-20 px-3 sm:px-6 lg:px-4 xl:px-8">
       <!-- Brand Logo -->
       <a href="index.html" class="flex items-center gap-2 flex-shrink-0">
-        <img src="assets/images/logo.svg" alt="ShiftPro Logo" class="h-9 dark:hidden">
-        <img src="assets/images/logo-light.svg" alt="ShiftPro Logo" class="h-9 hidden dark:block">
+        <img src="assets/images/logo.svg" alt="ShiftPro Logo" class="h-10 sm:h-11 w-auto dark:hidden">
+        <img src="assets/images/logo-light.svg" alt="ShiftPro Logo" class="h-10 sm:h-11 w-auto hidden dark:block">
       </a>
 
       <!-- Desktop Navigation Menu -->
       <nav
-        class="hidden lg:flex items-center gap-6 xl:gap-7 text-xs xl:text-sm font-bold text-slate-700 dark:text-slate-200">
+        class="hidden lg:flex items-center gap-3 xl:gap-6 text-[12px] xl:text-sm font-bold whitespace-nowrap text-slate-700 dark:text-slate-200">
         <!-- Home Dropdown -->
         <div class="relative group py-2">
           <a href="index.html" class="text-brand-600 dark:text-brand-400 flex items-center gap-1">
             Home <i class="fa-solid fa-chevron-down text-[10px]"></i>
           </a>
-          <div class="absolute left-0 top-full pt-1 w-44 hidden group-hover:block transition-all z-50">
+          <div class="dropdown-menu-bridge absolute left-0 top-full pt-2 -mt-1 w-48 hidden group-hover:block transition-all z-50">
             <div class="bg-surface border border-custom rounded-2xl shadow-xl p-2 space-y-1 text-xs">
               <a href="index.html"
                 class="block px-3 py-2 rounded-xl bg-blue-50 dark:bg-slate-800 font-bold text-brand-600">Home 1
@@ -98,7 +99,7 @@
           <a href="services.html" class="hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-1">
             Services <i class="fa-solid fa-chevron-down text-[10px]"></i>
           </a>
-          <div class="absolute left-0 top-full pt-1 w-56 hidden group-hover:block transition-all z-50">
+          <div class="dropdown-menu-bridge absolute left-0 top-full pt-2 -mt-1 w-60 hidden group-hover:block transition-all z-50">
             <div class="bg-surface border border-custom rounded-2xl shadow-xl p-2 space-y-1 text-xs">
               <a href="services.html"
                 class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-surface-secondary font-semibold text-brand-600">
@@ -140,7 +141,7 @@
       </nav>
 
       <!-- Right Action CTAs & Auth Controls -->
-      <div class="flex items-center gap-2.5 sm:gap-3">
+      <div class="flex items-center gap-1.5 sm:gap-2.5 xl:gap-3 flex-shrink-0">
         <button
           class="rtl-toggle-btn px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold hover:bg-slate-200 transition-colors"
           title="Toggle RTL">RTL</button>
@@ -162,8 +163,7 @@
     </div>
 
     <!-- Mobile Navigation Drawer -->
-    <div id="mobile-menu"
-      class="hidden lg:hidden bg-surface border-b border-custom px-4 py-3 space-y-1.5 text-xs font-bold">
+    <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 right-0 w-full bg-surface/98 dark:bg-slate-900/98 backdrop-blur-xl border-b border-custom shadow-2xl z-50 max-h-[85vh] overflow-y-auto bg-surface px-4 py-3 space-y-1.5 text-xs font-bold">
       <a href="index.html" class="block py-1.5 text-brand-600">Home 1: Household Move</a>
       <a href="index-2.html" class="block py-1.5 text-main hover:text-brand-600">Home 2: Corporate Agency</a>
       <a href="services.html" class="block py-1.5 text-main hover:text-brand-600">All Services Catalog</a>
@@ -177,14 +177,14 @@
   </header>
 
   <!-- Hero Section with Live Quote Estimator Box -->
-  <section class="hero-section relative pt-12 pb-20 md:pt-24 md:pb-32 overflow-hidden">
+  <section class="hero-section home-page-hero relative pt-12 pb-20 md:pt-24 md:pb-32 overflow-hidden min-h-[560px] md:min-h-[660px] flex items-center">
     <!-- Ambient glowing light orbs and grid mesh -->
     <div
       class="absolute top-0 left-1/2 -translate-x-1/2 w-[850px] h-[450px] bg-gradient-to-tr from-brand-600/20 via-cyan-500/10 to-accent-500/10 rounded-full blur-3xl pointer-events-none -z-10">
     </div>
     <div class="absolute -top-10 right-0 w-80 h-80 bg-accent-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
-    <div class="custom-container relative z-10">
+    <div class="custom-container relative z-10 w-full">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
 
         <!-- Left Hero Content -->
@@ -397,14 +397,14 @@
                 Popular</span>
               <span class="absolute bottom-3.5 right-3.5 price-badge-overlay">From ₹3,500</span>
             </div>
-            <div class="p-6 sm:p-7 space-y-3.5">
+            <div class="p-7 sm:p-8 space-y-4">
               <h3 class="text-xl font-extrabold text-main tracking-tight">
                 <a href="service-local-shifting.html" class="hover:text-brand-600 transition-colors">Local Household
                   Shifting</a>
               </h3>
               <p class="text-xs sm:text-sm text-muted-custom leading-relaxed">Same-day seamless shifting for apartments,
                 duplexes, and villas with dedicated furniture disassembling and reassembling.</p>
-              <ul class="text-xs font-semibold text-muted-custom space-y-2 pt-3 border-t border-custom">
+              <ul class="text-xs font-semibold text-muted-custom space-y-2.5 pt-4 border-t border-custom/80">
                 <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Same-day
                   pickup &amp; guaranteed delivery</li>
                 <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Free
@@ -412,7 +412,7 @@
               </ul>
             </div>
           </div>
-          <div class="px-6 sm:px-7 pb-6 pt-1">
+          <div class="px-7 sm:px-8 pb-7 pt-4">
             <a href="service-local-shifting.html"
               class="w-full py-3 rounded-xl bg-surface-secondary hover:bg-brand-600 text-main hover:text-white font-bold text-xs flex items-center justify-center gap-2 border border-custom transition-all duration-300 shadow-xs">
               <span>Explore Shifting Details</span>
@@ -435,14 +435,14 @@
                 Distance</span>
               <span class="absolute bottom-3.5 right-3.5 price-badge-overlay">From ₹12,500</span>
             </div>
-            <div class="p-6 sm:p-7 space-y-3.5">
+            <div class="p-7 sm:p-8 space-y-4">
               <h3 class="text-xl font-extrabold text-main tracking-tight">
                 <a href="service-intercity.html" class="hover:text-brand-600 transition-colors">Inter-City
                   Relocation</a>
               </h3>
               <p class="text-xs sm:text-sm text-muted-custom leading-relaxed">Long-distance relocations using dedicated
                 sealed container trucks with active live GPS route tracking and insured safety.</p>
-              <ul class="text-xs font-semibold text-muted-custom space-y-2 pt-3 border-t border-custom">
+              <ul class="text-xs font-semibold text-muted-custom space-y-2.5 pt-4 border-t border-custom/80">
                 <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Guaranteed
                   delivery timeline SLA</li>
                 <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Digital
@@ -450,7 +450,7 @@
               </ul>
             </div>
           </div>
-          <div class="px-6 sm:px-7 pb-6 pt-1">
+          <div class="px-7 sm:px-8 pb-7 pt-4">
             <a href="service-intercity.html"
               class="w-full py-3 rounded-xl bg-surface-secondary hover:bg-brand-600 text-main hover:text-white font-bold text-xs flex items-center justify-center gap-2 border border-custom transition-all duration-300 shadow-xs">
               <span>Explore Inter-City Details</span>
@@ -473,14 +473,14 @@
                 &amp; Labor</span>
               <span class="absolute bottom-3.5 right-3.5 price-badge-overlay">From ₹2,800</span>
             </div>
-            <div class="p-6 sm:p-7 space-y-3.5">
+            <div class="p-7 sm:p-8 space-y-4">
               <h3 class="text-xl font-extrabold text-main tracking-tight">
                 <a href="service-packing.html" class="hover:text-brand-600 transition-colors">Packing &amp; Unpacking
                   Only</a>
               </h3>
               <p class="text-xs sm:text-sm text-muted-custom leading-relaxed">Already have a truck? Hire our certified
                 packing crew with heavy-duty 5-ply cartons, bubble wrap, and foam rolls.</p>
-              <ul class="text-xs font-semibold text-muted-custom space-y-2 pt-3 border-t border-custom">
+              <ul class="text-xs font-semibold text-muted-custom space-y-2.5 pt-4 border-t border-custom/80">
                 <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Fragile
                   glassware &amp; china specialist</li>
                 <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Complete
@@ -488,7 +488,7 @@
               </ul>
             </div>
           </div>
-          <div class="px-6 sm:px-7 pb-6 pt-1">
+          <div class="px-7 sm:px-8 pb-7 pt-4">
             <a href="service-packing.html"
               class="w-full py-3 rounded-xl bg-surface-secondary hover:bg-brand-600 text-main hover:text-white font-bold text-xs flex items-center justify-center gap-2 border border-custom transition-all duration-300 shadow-xs">
               <span>Explore Packing Details</span>
@@ -511,14 +511,14 @@
                 B2B</span>
               <span class="absolute bottom-3.5 right-3.5 price-badge-overlay">Custom RFQ</span>
             </div>
-            <div class="p-6 sm:p-7 space-y-3.5">
+            <div class="p-7 sm:p-8 space-y-4">
               <h3 class="text-xl font-extrabold text-main tracking-tight">
                 <a href="service-office.html" class="hover:text-brand-600 transition-colors">Office &amp; Corporate
                   Move</a>
               </h3>
               <p class="text-xs sm:text-sm text-muted-custom leading-relaxed">Zero-downtime weekend relocations for
                 corporate workstations, server racks, conference rooms, and file archives.</p>
-              <ul class="text-xs font-semibold text-muted-custom space-y-2 pt-3 border-t border-custom">
+              <ul class="text-xs font-semibold text-muted-custom space-y-2.5 pt-4 border-t border-custom/80">
                 <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Dedicated
                   corporate move director</li>
                 <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> ESD
@@ -526,7 +526,7 @@
               </ul>
             </div>
           </div>
-          <div class="px-6 sm:px-7 pb-6 pt-1">
+          <div class="px-7 sm:px-8 pb-7 pt-4">
             <a href="service-office.html"
               class="w-full py-3 rounded-xl bg-surface-secondary hover:bg-brand-600 text-main hover:text-white font-bold text-xs flex items-center justify-center gap-2 border border-custom transition-all duration-300 shadow-xs">
               <span>Explore Office Moving</span>
@@ -549,14 +549,14 @@
                 Logistics</span>
               <span class="absolute bottom-3.5 right-3.5 price-badge-overlay">From ₹3,500</span>
             </div>
-            <div class="p-6 sm:p-7 space-y-3.5">
+            <div class="p-7 sm:p-8 space-y-4">
               <h3 class="text-xl font-extrabold text-main tracking-tight">
                 <a href="service-vehicle.html" class="hover:text-brand-600 transition-colors">Vehicle &amp; Auto
                   Transport</a>
               </h3>
               <p class="text-xs sm:text-sm text-muted-custom leading-relaxed">Door-to-door safe transport for cars,
                 luxury sedans, SUVs, and motorbikes in specialized enclosed carriers.</p>
-              <ul class="text-xs font-semibold text-muted-custom space-y-2 pt-3 border-t border-custom">
+              <ul class="text-xs font-semibold text-muted-custom space-y-2.5 pt-4 border-t border-custom/80">
                 <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Hydraulic
                   ramp loading &amp; wheel locks</li>
                 <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Pre &amp;
@@ -564,7 +564,7 @@
               </ul>
             </div>
           </div>
-          <div class="px-6 sm:px-7 pb-6 pt-1">
+          <div class="px-7 sm:px-8 pb-7 pt-4">
             <a href="service-vehicle.html"
               class="w-full py-3 rounded-xl bg-surface-secondary hover:bg-brand-600 text-main hover:text-white font-bold text-xs flex items-center justify-center gap-2 border border-custom transition-all duration-300 shadow-xs">
               <span>Explore Auto Transport</span>
@@ -587,14 +587,14 @@
                 Storage</span>
               <span class="absolute bottom-3.5 right-3.5 price-badge-overlay">From ₹450/day</span>
             </div>
-            <div class="p-6 sm:p-7 space-y-3.5">
+            <div class="p-7 sm:p-8 space-y-4">
               <h3 class="text-xl font-extrabold text-main tracking-tight">
                 <a href="service-warehouse.html" class="hover:text-brand-600 transition-colors">Secure Warehouse
                   Storage</a>
               </h3>
               <p class="text-xs sm:text-sm text-muted-custom leading-relaxed">24/7 CCTV-monitored, climate-controlled
                 storage units for short-term renovation holds or long-term storage.</p>
-              <ul class="text-xs font-semibold text-muted-custom space-y-2 pt-3 border-t border-custom">
+              <ul class="text-xs font-semibold text-muted-custom space-y-2.5 pt-4 border-t border-custom/80">
                 <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i>
                   Pest-controlled &amp; fire-safe facilities</li>
                 <li class="flex items-center gap-2"><i class="fa-solid fa-circle-check text-emerald-500"></i> Flexible
@@ -602,7 +602,7 @@
               </ul>
             </div>
           </div>
-          <div class="px-6 sm:px-7 pb-6 pt-1">
+          <div class="px-7 sm:px-8 pb-7 pt-4">
             <a href="service-warehouse.html"
               class="w-full py-3 rounded-xl bg-surface-secondary hover:bg-brand-600 text-main hover:text-white font-bold text-xs flex items-center justify-center gap-2 border border-custom transition-all duration-300 shadow-xs">
               <span>Explore Storage Vaults</span>
@@ -1040,13 +1040,53 @@
       </div>
     </div>
   </section>
+
+  <!-- NEW RELEVANT SECTION: Relocation Readiness & Expert Moving Tips -->
+  <section class="py-20 bg-surface border-t border-custom">
+    <div class="custom-container">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="px-3.5 py-1 rounded-full bg-brand-100 dark:bg-brand-900/40 text-brand-600 dark:text-brand-300 font-semibold text-xs uppercase tracking-wider">Mover Guidance</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-main mt-3">Essential Moving Day Tips</h2>
+        <p class="text-muted-custom text-sm sm:text-base mt-2">Follow our battle-tested guidelines to ensure your home transition is completely stress-free.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="p-7 rounded-3xl bg-surface-secondary/50 border border-custom space-y-4 hover:border-brand-500/50 transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-brand-500/10 text-brand-600 flex items-center justify-center text-xl font-bold">
+            <i class="fa-solid fa-box-archive"></i>
+          </div>
+          <h4 class="text-xl font-bold text-main">Pack an "Essentials Box"</h4>
+          <p class="text-xs sm:text-sm text-muted-custom leading-relaxed">Pack toiletries, medications, device chargers, basic cookware, and 2 changes of clothes in a clearly labeled box that travels with you directly.</p>
+        </div>
+
+        <div class="p-7 rounded-3xl bg-surface-secondary/50 border border-custom space-y-4 hover:border-brand-500/50 transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-accent-500/10 text-accent-600 flex items-center justify-center text-xl font-bold">
+            <i class="fa-solid fa-camera"></i>
+          </div>
+          <h4 class="text-xl font-bold text-main">Photograph Cable Connections</h4>
+          <p class="text-xs sm:text-sm text-muted-custom leading-relaxed">Take quick photos of the back of your TV, Wi-Fi router, and home theater wiring before our team disconnects them for instant reconnection.</p>
+        </div>
+
+        <div class="p-7 rounded-3xl bg-surface-secondary/50 border border-custom space-y-4 hover:border-brand-500/50 transition-all">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center text-xl font-bold">
+            <i class="fa-solid fa-snowflake"></i>
+          </div>
+          <h4 class="text-xl font-bold text-main">Defrost Refrigerators 24h Early</h4>
+          <p class="text-xs sm:text-sm text-muted-custom leading-relaxed">Turn off and defrost your refrigerator 24 hours prior to loading to prevent moisture leakage onto surrounding wooden furniture and cartons.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- Footer Component -->
   <footer class="bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-800">
     <div class="custom-container">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
         <!-- Col 1: Brand Info -->
         <div class="lg:col-span-2 space-y-4">
-          <img src="assets/images/logo-light.svg" alt="ShiftPro Logo" class="h-10">
+          <img src="assets/images/logo-light.svg" alt="ShiftPro Logo" class="h-10 sm:h-11 w-auto">
           <p class="text-sm text-slate-400 leading-relaxed max-w-sm">
             ShiftPro is a premier household relocation and commercial packing service platform providing damage-free
             moving, live GPS tracking, and guaranteed on-time delivery across 140+ cities.

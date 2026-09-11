@@ -51,23 +51,24 @@
 
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/rtl.css">
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 </head>
 <body class="bg-body text-main transition-colors duration-200">
 
   <!-- Global Header (Clean Single-Bar Navigation) -->
   <header class="sticky top-0 z-50 glass-nav border-b border-custom transition-all duration-200">
-    <div class="custom-container flex items-center justify-between h-20">
+    <div class="custom-container flex items-center justify-between h-20 px-3 sm:px-6 lg:px-4 xl:px-8">
       <a href="index.html" class="flex items-center gap-2 flex-shrink-0">
-        <img src="assets/images/logo.svg" alt="ShiftPro Logo" class="h-9 dark:hidden">
-        <img src="assets/images/logo-light.svg" alt="ShiftPro Logo" class="h-9 hidden dark:block">
+        <img src="assets/images/logo.svg" alt="ShiftPro Logo" class="h-10 sm:h-11 w-auto dark:hidden">
+        <img src="assets/images/logo-light.svg" alt="ShiftPro Logo" class="h-10 sm:h-11 w-auto hidden dark:block">
       </a>
 
-      <nav class="hidden lg:flex items-center gap-6 xl:gap-7 text-xs xl:text-sm font-bold text-slate-700 dark:text-slate-200">
+      <nav class="hidden lg:flex items-center gap-3 xl:gap-6 text-[12px] xl:text-sm font-bold whitespace-nowrap text-slate-700 dark:text-slate-200">
         <div class="relative group py-2">
           <a href="index.html" class="hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-1">
             Home <i class="fa-solid fa-chevron-down text-[10px]"></i>
           </a>
-          <div class="absolute left-0 top-full pt-1 w-44 hidden group-hover:block transition-all z-50">
+          <div class="dropdown-menu-bridge absolute left-0 top-full pt-2 -mt-1 w-48 hidden group-hover:block transition-all z-50">
             <div class="bg-surface border border-custom rounded-2xl shadow-xl p-2 space-y-1 text-xs">
               <a href="index.html" class="block px-3 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-surface-secondary font-semibold text-main">Home 1 (Household)</a>
               <a href="index-2.html" class="block px-3 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-surface-secondary font-semibold text-main">Home 2 (Corporate)</a>
@@ -79,7 +80,7 @@
           <a href="services.html" class="hover:text-brand-600 dark:hover:text-brand-400 flex items-center gap-1">
             Services <i class="fa-solid fa-chevron-down text-[10px]"></i>
           </a>
-          <div class="absolute left-0 top-full pt-1 w-56 hidden group-hover:block transition-all z-50">
+          <div class="dropdown-menu-bridge absolute left-0 top-full pt-2 -mt-1 w-60 hidden group-hover:block transition-all z-50">
             <div class="bg-surface border border-custom rounded-2xl shadow-xl p-2 space-y-1 text-xs">
               <a href="services.html" class="flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-blue-50 dark:hover:bg-surface-secondary font-semibold text-brand-600">
                 <i class="fa-solid fa-boxes-stacked"></i> All Services Catalog
@@ -113,7 +114,7 @@
         <a href="contact.html" class="hover:text-brand-600 dark:hover:text-brand-400">Contact</a>
       </nav>
 
-      <div class="flex items-center gap-2.5 sm:gap-3">
+      <div class="flex items-center gap-1.5 sm:gap-2.5 xl:gap-3 flex-shrink-0">
         <button class="rtl-toggle-btn px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-xs font-bold hover:bg-slate-200 transition-colors" title="Toggle RTL">RTL</button>
         <button class="theme-toggle-btn p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-surface-secondary text-slate-600 dark:text-slate-300 transition-colors">
           <i class="fa-solid fa-moon"></i>
@@ -129,7 +130,7 @@
     </div>
 
     <!-- Mobile Drawer Menu -->
-    <div id="mobile-menu" class="lg:hidden hidden bg-surface border-b border-custom px-4 py-4 space-y-3 text-xs font-bold">
+    <div id="mobile-menu" class="hidden lg:hidden absolute top-full left-0 right-0 w-full bg-surface/98 dark:bg-slate-900/98 backdrop-blur-xl border-b border-custom shadow-2xl z-50 max-h-[85vh] overflow-y-auto bg-surface px-4 py-4 space-y-3 text-xs font-bold">
       <a href="index.html" class="block py-1.5 text-main hover:text-brand-600">Home 1 (Household)</a>
       <a href="index-2.html" class="block py-1.5 text-main hover:text-brand-600">Home 2 (Corporate)</a>
       <a href="services.html" class="block py-1.5 text-main hover:text-brand-600">All Services Catalog</a>
@@ -143,8 +144,8 @@
   </header>
 
   <!-- Search Hero -->
-  <section class="py-16 bg-slate-950 text-white border-b border-slate-800 relative overflow-hidden">
-    <div class="custom-container relative z-10 text-center max-w-3xl mx-auto space-y-5">
+  <section class="inner-page-hero py-16 md:py-20 bg-slate-950 text-white border-b border-slate-800 relative overflow-hidden min-h-[200px] md:min-h-[230px] flex items-center">
+    <div class="custom-container relative z-10 text-center max-w-3xl mx-auto space-y-5 w-full">
       <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-500/20 text-blue-400 font-semibold text-xs">
         <i class="fa-solid fa-satellite-dish animate-pulse"></i> Real-Time Relocation Telematics
       </div>
@@ -332,6 +333,54 @@
     </div>
   </section>
 
+  
+  <!-- NEW RELEVANT SECTION: Telematics Safety, Tamper Seals & Incident Protocol -->
+  <section class="py-20 bg-surface-secondary/40 border-t border-custom">
+    <div class="custom-container">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="px-3.5 py-1 rounded-full bg-brand-100 dark:bg-brand-900/40 text-brand-600 dark:text-brand-300 font-semibold text-xs uppercase tracking-wider">Security Architecture</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-main mt-3">Live Telematics &amp; Safety Assurance</h2>
+        <p class="text-muted-custom text-sm sm:text-base mt-2">Every transport vehicle operates under automated multi-sensor satellite oversight.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="p-6 rounded-3xl bg-surface border border-custom shadow-xs space-y-3">
+          <div class="w-12 h-12 rounded-xl bg-brand-500/10 text-brand-600 flex items-center justify-center text-xl font-bold">
+            <i class="fa-solid fa-satellite-dish"></i>
+          </div>
+          <h4 class="text-lg font-bold text-main">30-Second GPS Pings</h4>
+          <p class="text-xs text-muted-custom leading-relaxed">Dual satellite telemetry units stream real-time speed, location coordinates, and traffic delay estimates directly to your portal.</p>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-surface border border-custom shadow-xs space-y-3">
+          <div class="w-12 h-12 rounded-xl bg-accent-500/10 text-accent-600 flex items-center justify-center text-xl font-bold">
+            <i class="fa-solid fa-lock"></i>
+          </div>
+          <h4 class="text-lg font-bold text-main">Digital Tamper Seals</h4>
+          <p class="text-xs text-muted-custom leading-relaxed">Container doors are secured with unique serial-barcoded electronic seals; any unapproved opening triggers instant SMS alerts.</p>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-surface border border-custom shadow-xs space-y-3">
+          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center text-xl font-bold">
+            <i class="fa-solid fa-gauge-high"></i>
+          </div>
+          <h4 class="text-lg font-bold text-main">Speed &amp; Shock Telemetry</h4>
+          <p class="text-xs text-muted-custom leading-relaxed">Active onboard accelerometer sensors monitor road vibration, hard braking, and vehicle tilt to enforce defensive driving.</p>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-surface border border-custom shadow-xs space-y-3">
+          <div class="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-600 flex items-center justify-center text-xl font-bold">
+            <i class="fa-solid fa-headset"></i>
+          </div>
+          <h4 class="text-lg font-bold text-main">24/7 Route Control Hub</h4>
+          <p class="text-xs text-muted-custom leading-relaxed">Our central logistics command center actively tracks highway weather, municipal restrictions, and toll gate queues.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- Footer Component -->
   <footer class="bg-slate-950 text-slate-300 pt-16 pb-12 border-t border-slate-800">
     <div class="custom-container">
@@ -340,7 +389,7 @@
         <!-- Col 1: Brand Info -->
         <div class="space-y-4">
           <a href="index.html" class="flex items-center gap-2">
-            <img src="assets/images/logo-light.svg" alt="ShiftPro Logo" class="h-9">
+            <img src="assets/images/logo-light.svg" alt="ShiftPro Logo" class="h-10 sm:h-11 w-auto">
           </a>
           <p class="text-xs text-slate-400 leading-relaxed">
             ShiftPro is a premier household relocation and commercial packing service platform providing damage-free moving, live GPS tracking, and guaranteed on-time delivery across 140+ cities.

@@ -121,6 +121,9 @@
             </button>
             <div class="absolute right-0 top-full pt-1 w-52 hidden group-hover:block transition-all z-50">
               <div class="nav-dropdown-menu rounded-2xl p-2 space-y-1 text-xs">
+                <a href="dashboard.html" class="nav-dropdown-item flex items-center gap-2.5 px-3 py-2.5 rounded-xl font-bold text-brand-600 dark:text-brand-400">
+                  <i class="fa-solid fa-gauge-high"></i> Move Dashboard
+                </a>
                 <a href="dashboard-customer.html" class="nav-dropdown-item flex items-center gap-2.5 px-3 py-2.5 rounded-xl">
                   <i class="fa-solid fa-user text-brand-600 dark:text-indigo-400"></i> Customer Portal
                 </a>
@@ -156,12 +159,15 @@
         mobileAuth.innerHTML = `
           <!-- Portals and Logout directly below Contact Us -->
           <div class="pt-2 border-t border-custom space-y-2">
+            <a href="dashboard.html" class="flex items-center justify-center gap-1.5 w-full py-2.5 px-2 rounded-xl bg-brand-600 text-white font-bold text-xs shadow-xs hover:bg-brand-700">
+              <i class="fa-solid fa-gauge-high text-xs"></i> Move Dashboard
+            </a>
             <div class="grid grid-cols-2 gap-2">
-              <a href="dashboard-customer.html" class="flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl bg-brand-600 text-white font-bold text-xs shadow-xs hover:bg-brand-700">
-                <i class="fa-solid fa-table-columns text-xs"></i> Customer Portal
+              <a href="dashboard-customer.html" class="flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl border border-custom bg-surface-secondary text-main font-bold text-xs shadow-xs hover:bg-surface">
+                <i class="fa-solid fa-user text-xs"></i> Customer
               </a>
               <a href="dashboard-admin.html" class="flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl bg-slate-800 dark:bg-slate-700 text-white font-bold text-xs shadow-xs hover:bg-slate-900">
-                <i class="fa-solid fa-shield-halved text-amber-400 text-xs"></i> Admin Portal
+                <i class="fa-solid fa-shield-halved text-amber-400 text-xs"></i> Admin
               </a>
             </div>
             <button type="button" onclick="window.logoutUser()" class="flex items-center justify-center gap-1.5 w-full py-2 px-2 rounded-xl bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900 font-bold text-xs hover:bg-rose-100 transition-colors">
@@ -644,7 +650,7 @@
           if (email.includes('admin')) {
             window.location.href = 'dashboard-admin.html';
           } else {
-            window.location.href = 'index.html';
+            window.location.href = 'dashboard.html';
           }
         }, 500);
       });
@@ -655,16 +661,49 @@
       registerForm.addEventListener('submit', (e) => {
         e.preventDefault();
         if (window.loginUser) window.loginUser('customer@shiftpro.com');
-        if (window.showToast) window.showToast('Account created successfully! Redirecting to home...', 'success');
+        if (window.showToast) window.showToast('Account created successfully! Redirecting to dashboard...', 'success');
         setTimeout(() => {
-          window.location.href = 'index.html';
+          window.location.href = 'dashboard.html';
         }, 500);
       });
     }
   }
 
   // DOM Content Loaded Init
+  
+  // --- Enhanced Desktop Dropdowns on Hover & Touch/Click ---
+  function initDesktopDropdowns() {
+    const dropdownGroups = document.querySelectorAll('header nav .group');
+    dropdownGroups.forEach(group => {
+      const trigger = group.querySelector('a');
+      const menu = group.querySelector('.dropdown-menu-bridge, div.absolute');
+      if (trigger && menu) {
+        trigger.addEventListener('click', (e) => {
+          if (window.innerWidth >= 1024 && window.innerWidth <= 1280) {
+            e.preventDefault();
+            const isHidden = menu.classList.contains('hidden');
+            document.querySelectorAll('header nav div.absolute').forEach(m => m.classList.add('hidden'));
+            if (isHidden) {
+              menu.classList.remove('hidden');
+            }
+          }
+        });
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('header nav .group')) {
+        document.querySelectorAll('header nav div.absolute').forEach(m => {
+          if (window.innerWidth >= 1024 && window.innerWidth <= 1280) {
+            m.classList.add('hidden');
+          }
+        });
+      }
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', () => {
+    initDesktopDropdowns();
     initTheme();
     initDirection();
     initNavbar();

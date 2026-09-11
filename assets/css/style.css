@@ -518,42 +518,54 @@ html.dark label input[type="radio"]:checked ~ div span.text-amber-600 {
 
 /* Nav Dropdown Menus */
 .nav-dropdown-menu,
-.group div.bg-surface,
-.group > div > div {
+header nav .group div.bg-surface,
+header nav .group > div > div,
+header .group div.bg-surface,
+header .group > div > div {
   background-color: #ffffff !important;
   border: 1px solid #cbd5e1 !important;
   box-shadow: 0 16px 36px -4px rgba(15, 23, 42, 0.15), 0 4px 12px rgba(0, 0, 0, 0.05) !important;
 }
 html.dark .nav-dropdown-menu,
-html.dark .group div.bg-surface,
-html.dark .group > div > div {
+html.dark header nav .group div.bg-surface,
+html.dark header nav .group > div > div,
+html.dark header .group div.bg-surface,
+html.dark header .group > div > div {
   background-color: #0f172a !important;
   border: 1px solid rgba(52, 211, 153, 0.25) !important;
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9), 0 0 20px rgba(16, 185, 129, 0.25) !important;
 }
 
 .nav-dropdown-item,
-.group div.bg-surface a,
-.group > div > div a {
+header nav .group div.bg-surface a,
+header nav .group > div > div a,
+header .group div.bg-surface a,
+header .group > div > div a {
   color: #0f172a !important;
   font-weight: 700 !important;
   transition: all 0.15s ease !important;
 }
 .nav-dropdown-item:hover,
-.group div.bg-surface a:hover,
-.group > div > div a:hover {
+header nav .group div.bg-surface a:hover,
+header nav .group > div > div a:hover,
+header .group div.bg-surface a:hover,
+header .group > div > div a:hover {
   background-color: #ecfdf5 !important;
   color: #059669 !important;
 }
 html.dark .nav-dropdown-item,
-html.dark .group div.bg-surface a,
-html.dark .group > div > div a {
+html.dark header nav .group div.bg-surface a,
+html.dark header nav .group > div > div a,
+html.dark header .group div.bg-surface a,
+html.dark header .group > div > div a {
   color: #ffffff !important;
   font-weight: 700 !important;
 }
 html.dark .nav-dropdown-item:hover,
-html.dark .group div.bg-surface a:hover,
-html.dark .group > div > div a:hover {
+html.dark header nav .group div.bg-surface a:hover,
+html.dark header nav .group > div > div a:hover,
+html.dark header .group div.bg-surface a:hover,
+html.dark header .group > div > div a:hover {
   background-color: #1e293b !important;
   color: #6ee7b7 !important;
 }
@@ -1047,9 +1059,18 @@ html.dark .custom-input:focus {
 .bg-slate-950,
 .bg-slate-900,
 section.bg-slate-950,
-div.bg-slate-950 {
+div.bg-slate-950,
+[class*="from-slate-9"],
+[class*="from-indigo-9"],
+[class*="from-brand-6"] {
   color: #ffffff;
 }
+.text-white h1,
+.text-white h2,
+.text-white h3,
+.text-white h4,
+.text-white h5,
+.text-white h6,
 .bg-slate-950 h1,
 .bg-slate-950 h2,
 .bg-slate-950 h3,
@@ -1061,11 +1082,24 @@ div.bg-slate-950 {
 .bg-slate-900 h3,
 .bg-slate-900 h4,
 .bg-slate-900 h5,
-.bg-slate-900 h6 {
+.bg-slate-900 h6,
+[class*="from-slate-"] h1,
+[class*="from-slate-"] h2,
+[class*="from-slate-"] h3,
+[class*="from-slate-"] h4,
+[class*="from-indigo-"] h1,
+[class*="from-indigo-"] h2,
+[class*="from-indigo-"] h3,
+[class*="from-indigo-"] h4,
+[class*="from-brand-"] h1,
+[class*="from-brand-"] h2,
+[class*="from-brand-"] h3,
+[class*="from-brand-"] h4 {
   color: #ffffff !important;
 }
 .bg-slate-950 p.text-slate-300,
-.bg-slate-900 p.text-slate-300 {
+.bg-slate-900 p.text-slate-300,
+[class*="from-slate-"] p {
   color: #cbd5e1 !important;
 }
 .bg-slate-950 p.text-slate-400,
@@ -1591,4 +1625,72 @@ html.dark .specialty-item-card:has(input[type="checkbox"]:checked) {
   border-color: #34d399 !important;
   background-color: rgba(5, 150, 105, 0.22) !important;
   box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.35) !important;
+}
+
+/* --- Standardized Hero Heights Across Entire Website --- */
+.inner-page-hero {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+}
+@media (min-width: 768px) {
+  .inner-page-hero {
+    min-height: 230px;
+  }
+}
+.home-page-hero {
+  min-height: 560px;
+}
+@media (min-width: 768px) {
+  .home-page-hero {
+    min-height: 660px;
+  }
+}
+
+/* --- Enterprise Service Card Hover Icon Enhancements --- */
+.enterprise-service-card:hover .enterprise-icon-box {
+  background-color: #059669 !important;
+  color: #ffffff !important;
+  box-shadow: 0 10px 25px -5px rgba(5, 150, 105, 0.45) !important;
+  transform: translateY(-2px);
+}
+.enterprise-service-card:hover .enterprise-icon-box i {
+  color: #ffffff !important;
+}
+html.dark .enterprise-service-card:hover .enterprise-icon-box {
+  background-color: #10b981 !important;
+  color: #ffffff !important;
+  box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.6) !important;
+  transform: translateY(-2px);
+}
+html.dark .enterprise-service-card:hover .enterprise-icon-box i {
+  color: #ffffff !important;
+}
+
+
+
+/* --- Dropdown Menu Safe Hover Bridge & 1024px Responsive Nav Rules --- */
+.dropdown-menu-bridge {
+  padding-top: 0.5rem !important;
+  margin-top: -0.25rem !important;
+}
+.dropdown-menu-bridge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 0.75rem;
+}
+
+@media (min-width: 1024px) and (max-width: 1279px) {
+  header.glass-nav nav a {
+    font-size: 12px !important;
+    padding-left: 0.15rem !important;
+    padding-right: 0.15rem !important;
+  }
+  header.glass-nav .rtl-toggle-btn {
+    padding: 0.25rem 0.45rem !important;
+    font-size: 10px !important;
+  }
 }
