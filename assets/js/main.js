@@ -119,12 +119,9 @@
             <button type="button" class="nav-portal-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm">
               <i class="fa-solid fa-table-columns text-brand-600 dark:text-indigo-400"></i> Portals <i class="fa-solid fa-chevron-down text-[9px]"></i>
             </button>
-            <div class="absolute right-0 top-full pt-1 w-52 hidden group-hover:block transition-all z-50">
+            <div class="absolute right-0 top-full pt-1 w-48 hidden group-hover:block transition-all z-50">
               <div class="nav-dropdown-menu rounded-2xl p-2 space-y-1 text-xs">
-                <a href="dashboard.html" class="nav-dropdown-item flex items-center gap-2.5 px-3 py-2.5 rounded-xl font-bold text-brand-600 dark:text-brand-400">
-                  <i class="fa-solid fa-gauge-high"></i> Move Dashboard
-                </a>
-                <a href="dashboard-customer.html" class="nav-dropdown-item flex items-center gap-2.5 px-3 py-2.5 rounded-xl">
+                <a href="dashboard-customer.html" class="nav-dropdown-item flex items-center gap-2.5 px-3 py-2.5 rounded-xl font-bold text-brand-600 dark:text-brand-400">
                   <i class="fa-solid fa-user text-brand-600 dark:text-indigo-400"></i> Customer Portal
                 </a>
                 <a href="dashboard-admin.html" class="nav-dropdown-item flex items-center gap-2.5 px-3 py-2.5 rounded-xl">
@@ -159,14 +156,11 @@
         mobileAuth.innerHTML = `
           <!-- Portals and Logout directly below Contact Us -->
           <div class="pt-2 border-t border-custom space-y-2">
-            <a href="dashboard.html" class="flex items-center justify-center gap-1.5 w-full py-2.5 px-2 rounded-xl bg-brand-600 text-white font-bold text-xs shadow-xs hover:bg-brand-700">
-              <i class="fa-solid fa-gauge-high text-xs"></i> Move Dashboard
-            </a>
             <div class="grid grid-cols-2 gap-2">
-              <a href="dashboard-customer.html" class="flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl border border-custom bg-surface-secondary text-main font-bold text-xs shadow-xs hover:bg-surface">
+              <a href="dashboard-customer.html" class="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-brand-600 text-white font-bold text-xs shadow-xs hover:bg-brand-700">
                 <i class="fa-solid fa-user text-xs"></i> Customer
               </a>
-              <a href="dashboard-admin.html" class="flex items-center justify-center gap-1.5 py-2 px-2 rounded-xl bg-slate-800 dark:bg-slate-700 text-white font-bold text-xs shadow-xs hover:bg-slate-900">
+              <a href="dashboard-admin.html" class="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-slate-800 dark:bg-slate-700 text-white font-bold text-xs shadow-xs hover:bg-slate-900">
                 <i class="fa-solid fa-shield-halved text-amber-400 text-xs"></i> Admin
               </a>
             </div>
@@ -647,11 +641,7 @@
         const email = emailInput ? emailInput.value.toLowerCase() : 'customer@shiftpro.com';
         if (window.loginUser) window.loginUser(email);
         setTimeout(() => {
-          if (email.includes('admin')) {
-            window.location.href = 'dashboard-admin.html';
-          } else {
-            window.location.href = 'dashboard.html';
-          }
+          window.location.href = 'index.html';
         }, 500);
       });
     }
@@ -661,9 +651,9 @@
       registerForm.addEventListener('submit', (e) => {
         e.preventDefault();
         if (window.loginUser) window.loginUser('customer@shiftpro.com');
-        if (window.showToast) window.showToast('Account created successfully! Redirecting to dashboard...', 'success');
+        if (window.showToast) window.showToast('Account created successfully! Redirecting to home page...', 'success');
         setTimeout(() => {
-          window.location.href = 'dashboard.html';
+          window.location.href = 'index.html';
         }, 500);
       });
     }
