@@ -101,38 +101,51 @@
     const authContainers = document.querySelectorAll('.nav-auth-container');
     const isLoggedIn = window.isUserLoggedIn();
 
+    const portalsDropdownHtml = `
+      <div class="relative group py-1">
+        <button type="button" class="nav-portal-btn px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm cursor-pointer" aria-haspopup="true">
+          <i class="fa-solid fa-table-columns text-brand-600 dark:text-emerald-400"></i>
+          <span>Portals</span>
+          <i class="fa-solid fa-chevron-down text-[9px] transition-transform group-hover:rotate-180"></i>
+        </button>
+        <div class="dropdown-menu-bridge absolute right-0 top-full pt-2 -mt-1 w-56 hidden group-hover:block transition-all z-50">
+          <div class="nav-dropdown-menu rounded-2xl p-2 space-y-1 text-xs shadow-xl border border-custom bg-surface">
+            <a href="dashboard-customer.html" class="nav-dropdown-item flex items-center gap-2.5 px-3 py-2.5 rounded-xl font-bold text-main hover:text-brand-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+              <i class="fa-solid fa-user text-brand-600 dark:text-emerald-400 w-4 text-center"></i>
+              <div>
+                <span class="block text-main font-bold">Customer Dashboard</span>
+                <span class="block text-[10px] text-muted-custom font-normal">Tracking, Bookings & Invoices</span>
+              </div>
+            </a>
+            <a href="dashboard-admin.html" class="nav-dropdown-item flex items-center gap-2.5 px-3 py-2.5 rounded-xl font-bold text-main hover:text-amber-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+              <i class="fa-solid fa-shield-halved text-amber-500 w-4 text-center"></i>
+              <div>
+                <span class="block text-main font-bold">Admin Dashboard</span>
+                <span class="block text-[10px] text-muted-custom font-normal">Fleet & Dispatch Control</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+
     authContainers.forEach(container => {
       if (!isLoggedIn) {
-        // Logged Out state: Only Login & Register buttons
+        // Logged Out state: Portals dropdown + Login button
         container.innerHTML = `
-          <a href="login.html" class="px-3.5 py-2 rounded-xl text-xs font-bold text-main hover:text-brand-600 border border-custom bg-surface hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1.5 shadow-sm">
-            <i class="fa-solid fa-arrow-right-to-bracket text-brand-600"></i> Login
-          </a>
-          <a href="register.html" class="hidden sm:inline-flex px-3.5 py-2 rounded-xl text-xs font-bold text-white bg-brand-600 hover:bg-brand-700 transition-colors shadow-md shadow-blue-500/20">
-            Register
+          ${portalsDropdownHtml}
+          <a href="login.html" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-main hover:text-brand-600 border border-custom bg-surface hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1.5 shadow-sm">
+            <i class="fa-solid fa-arrow-right-to-bracket text-brand-600"></i>
+            <span>Login</span>
           </a>
         `;
       } else {
-        // Logged In state: Portals dropdown and Logout button alone
+        // Logged In state: Portals dropdown + Logout button
         container.innerHTML = `
-          <div class="relative group">
-            <button type="button" class="nav-portal-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm">
-              <i class="fa-solid fa-table-columns text-brand-600 dark:text-indigo-400"></i> Portals <i class="fa-solid fa-chevron-down text-[9px]"></i>
-            </button>
-            <div class="absolute right-0 top-full pt-1 w-48 hidden group-hover:block transition-all z-50">
-              <div class="nav-dropdown-menu rounded-2xl p-2 space-y-1 text-xs">
-                <a href="dashboard-customer.html" class="nav-dropdown-item flex items-center gap-2.5 px-3 py-2.5 rounded-xl font-bold text-brand-600 dark:text-brand-400">
-                  <i class="fa-solid fa-user text-brand-600 dark:text-indigo-400"></i> Customer Portal
-                </a>
-                <a href="dashboard-admin.html" class="nav-dropdown-item flex items-center gap-2.5 px-3 py-2.5 rounded-xl">
-                  <i class="fa-solid fa-shield-halved text-amber-500"></i> Admin Console
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <button type="button" onclick="window.logoutUser()" title="Logout" class="nav-logout-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm">
-            <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+          ${portalsDropdownHtml}
+          <button type="button" onclick="window.logoutUser()" title="Logout" class="nav-logout-btn px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm cursor-pointer">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>Logout</span>
           </button>
         `;
       }
@@ -143,25 +156,33 @@
     if (mobileAuth) {
       if (!isLoggedIn) {
         mobileAuth.innerHTML = `
-          <div class="grid grid-cols-2 gap-2">
-            <a href="login.html" class="flex items-center justify-center gap-1.5 py-2.5 text-center font-bold text-xs rounded-xl border border-custom bg-surface text-main hover:bg-slate-100 dark:hover:bg-slate-800">
-              <i class="fa-solid fa-arrow-right-to-bracket text-brand-600"></i> Login
-            </a>
-            <a href="register.html" class="flex items-center justify-center gap-1.5 py-2.5 text-center font-bold text-xs rounded-xl bg-brand-600 text-white hover:bg-brand-700 shadow-sm">
-              Sign Up
-            </a>
+          <div class="pt-2 border-t border-custom space-y-2">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-muted-custom">Dashboards & Portals</div>
+            <div class="grid grid-cols-2 gap-2">
+              <a href="dashboard-customer.html" class="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-brand-50 dark:bg-slate-800 text-brand-600 dark:text-brand-400 font-bold text-xs border border-brand-200 dark:border-slate-700 shadow-xs hover:bg-brand-100">
+                <i class="fa-solid fa-user text-xs"></i> Customer Dashboard
+              </a>
+              <a href="dashboard-admin.html" class="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-slate-800 dark:bg-slate-700 text-white font-bold text-xs shadow-xs hover:bg-slate-900">
+                <i class="fa-solid fa-shield-halved text-amber-400 text-xs"></i> Admin Dashboard
+              </a>
+            </div>
+            <div class="pt-1">
+              <a href="login.html" class="flex items-center justify-center gap-1.5 w-full py-2.5 text-center font-bold text-xs rounded-xl border border-custom bg-surface text-main hover:bg-slate-100 dark:hover:bg-slate-800 shadow-xs">
+                <i class="fa-solid fa-arrow-right-to-bracket text-brand-600"></i> Login
+              </a>
+            </div>
           </div>
         `;
       } else {
         mobileAuth.innerHTML = `
-          <!-- Portals and Logout directly below Contact Us -->
           <div class="pt-2 border-t border-custom space-y-2">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-muted-custom">Dashboards & Portals</div>
             <div class="grid grid-cols-2 gap-2">
               <a href="dashboard-customer.html" class="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-brand-600 text-white font-bold text-xs shadow-xs hover:bg-brand-700">
-                <i class="fa-solid fa-user text-xs"></i> Customer
+                <i class="fa-solid fa-user text-xs"></i> Customer Dashboard
               </a>
               <a href="dashboard-admin.html" class="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-slate-800 dark:bg-slate-700 text-white font-bold text-xs shadow-xs hover:bg-slate-900">
-                <i class="fa-solid fa-shield-halved text-amber-400 text-xs"></i> Admin
+                <i class="fa-solid fa-shield-halved text-amber-400 text-xs"></i> Admin Dashboard
               </a>
             </div>
             <button type="button" onclick="window.logoutUser()" class="flex items-center justify-center gap-1.5 w-full py-2 px-2 rounded-xl bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900 font-bold text-xs hover:bg-rose-100 transition-colors">
@@ -663,30 +684,47 @@
   
   // --- Enhanced Desktop Dropdowns on Hover & Touch/Click ---
   function initDesktopDropdowns() {
-    const dropdownGroups = document.querySelectorAll('header nav .group');
-    dropdownGroups.forEach(group => {
-      const trigger = group.querySelector('a');
-      const menu = group.querySelector('.dropdown-menu-bridge, div.absolute');
-      if (trigger && menu) {
-        trigger.addEventListener('click', (e) => {
-          if (window.innerWidth >= 1024 && window.innerWidth <= 1280) {
-            e.preventDefault();
-            const isHidden = menu.classList.contains('hidden');
-            document.querySelectorAll('header nav div.absolute').forEach(m => m.classList.add('hidden'));
-            if (isHidden) {
+    document.addEventListener('click', (e) => {
+      const portalBtn = e.target.closest('.nav-portal-btn');
+      if (portalBtn) {
+        const portalGroup = portalBtn.closest('.group');
+        if (portalGroup) {
+          const menu = portalGroup.querySelector('.dropdown-menu-bridge, div.absolute');
+          if (menu) {
+            e.stopPropagation();
+            const isCurrentlyHidden = menu.classList.contains('hidden');
+            // Close other dropdowns
+            document.querySelectorAll('header div.absolute').forEach(m => m.classList.add('hidden'));
+            if (isCurrentlyHidden) {
               menu.classList.remove('hidden');
+            } else {
+              menu.classList.add('hidden');
             }
           }
-        });
+        }
+        return;
       }
-    });
 
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('header nav .group')) {
-        document.querySelectorAll('header nav div.absolute').forEach(m => {
-          if (window.innerWidth >= 1024 && window.innerWidth <= 1280) {
-            m.classList.add('hidden');
+      const navTrigger = e.target.closest('header nav .group > a');
+      if (navTrigger) {
+        const group = navTrigger.closest('.group');
+        const menu = group ? group.querySelector('.dropdown-menu-bridge, div.absolute') : null;
+        if (menu && (window.innerWidth >= 1024 && window.innerWidth <= 1280)) {
+          e.preventDefault();
+          e.stopPropagation();
+          const isHidden = menu.classList.contains('hidden');
+          document.querySelectorAll('header nav div.absolute').forEach(m => m.classList.add('hidden'));
+          if (isHidden) {
+            menu.classList.remove('hidden');
           }
+          return;
+        }
+      }
+
+      // Clicking outside closes any toggled dropdowns
+      if (!e.target.closest('.group')) {
+        document.querySelectorAll('header div.absolute.dropdown-menu-bridge, header nav div.absolute, header .nav-auth-container div.absolute').forEach(m => {
+          m.classList.add('hidden');
         });
       }
     });
