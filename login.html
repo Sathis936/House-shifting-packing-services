@@ -150,7 +150,7 @@
         </div>
 
         <button type="submit" class="btn-brand-primary w-full py-3.5 text-white font-bold rounded-xl text-sm transition-all shadow-lg hover:scale-[1.01] flex items-center justify-center gap-2">
-          <span>Sign In to Dashboard</span>
+          <span>Sign In</span>
           <i class="fa-solid fa-arrow-right text-xs"></i>
         </button>
       </form>
@@ -175,13 +175,10 @@
         showToast(`Connecting with ${provider} Secure SSO...`, 'info');
       }
       setTimeout(() => {
-        localStorage.setItem('shiftpro_logged_in', 'true');
-        localStorage.setItem('shiftpro_user_email', `sarah.${provider.toLowerCase()}@example.com`);
         if (typeof showToast === 'function') {
-          showToast(`Successfully signed in via ${provider}!`, 'success');
+          showToast(`Successfully connected via ${provider}!`, 'success');
         }
-        setTimeout(() => { window.location.href = 'index.html'; }, 800);
-      }, 700);
+      }, 500);
     }
   </script>
 </body>

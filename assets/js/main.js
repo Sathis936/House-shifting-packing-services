@@ -75,86 +75,36 @@
     });
   }
 
-  // --- 3. Authentication State Manager in Navbar ---
-  window.isUserLoggedIn = function () {
-    return localStorage.getItem(AUTH_KEY) === 'true';
-  };
-
-  window.loginUser = function (email = 'customer@shiftpro.com') {
-    localStorage.setItem(AUTH_KEY, 'true');
-    localStorage.setItem('shiftpro_user_email', email);
-    updateNavbarAuthState();
-    showToast('Logged in successfully! Welcome back.', 'success');
-  };
-
-  window.logoutUser = function () {
-    localStorage.removeItem(AUTH_KEY);
-    localStorage.removeItem('shiftpro_user_email');
-    updateNavbarAuthState();
-    showToast('Logged out successfully.', 'info');
-    setTimeout(() => {
-      window.location.href = 'login.html';
-    }, 400);
-  };
-
+  // --- 3. Navbar Navigation Buttons (Customer Portal + Login) ---
   function updateNavbarAuthState() {
     const authContainers = document.querySelectorAll('.nav-auth-container');
-    const isLoggedIn = window.isUserLoggedIn();
 
     authContainers.forEach(container => {
-      if (!isLoggedIn) {
-        // Logged Out state: Customer Portal + Login button
-        container.innerHTML = `
-          <a href="dashboard-customer.html" class="nav-portal-btn px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm text-main hover:text-brand-600">
-            <i class="fa-solid fa-user text-brand-600 dark:text-emerald-400"></i>
-            <span>Customer Portal</span>
-          </a>
-          <a href="login.html" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-main hover:text-brand-600 border border-custom bg-surface hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1.5 shadow-sm">
-            <i class="fa-solid fa-arrow-right-to-bracket text-brand-600"></i>
-            <span>Login</span>
-          </a>
-        `;
-      } else {
-        // Logged In state: Customer Portal + Logout button
-        container.innerHTML = `
-          <a href="dashboard-customer.html" class="nav-portal-btn px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm text-main hover:text-brand-600">
-            <i class="fa-solid fa-user text-brand-600 dark:text-emerald-400"></i>
-            <span>Customer Portal</span>
-          </a>
-          <button type="button" onclick="window.logoutUser()" title="Logout" class="nav-logout-btn px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm cursor-pointer">
-            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-            <span>Logout</span>
-          </button>
-        `;
-      }
+      container.innerHTML = `
+        <a href="dashboard-customer.html" class="nav-portal-btn px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm text-main hover:text-brand-600">
+          <i class="fa-solid fa-user text-brand-600 dark:text-emerald-400"></i>
+          <span>Customer Portal</span>
+        </a>
+        <a href="login.html" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-main hover:text-brand-600 border border-custom bg-surface hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1.5 shadow-sm">
+          <i class="fa-solid fa-arrow-right-to-bracket text-brand-600"></i>
+          <span>Login</span>
+        </a>
+      `;
     });
 
-    // Also update mobile menu auth container if present
+    // Mobile menu auth container
     const mobileAuth = document.getElementById('mobile-auth-container');
     if (mobileAuth) {
-      if (!isLoggedIn) {
-        mobileAuth.innerHTML = `
-          <div class="pt-2 border-t border-custom space-y-2">
-            <a href="dashboard-customer.html" class="flex items-center justify-center gap-1.5 w-full py-2.5 px-2 rounded-xl bg-brand-50 dark:bg-slate-800 text-brand-600 dark:text-brand-400 font-bold text-xs border border-brand-200 dark:border-slate-700 shadow-xs hover:bg-brand-100">
-              <i class="fa-solid fa-user text-xs"></i> Customer Portal
-            </a>
-            <a href="login.html" class="flex items-center justify-center gap-1.5 w-full py-2.5 text-center font-bold text-xs rounded-xl border border-custom bg-surface text-main hover:bg-slate-100 dark:hover:bg-slate-800 shadow-xs">
-              <i class="fa-solid fa-arrow-right-to-bracket text-brand-600"></i> Login
-            </a>
-          </div>
-        `;
-      } else {
-        mobileAuth.innerHTML = `
-          <div class="pt-2 border-t border-custom space-y-2">
-            <a href="dashboard-customer.html" class="flex items-center justify-center gap-1.5 w-full py-2.5 px-2 rounded-xl bg-brand-600 text-white font-bold text-xs shadow-xs hover:bg-brand-700">
-              <i class="fa-solid fa-user text-xs"></i> Customer Portal
-            </a>
-            <button type="button" onclick="window.logoutUser()" class="flex items-center justify-center gap-1.5 w-full py-2 px-2 rounded-xl bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900 font-bold text-xs hover:bg-rose-100 transition-colors">
-              <i class="fa-solid fa-arrow-right-from-bracket text-xs"></i> Logout
-            </button>
-          </div>
-        `;
-      }
+      mobileAuth.innerHTML = `
+        <div class="pt-2 border-t border-custom space-y-2">
+          <a href="dashboard-customer.html" class="flex items-center justify-center gap-1.5 w-full py-2.5 px-2 rounded-xl bg-brand-50 dark:bg-slate-800 text-brand-600 dark:text-brand-400 font-bold text-xs border border-brand-200 dark:border-slate-700 shadow-xs hover:bg-brand-100">
+            <i class="fa-solid fa-user text-xs"></i> Customer Portal
+          </a>
+          <a href="login.html" class="flex items-center justify-center gap-1.5 w-full py-2.5 text-center font-bold text-xs rounded-xl border border-custom bg-surface text-main hover:bg-slate-100 dark:hover:bg-slate-800 shadow-xs">
+            <i class="fa-solid fa-arrow-right-to-bracket text-brand-600"></i> Login
+          </a>
+        </div>
+      `;
     }
   }
 
@@ -618,10 +568,7 @@
         e.preventDefault();
         const emailInput = document.getElementById('login-email');
         const email = emailInput ? emailInput.value.toLowerCase() : 'customer@shiftpro.com';
-        if (window.loginUser) window.loginUser(email);
-        setTimeout(() => {
-          window.location.href = 'index.html';
-        }, 500);
+        if (window.showToast) window.showToast(`Signed in successfully with ${email}`, 'success');
       });
     }
 
@@ -629,11 +576,7 @@
     if (registerForm) {
       registerForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        if (window.loginUser) window.loginUser('customer@shiftpro.com');
-        if (window.showToast) window.showToast('Account created successfully! Redirecting to home page...', 'success');
-        setTimeout(() => {
-          window.location.href = 'index.html';
-        }, 500);
+        if (window.showToast) window.showToast('Account created successfully!', 'success');
       });
     }
   }
