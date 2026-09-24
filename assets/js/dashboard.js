@@ -1,5 +1,5 @@
 /**
- * ShiftPro - Customer & Admin Dashboard Logic (Indian Rupee INR)
+ * ShiftPro - Customer Portal Logic (Indian Rupee INR)
  */
 
 (function () {
@@ -72,7 +72,7 @@
   let currentActiveMove = movePresets.transit;
   let activeDiscount = 0;
 
-  // --- Customer Dashboard Logic ---
+  // --- Customer Portal Logic ---
   function initCustomerDashboard() {
     const isCustomerDash = document.getElementById('customer-dashboard-root');
     if (!isCustomerDash) return;
@@ -297,154 +297,7 @@
     }
   }
 
-  // --- Admin Dashboard Logic ---
-  function initAdminDashboard() {
-    const isAdminDash = document.getElementById('admin-dashboard-root');
-    if (!isAdminDash) return;
-
-    initAdminCharts();
-    initAdminMovesTable();
-    initQuoteActions();
-  }
-
-  function initAdminCharts() {
-    if (typeof Chart === 'undefined') return;
-
-    const revenueCtx = document.getElementById('adminRevenueChart')?.getContext('2d');
-    if (revenueCtx) {
-      new Chart(revenueCtx, {
-        type: 'line',
-        data: {
-          labels: ['Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-          datasets: [
-            {
-              label: 'Monthly Revenue (₹ Lakhs)',
-              data: [3.4, 4.2, 5.1, 6.2, 7.5, 8.4, 9.2, 10.5],
-              borderColor: '#10b981',
-              backgroundColor: 'rgba(16, 185, 129, 0.12)',
-              borderWidth: 3,
-              fill: true,
-              tension: 0.4,
-              pointRadius: 4,
-              pointBackgroundColor: '#10b981'
-            },
-            {
-              label: 'Target (₹ Lakhs)',
-              data: [3.0, 3.8, 4.8, 5.8, 7.0, 8.0, 8.8, 9.5],
-              borderColor: '#10b981',
-              borderDash: [5, 5],
-              borderWidth: 2,
-              fill: false,
-              pointRadius: 0
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { position: 'top', labels: { boxWidth: 12 } }
-          },
-          scales: {
-            y: {
-              grid: { color: 'rgba(148, 163, 184, 0.15)' },
-              ticks: { callback: val => '₹' + val + 'L' }
-            },
-            x: {
-              grid: { display: false }
-            }
-          }
-        }
-      });
-    }
-
-    const categoriesCtx = document.getElementById('adminCategoryChart')?.getContext('2d');
-    if (categoriesCtx) {
-      new Chart(categoriesCtx, {
-        type: 'doughnut',
-        data: {
-          labels: ['Household Shifting', 'Corporate / Office', 'Vehicle Transport', 'Secure Storage'],
-          datasets: [{
-            data: [54, 24, 14, 8],
-            backgroundColor: ['#10b981', '#06b6d4', '#8b5cf6', '#f59e0b'],
-            borderWidth: 0
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 11 } } }
-          },
-          cutout: '70%'
-        }
-      });
-    }
-  }
-
-  function initAdminMovesTable() {
-    const table = document.getElementById('admin-moves-table');
-    const searchInput = document.getElementById('admin-move-search');
-    const filterSelect = document.getElementById('admin-move-filter');
-
-    if (!table) return;
-
-    table.querySelectorAll('.move-status-changer').forEach(select => {
-      select.addEventListener('change', () => {
-        const moveId = select.getAttribute('data-move-id');
-        const newStatus = select.value;
-        if (window.showToast) window.showToast(`Updated status for ${moveId} to: ${newStatus.toUpperCase()}`, 'success');
-      });
-    });
-
-    table.querySelectorAll('.assign-driver-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const moveId = btn.getAttribute('data-move-id');
-        const driverName = prompt(`Assign Lead Driver for Move #${moveId}:`, 'Robert Vance (#TRK-904)');
-        if (driverName) {
-          btn.textContent = driverName;
-          if (window.showToast) window.showToast(`Assigned ${driverName} to ${moveId}`, 'success');
-        }
-      });
-    });
-
-    if (searchInput) {
-      searchInput.addEventListener('input', () => {
-        const term = searchInput.value.toLowerCase();
-        table.querySelectorAll('tbody tr').forEach(row => {
-          const text = row.textContent.toLowerCase();
-          row.style.display = text.includes(term) ? '' : 'none';
-        });
-      });
-    }
-
-    if (filterSelect) {
-      filterSelect.addEventListener('change', () => {
-        const filterVal = filterSelect.value;
-        table.querySelectorAll('tbody tr').forEach(row => {
-          const rowStatus = row.getAttribute('data-status') || '';
-          if (filterVal === 'all' || rowStatus === filterVal) {
-            row.style.display = '';
-          } else {
-            row.style.display = 'none';
-          }
-        });
-      });
-    }
-  }
-
-  function initQuoteActions() {
-    document.querySelectorAll('.quote-action-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const quoteId = btn.getAttribute('data-quote-id');
-        btn.closest('tr')?.remove();
-        if (window.showToast) window.showToast(`Quote #${quoteId} converted to Active Move!`, 'success');
-      });
-    });
-  }
-
   document.addEventListener('DOMContentLoaded', () => {
     initCustomerDashboard();
-    initAdminDashboard();
   });
 })();

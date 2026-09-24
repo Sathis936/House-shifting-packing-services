@@ -101,48 +101,26 @@
     const authContainers = document.querySelectorAll('.nav-auth-container');
     const isLoggedIn = window.isUserLoggedIn();
 
-    const portalsDropdownHtml = `
-      <div class="relative group py-1">
-        <button type="button" class="nav-portal-btn px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm cursor-pointer" aria-haspopup="true">
-          <i class="fa-solid fa-table-columns text-brand-600 dark:text-emerald-400"></i>
-          <span>Portals</span>
-          <i class="fa-solid fa-chevron-down text-[9px] transition-transform group-hover:rotate-180"></i>
-        </button>
-        <div class="dropdown-menu-bridge absolute right-0 top-full pt-2 -mt-1 w-56 hidden group-hover:block transition-all z-50">
-          <div class="nav-dropdown-menu rounded-2xl p-2 space-y-1 text-xs shadow-xl border border-custom bg-surface">
-            <a href="dashboard-customer.html" class="nav-dropdown-item flex items-center gap-2.5 px-3 py-2.5 rounded-xl font-bold text-main hover:text-brand-600 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-              <i class="fa-solid fa-user text-brand-600 dark:text-emerald-400 w-4 text-center"></i>
-              <div>
-                <span class="block text-main font-bold">Customer Dashboard</span>
-                <span class="block text-[10px] text-muted-custom font-normal">Tracking, Bookings & Invoices</span>
-              </div>
-            </a>
-            <a href="dashboard-admin.html" class="nav-dropdown-item flex items-center gap-2.5 px-3 py-2.5 rounded-xl font-bold text-main hover:text-amber-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-              <i class="fa-solid fa-shield-halved text-amber-500 w-4 text-center"></i>
-              <div>
-                <span class="block text-main font-bold">Admin Dashboard</span>
-                <span class="block text-[10px] text-muted-custom font-normal">Fleet & Dispatch Control</span>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    `;
-
     authContainers.forEach(container => {
       if (!isLoggedIn) {
-        // Logged Out state: Portals dropdown + Login button
+        // Logged Out state: Customer Portal + Login button
         container.innerHTML = `
-          ${portalsDropdownHtml}
+          <a href="dashboard-customer.html" class="nav-portal-btn px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm text-main hover:text-brand-600">
+            <i class="fa-solid fa-user text-brand-600 dark:text-emerald-400"></i>
+            <span>Customer Portal</span>
+          </a>
           <a href="login.html" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-main hover:text-brand-600 border border-custom bg-surface hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-1.5 shadow-sm">
             <i class="fa-solid fa-arrow-right-to-bracket text-brand-600"></i>
             <span>Login</span>
           </a>
         `;
       } else {
-        // Logged In state: Portals dropdown + Logout button
+        // Logged In state: Customer Portal + Logout button
         container.innerHTML = `
-          ${portalsDropdownHtml}
+          <a href="dashboard-customer.html" class="nav-portal-btn px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm text-main hover:text-brand-600">
+            <i class="fa-solid fa-user text-brand-600 dark:text-emerald-400"></i>
+            <span>Customer Portal</span>
+          </a>
           <button type="button" onclick="window.logoutUser()" title="Logout" class="nav-logout-btn px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors shadow-sm cursor-pointer">
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
             <span>Logout</span>
@@ -157,34 +135,20 @@
       if (!isLoggedIn) {
         mobileAuth.innerHTML = `
           <div class="pt-2 border-t border-custom space-y-2">
-            <div class="text-[10px] font-bold uppercase tracking-wider text-muted-custom">Dashboards & Portals</div>
-            <div class="grid grid-cols-2 gap-2">
-              <a href="dashboard-customer.html" class="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-brand-50 dark:bg-slate-800 text-brand-600 dark:text-brand-400 font-bold text-xs border border-brand-200 dark:border-slate-700 shadow-xs hover:bg-brand-100">
-                <i class="fa-solid fa-user text-xs"></i> Customer Dashboard
-              </a>
-              <a href="dashboard-admin.html" class="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-slate-800 dark:bg-slate-700 text-white font-bold text-xs shadow-xs hover:bg-slate-900">
-                <i class="fa-solid fa-shield-halved text-amber-400 text-xs"></i> Admin Dashboard
-              </a>
-            </div>
-            <div class="pt-1">
-              <a href="login.html" class="flex items-center justify-center gap-1.5 w-full py-2.5 text-center font-bold text-xs rounded-xl border border-custom bg-surface text-main hover:bg-slate-100 dark:hover:bg-slate-800 shadow-xs">
-                <i class="fa-solid fa-arrow-right-to-bracket text-brand-600"></i> Login
-              </a>
-            </div>
+            <a href="dashboard-customer.html" class="flex items-center justify-center gap-1.5 w-full py-2.5 px-2 rounded-xl bg-brand-50 dark:bg-slate-800 text-brand-600 dark:text-brand-400 font-bold text-xs border border-brand-200 dark:border-slate-700 shadow-xs hover:bg-brand-100">
+              <i class="fa-solid fa-user text-xs"></i> Customer Portal
+            </a>
+            <a href="login.html" class="flex items-center justify-center gap-1.5 w-full py-2.5 text-center font-bold text-xs rounded-xl border border-custom bg-surface text-main hover:bg-slate-100 dark:hover:bg-slate-800 shadow-xs">
+              <i class="fa-solid fa-arrow-right-to-bracket text-brand-600"></i> Login
+            </a>
           </div>
         `;
       } else {
         mobileAuth.innerHTML = `
           <div class="pt-2 border-t border-custom space-y-2">
-            <div class="text-[10px] font-bold uppercase tracking-wider text-muted-custom">Dashboards & Portals</div>
-            <div class="grid grid-cols-2 gap-2">
-              <a href="dashboard-customer.html" class="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-brand-600 text-white font-bold text-xs shadow-xs hover:bg-brand-700">
-                <i class="fa-solid fa-user text-xs"></i> Customer Dashboard
-              </a>
-              <a href="dashboard-admin.html" class="flex items-center justify-center gap-1.5 py-2.5 px-2 rounded-xl bg-slate-800 dark:bg-slate-700 text-white font-bold text-xs shadow-xs hover:bg-slate-900">
-                <i class="fa-solid fa-shield-halved text-amber-400 text-xs"></i> Admin Dashboard
-              </a>
-            </div>
+            <a href="dashboard-customer.html" class="flex items-center justify-center gap-1.5 w-full py-2.5 px-2 rounded-xl bg-brand-600 text-white font-bold text-xs shadow-xs hover:bg-brand-700">
+              <i class="fa-solid fa-user text-xs"></i> Customer Portal
+            </a>
             <button type="button" onclick="window.logoutUser()" class="flex items-center justify-center gap-1.5 w-full py-2 px-2 rounded-xl bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-900 font-bold text-xs hover:bg-rose-100 transition-colors">
               <i class="fa-solid fa-arrow-right-from-bracket text-xs"></i> Logout
             </button>
@@ -588,15 +552,9 @@
     const passInput = document.getElementById('login-pass');
     if (!emailInput || !passInput) return;
 
-    if (role === 'admin') {
-      emailInput.value = 'admin@shiftprologistics.com';
-      passInput.value = 'adminpass2026';
-      if (window.showToast) window.showToast('Filled Admin Credentials. Click Sign In.', 'info');
-    } else {
-      emailInput.value = 'customer@shiftpro.com';
-      passInput.value = 'customer2026';
-      if (window.showToast) window.showToast('Filled Customer Credentials. Click Sign In.', 'info');
-    }
+    emailInput.value = 'customer@shiftpro.com';
+    passInput.value = 'customer2026';
+    if (window.showToast) window.showToast('Filled Customer Demo Credentials. Click Sign In.', 'info');
   };
 
   window.togglePassVisibility = function () {
